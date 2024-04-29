@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 3355755134012276438}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.04, y: 0.51, z: 1.4707038}
+  m_LocalPosition: {x: 0.04, y: 0.5002, z: 1.4707038}
   m_LocalScale: {x: 0.18180496, y: 0.27661753, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -41,9 +41,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2246144658580283313}
   - component: {fileID: 2405207203280836988}
-  - component: {fileID: 210832686448983245}
   - component: {fileID: 4541015500776327980}
   - component: {fileID: 715708158502421091}
+  - component: {fileID: -3706238756559704981}
   m_Layer: 0
   m_Name: Water
   m_TagString: Untagged
@@ -119,20 +119,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &210832686448983245
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6322427808400203754}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68eb0defc6d7e0c4a8feff985a1cb1c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buoyancy: 4
-  waterPivot: {fileID: 3355755134012276438}
 --- !u!61 &4541015500776327980
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -205,3 +191,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-3706238756559704981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6322427808400203754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed3a882708aea8a41bff1a471285ec63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
