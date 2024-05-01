@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,7 +19,7 @@ public class Water : MonoBehaviour , IChangable
         {
             Destroy(gameObject.GetComponent<WaterFlow>());
             gameObject.AddComponent<WaterStop>().waterY = waterY;
-            gameObject.GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 0.75f);
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 0.75f); // 임시로 색깔만 바꾸기
         }
         else
         {

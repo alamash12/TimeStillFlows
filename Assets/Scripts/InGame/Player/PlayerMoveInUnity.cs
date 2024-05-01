@@ -1,8 +1,8 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMoveInUnity : MonoBehaviour // À¯´ÏÆ¼ ³»¿¡¼­ Ä³¸¯ÅÍ ¿òÁ÷ÀÌ±â À§ÇÑ ½ºÅ©¸³Æ® 
+public class PlayerMoveInUnity : MonoBehaviour // ìœ ë‹ˆí‹° ë‚´ì—ì„œ ìºë¦­í„° ì›€ì§ì´ê¸° ìœ„í•œ ìŠ¤í¬ë¦½íŠ¸ 
 {
     Rigidbody2D rigid;
 
@@ -16,7 +16,7 @@ public class PlayerMoveInUnity : MonoBehaviour // À¯´ÏÆ¼ ³»¿¡¼­ Ä³¸¯ÅÍ ¿òÁ÷ÀÌ±â 
     private void FixedUpdate()
     {
         float horizontalInput = Input.GetAxisRaw("Horizontal");
-        if (horizontalInput < 0) // µÚ·Î ÀÌµ¿ÇÒ ¶§ -> Á» ´õ ºü¸£°Ô
+        if (horizontalInput < 0) // ë’¤ë¡œ ì´ë™í•  ë•Œ -> ì¢€ ë” ë¹ ë¥´ê²Œ
         {
             transform.Translate(horizontalInput * moveSpeed * Time.deltaTime * Vector3.right);
         }
