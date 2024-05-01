@@ -4,25 +4,25 @@ using System.Linq.Expressions;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class WaterFlow : MonoBehaviour , IWaterStrategy
+public class WaterFlow : MonoBehaviour
 {
-    public float waterY;
-    new Rigidbody2D rigidbody2D = new Rigidbody2D();
+    public float waterY { get; set; }
+    Rigidbody2D rigid;
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Object")
+        if (collision.CompareTag("Object"))
         {
-            rigidbody2D = collision.GetComponent<Rigidbody2D>();
-            rigidbody2D.gravityScale = 0f;
-            StartCoroutine(Buoyancy(rigidbody2D));
+            rigid = collision.GetComponent<Rigidbody2D>();
+            rigid.gravityScale = 0f;
+            StartCoroutine(Buoyancy(rigid));
         }
-        if (collision.tag == "Player") // 잠시 테스트로 부력 놔둠
+        if (collision.CompareTag("Player")) // 잠시 테스트로 부력 놔둠
         {
-            rigidbody2D = collision.GetComponent<Rigidbody2D>();
-            rigidbody2D.gravityScale = 0f;
+            rigid = collision.GetComponent<Rigidbody2D>();
+            rigid.gravityScale = 0f;
 
-            StartCoroutine(Buoyancy(rigidbody2D));
+            StartCoroutine(Buoyancy(rigid));
             //게임 오버 구현
         }
     }
@@ -38,13 +38,10 @@ public class WaterFlow : MonoBehaviour , IWaterStrategy
         collision.velocity = new Vector2(0, 0);
         yield break;
     }
-    public void OnTriggerExit2D(Collider2D collision)
+    void OnTriggerExit2D(Collider2D collision)
     {
-        rigidbody2D = collision.GetComponent<Rigidbody2D>();
-        rigidbody2D.gravityScale = 1f;
-    }
-    public void SetWaterY(float waterY)
-    {
-        this.waterY = waterY;
+        rigid = collision.GetComponent<Rigidbody2D>();
+        if(rigid != null)
+            rigid.gravityScale = 1f;
     }
 }

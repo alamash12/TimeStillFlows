@@ -2,41 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Water : MonoBehaviour
+public class Water : MonoBehaviour , IChangable
 {
     Transform waterPivot;
     float waterY;
-    IWaterStrategy waterStrategy;
     private void Awake()
     {
         waterPivot = gameObject.transform.GetChild(0);
         waterY = waterPivot.transform.position.y;
-        FlowStrategy(gameObject);
+        gameObject.AddComponent<WaterFlow>().waterY = waterY;
     }
-
-    public void SetStrategy(IWaterStrategy waterStrategy)
+    public void ChangeState()
     {
-        this.waterStrategy = waterStrategy;
-    }
-
-    public void FlowStrategy(GameObject target)
-    {
-        ClearStrategyComponent(target);
-        IWaterStrategy strategy = target.AddComponent<WaterFlow>();
-        strategy.SetWaterY(waterY);
-        SetStrategy(strategy);
-    }
-
-    public void StopStrategy(GameObject target)
-    {
-        ClearStrategyComponent(target);
-        IWaterStrategy strategy = target.AddComponent<WaterStop>();
-        strategy.SetWaterY(waterY);
-        SetStrategy(strategy);
-    }
-    public void ClearStrategyComponent(GameObject target)
-    {
-        Destroy(target.GetComponent<WaterFlow>());
-        Destroy(target.GetComponent<WaterStop>());
+        bool isFlow = gameObject.GetComponent<WaterFlow>() != null ? true : false;
+        if (isFlow)
+        {
+            Destroy(gameObject.GetComponent<WaterFlow>());
+            gameObject.AddComponent<WaterStop>().waterY = waterY;
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 0.75f);
+        }
+        else
+        {
+            Destroy(gameObject.GetComponent<WaterStop>());
+            gameObject.AddComponent<WaterFlow>().waterY = waterY;
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 1f, 0.75f);
+        }
     }
 }
