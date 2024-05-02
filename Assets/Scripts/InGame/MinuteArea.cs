@@ -1,18 +1,17 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerArea : MonoBehaviour
+public class MinuteArea : MonoBehaviour
 {
-    List<Rigidbody2D> triggeredObject = new();
+    List<Rigidbody2D> triggeredObjectRigid = new();
     Vector2 playerPosition;
     float nearestDistance;
     public GameObject nearestObject;
-    IChangable changable;
 
     public void ChangeStrategy(IChangable gameObject)
     {
-        gameObject.ChangeState();
+        gameObject.ChangeState<WaterStop,WaterFlow>();
     }
     private void Awake()
     {
@@ -23,20 +22,25 @@ public class PlayerArea : MonoBehaviour
     {
         if (collision.CompareTag("Object"))
         {
-            triggeredObject.Add(collision.GetComponent<Rigidbody2D>());
+            triggeredObjectRigid.Add(collision.GetComponent<Rigidbody2D>());
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Object"))
         {
-            triggeredObject.Remove(collision.GetComponent<Rigidbody2D>());
+            triggeredObjectRigid.Remove(collision.GetComponent<Rigidbody2D>());
+            if(collision.gameObject == nearestObject)
+            {
+                nearestObject = null;
+                nearestDistance = Mathf.Infinity;
+            }
         }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        foreach (Rigidbody2D rigidbody2d in triggeredObject)
+        foreach (Rigidbody2D rigidbody2d in triggeredObjectRigid)
         {
             if ((playerPosition - rigidbody2d.ClosestPoint(playerPosition)).sqrMagnitude < nearestDistance) // 플레이어와 가장 가까운 collider의 지점과 가장 가까운 부분을 비교
             {

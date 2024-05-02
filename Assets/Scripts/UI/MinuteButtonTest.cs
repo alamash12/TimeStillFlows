@@ -1,25 +1,25 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MinuteButtonTest : MonoBehaviour
 {
-    public PlayerArea playerArea;
-
+    MinuteArea minuteArea;
     private void Start()
     {
         gameObject.GetComponent<Button>().onClick.AddListener(MinuteClicked);
+        minuteArea = GameObject.Find("minuteArea").GetComponent<MinuteArea>();
     }
 
-    void MinuteClicked()
+    public void MinuteClicked()
     {
-        if (playerArea.nearestObject != null)
+        if (minuteArea.nearestObject != null)
         {
-            IChangable changableComponent = playerArea.nearestObject.GetComponent<IChangable>();
+            IChangable changableComponent = minuteArea.nearestObject.GetComponent<IChangable>();
             if (changableComponent != null)
             {
-                playerArea.ChangeStrategy(changableComponent);
+                minuteArea.ChangeStrategy(changableComponent);
             }
         }
     }

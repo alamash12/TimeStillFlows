@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Unity.VisualScripting;
@@ -6,24 +6,25 @@ using UnityEngine;
 
 public class WaterFlow : MonoBehaviour
 {
-    public float waterY { get; set; }
+    float waterY;
     private Dictionary<Rigidbody2D, Coroutine> activeCoroutines = new Dictionary<Rigidbody2D, Coroutine>(); // 코루틴을 저장하는 용도
-
+    private void Awake()
+    {
+        waterY = gameObject.GetComponent<Water>().waterY;
+    }
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Object"))
         {
             Rigidbody2D rigid = collision.GetComponent<Rigidbody2D>();
             rigid.gravityScale = 0f;
-            Coroutine coroutine = StartCoroutine(Buoyancy(rigid));
-            activeCoroutines.Add(rigid, coroutine);
+            activeCoroutines.Add(rigid, StartCoroutine(Buoyancy(rigid)));
         }
         if (collision.CompareTag("Player")) // 잠시 테스트로 부력 놔둠
         {
             Rigidbody2D rigid = collision.GetComponent<Rigidbody2D>();
             rigid.gravityScale = 0f;
-            Coroutine coroutine = StartCoroutine(Buoyancy(rigid));
-            activeCoroutines.Add(rigid, coroutine);
+            activeCoroutines.Add(rigid, StartCoroutine(Buoyancy(rigid)));
             //게임 오버 구현
         }
     }

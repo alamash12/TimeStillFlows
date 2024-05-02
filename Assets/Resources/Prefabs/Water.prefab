@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 4541015500776327980}
   - component: {fileID: 715708158502421091}
   - component: {fileID: -3706238756559704981}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Water
   m_TagString: Object
   m_Icon: {fileID: 0}

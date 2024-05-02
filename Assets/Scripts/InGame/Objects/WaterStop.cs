@@ -1,11 +1,16 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class WaterStop : MonoBehaviour
 {
-    public float waterY { get; set; }
+    float waterY;
     Rigidbody2D rigid;
+
+    private void Awake()
+    {
+        waterY = gameObject.GetComponent<Water>().waterY;
+    }
 
     void OnTriggerEnter2D(Collider2D collision)
     {

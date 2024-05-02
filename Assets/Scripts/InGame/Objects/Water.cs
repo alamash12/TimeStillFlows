@@ -1,31 +1,48 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Water : MonoBehaviour , IChangable
 {
     Transform waterPivot;
-    float waterY;
+    public float waterY { get; set; }
     private void Awake()
     {
         waterPivot = gameObject.transform.GetChild(0);
-        waterY = waterPivot.transform.position.y;
-        gameObject.AddComponent<WaterFlow>().waterY = waterY;
+        waterY = waterPivot.position.y;
+        ChangeState<WaterStop, WaterFlow>(); // 초기상태 flow로 지정
     }
-    public void ChangeState()
+    /// <summary>
+    /// 상태를 변화시키는 함수
+    /// </summary>
+    /// <typeparam name="T1">변화하기 전의 상태</typeparam>
+    /// <typeparam name="T2">변화한 후의 상태</typeparam>
+    public void ChangeState<T1,T2>() where T1 : Component where T2 : Component
     {
-        bool isFlow = gameObject.GetComponent<WaterFlow>() != null ? true : false;
-        if (isFlow)
+        Component destroyComponent = gameObject.GetComponent<T1>();
+        Component addComponent = gameObject.GetComponent<T2>();
+
+        Destroy(destroyComponent);
+        if(addComponent == null)
         {
-            Destroy(gameObject.GetComponent<WaterFlow>());
-            gameObject.AddComponent<WaterStop>().waterY = waterY;
+            addComponent = gameObject.AddComponent<T2>();
+            ChangeSprite(addComponent);
+        }
+    }
+
+    public void ChangeSprite(Component component)
+    {
+        if(component == GetComponent<WaterFlow>())
+        {
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 1f, 0.75f);
+        }
+        else if(component == GetComponent<WaterStop>())
+        {
             gameObject.GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 0.75f); // 임시로 색깔만 바꾸기
         }
         else
         {
-            Destroy(gameObject.GetComponent<WaterStop>());
-            gameObject.AddComponent<WaterFlow>().waterY = waterY;
-            gameObject.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 1f, 0.75f);
+            Debug.LogError("Not Available Component");
         }
     }
 }
