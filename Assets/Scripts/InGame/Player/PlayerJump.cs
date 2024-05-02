@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,7 +24,7 @@ public class PlayerJump : MonoBehaviour
     }
     void Update()
     {
-        isGround = Physics2D.Raycast(playerPivot.transform.position, Vector3.down, 0.1f); // ·¹ÀÌÄ³½ºÆ®·Î ¶¥¿¡ ´êÀ¸¸é Á¡ÇÁ °¡´ÉÇÏ°Ô
+        isGround = Physics2D.Raycast(playerPivot.transform.position, Vector3.down, 0.1f); // ë ˆì´ìºìŠ¤íŠ¸ë¡œ ë•…ì— ë‹¿ìœ¼ë©´ ì í”„ ê°€ëŠ¥í•˜ê²Œ
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Jump();

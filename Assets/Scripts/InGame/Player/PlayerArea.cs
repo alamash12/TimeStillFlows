@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -38,11 +38,11 @@ public class PlayerArea : MonoBehaviour
     {
         foreach (Rigidbody2D rigidbody2d in triggeredObject)
         {
-            if ((playerPosition - rigidbody2d.ClosestPoint(playerPosition)).sqrMagnitude < nearestDistance) // ÇÃ·¹ÀÌ¾î¿Í °¡Àå °¡±î¿î colliderÀÇ ÁöÁ¡°ú °¡Àå °¡±î¿î ºÎºÐÀ» ºñ±³
+            if ((playerPosition - rigidbody2d.ClosestPoint(playerPosition)).sqrMagnitude < nearestDistance) // í”Œë ˆì´ì–´ì™€ ê°€ìž¥ ê°€ê¹Œìš´ colliderì˜ ì§€ì ê³¼ ê°€ìž¥ ê°€ê¹Œìš´ ë¶€ë¶„ì„ ë¹„êµ
             {
                 nearestObject = rigidbody2d.gameObject;
                 //Debug.Log(nearestObject);
-                //³ë¶õ ¹Ú½º Å°°í ²ô´Â ºÎºÐ
+                //ë…¸ëž€ ë°•ìŠ¤ í‚¤ê³  ë„ëŠ” ë¶€ë¶„
             }
             nearestDistance = (playerPosition - nearestObject.GetComponent<Rigidbody2D>().ClosestPoint(playerPosition)).sqrMagnitude;
         }

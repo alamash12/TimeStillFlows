@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
             return instance;
         }
     }
-    static void Init() // ´Ù¸¥ ¸Å´ÏÀúµéµµ ¿©±â¼­ GameManager °´Ã¼¿¡ Ãß°¡
+    static void Init() // ë‹¤ë¥¸ ë§¤ë‹ˆì €ë“¤ë„ ì—¬ê¸°ì„œ GameManager ê°ì²´ì— ì¶”ê°€
     {
         GameObject gameManager = GameObject.Find("GameManager");
         if (instance == null)

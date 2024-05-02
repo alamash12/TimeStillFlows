@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,11 +14,11 @@ public class WaterStop : MonoBehaviour
             rigid = collision.GetComponent<Rigidbody2D>();
             rigid.gravityScale = 0f;
         }
-        if (collision.CompareTag("Player")) // Àá½Ã Å×½ºÆ®·Î ºÎ·Â ³öµÒ
+        if (collision.CompareTag("Player")) // ìž ì‹œ í…ŒìŠ¤íŠ¸ë¡œ ë¶€ë ¥ ë†”ë‘ 
         {
             rigid = collision.GetComponent<Rigidbody2D>();
             rigid.gravityScale = 0f;
-            //°ÔÀÓ ¿À¹ö ±¸Çö
+            //ê²Œìž„ ì˜¤ë²„ êµ¬í˜„
         }
     }
     public void OnTriggerExit2D(Collider2D collision)

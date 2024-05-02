@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Unity.VisualScripting;
@@ -7,41 +7,50 @@ using UnityEngine;
 public class WaterFlow : MonoBehaviour
 {
     public float waterY { get; set; }
-    Rigidbody2D rigid;
+    private Dictionary<Rigidbody2D, Coroutine> activeCoroutines = new Dictionary<Rigidbody2D, Coroutine>(); // ì½”ë£¨í‹´ì„ ì €ì¥í•˜ëŠ” ìš©ë„
 
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Object"))
         {
-            rigid = collision.GetComponent<Rigidbody2D>();
+            Rigidbody2D rigid = collision.GetComponent<Rigidbody2D>();
             rigid.gravityScale = 0f;
-            StartCoroutine(Buoyancy(rigid));
+            Coroutine coroutine = StartCoroutine(Buoyancy(rigid));
+            activeCoroutines.Add(rigid, coroutine);
         }
-        if (collision.CompareTag("Player")) // Àá½Ã Å×½ºÆ®·Î ºÎ·Â ³öµÒ
+        if (collision.CompareTag("Player")) // ì ì‹œ í…ŒìŠ¤íŠ¸ë¡œ ë¶€ë ¥ ë†”ë‘ 
         {
-            rigid = collision.GetComponent<Rigidbody2D>();
+            Rigidbody2D rigid = collision.GetComponent<Rigidbody2D>();
             rigid.gravityScale = 0f;
-
-            StartCoroutine(Buoyancy(rigid));
-            //°ÔÀÓ ¿À¹ö ±¸Çö
+            Coroutine coroutine = StartCoroutine(Buoyancy(rigid));
+            activeCoroutines.Add(rigid, coroutine);
+            //ê²Œì„ ì˜¤ë²„ êµ¬í˜„
         }
     }
 
     IEnumerator Buoyancy(Rigidbody2D collision)
     {
-        yield return new WaitForSeconds(0.15f);
-        while(collision.transform.position.y < waterY)
+        Debug.Log(collision.name);
+        while(true)
         {
-            collision.velocity = new Vector2(0, Mathf.Clamp((collision.velocity.y + 0.07f), -10, 5));
-            yield return null;
+            yield return new WaitForSeconds(0.15f);
+            while (collision.transform.position.y < waterY)
+            {
+                collision.velocity = new Vector2(0, Mathf.Clamp((collision.velocity.y + 0.07f), -10, 5));
+                yield return null;
+            }
+            collision.velocity = new Vector2(0, 0);
+            yield return new WaitWhile(() => collision.velocity.y >= 0); // ë¬¼ì²´ê°€ ì•„ë˜ë¡œ ë–¨ì–´ì§€ê¸° ì „ê¹Œì§€ ëŒ€ê¸°ìƒíƒœ
         }
-        collision.velocity = new Vector2(0, 0);
-        yield break;
     }
     void OnTriggerExit2D(Collider2D collision)
     {
-        rigid = collision.GetComponent<Rigidbody2D>();
-        if(rigid != null)
+        Rigidbody2D rigid = collision.GetComponent<Rigidbody2D>();
+        if (rigid != null && activeCoroutines.ContainsKey(rigid))
+        {
+            StopCoroutine(activeCoroutines[rigid]);
+            activeCoroutines.Remove(rigid);
             rigid.gravityScale = 1f;
+        }
     }
 }

@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -46,7 +46,7 @@ public class PlayerMove : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoi
     }
     private void Move()
     {
-        if (Mathf.Abs(deltaX) > 4) // °¨µµ Á¶ÀıÀ» À§ÇØ¼­ 
+        if (Mathf.Abs(deltaX) > 4) // ê°ë„ ì¡°ì ˆì„ ìœ„í•´ì„œ 
             direction = Mathf.Sign(deltaX);
         player.transform.Translate(direction * moveSpeed * Time.deltaTime * Vector3.right);
     }
