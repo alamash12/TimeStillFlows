@@ -7,7 +7,7 @@ public class HourArea : MonoBehaviour
     public List<GameObject> triggeredObject = new();
     public void ChangeStrategy(IChangable gameObject)
     {
-        gameObject.ChangeState<WaterFlow, WaterStop>(); 
+        gameObject.stateType = StateType.Stop;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

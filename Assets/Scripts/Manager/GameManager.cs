@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,14 +23,8 @@ public class GameManager : MonoBehaviour
                 gameManager = new GameObject("GameManager");
                 gameManager.AddComponent<GameManager>();
             }
-            else
-            {
-
-            }
-
             DontDestroyOnLoad(gameManager);
             instance = gameManager.GetComponent<GameManager>();
-            Debug.Log("GameManager Load");
         }
     }
     private void Awake()

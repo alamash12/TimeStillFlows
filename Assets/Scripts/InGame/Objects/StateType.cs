@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IChangable
+public enum StateType
 {
-    public StateType stateType { get; set; }
+    Flow = 0,
+    Stop = 1,
 }

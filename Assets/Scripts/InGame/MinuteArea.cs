@@ -11,7 +11,7 @@ public class MinuteArea : MonoBehaviour
 
     public void ChangeStrategy(IChangable gameObject)
     {
-        gameObject.ChangeState<WaterStop,WaterFlow>();
+        gameObject.stateType = StateType.Flow;
     }
     private void Awake()
     {

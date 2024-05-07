@@ -31,7 +31,6 @@ public class WaterFlow : MonoBehaviour
 
     IEnumerator Buoyancy(Rigidbody2D collision)
     {
-        Debug.Log(collision.name);
         while(true)
         {
             yield return new WaitForSeconds(0.15f);
