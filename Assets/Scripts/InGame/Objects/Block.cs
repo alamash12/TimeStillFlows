@@ -28,7 +28,12 @@ public class Block : MonoBehaviour, IChangable
         }
     }
 
-  
+    private void Start()
+    {
+        gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
+    }
+
+
 
     public void ChangeState<T1,T2>() where T1:Component where T2:Component
     {
