@@ -42,10 +42,11 @@ public class MinuteArea : MonoBehaviour
         {
             triggeredObjectRigid.Remove(collision.GetComponent<Rigidbody2D>());
             if(collision.gameObject == nearestObject)
-            {
+            {     
+                nearestObject.GetComponent<SpriteRenderer>().color = Color.gray;
                 nearestObject = null;
                 nearestDistance = Mathf.Infinity;
-                nearestObject.GetComponent<SpriteRenderer>().color = Color.gray;
+          
             }
         }
     }
@@ -63,7 +64,11 @@ public class MinuteArea : MonoBehaviour
             nearestDistance = (playerPosition - nearestObject.GetComponent<Rigidbody2D>().ClosestPoint(playerPosition)).sqrMagnitude;
         }
         //노란 박스 키고 끄는 부분, 임시로 노란색으로 변하는걸로 구현 
-        nearestObject.GetComponent<SpriteRenderer>().color = Color.yellow;
+        if(nearestObject != null)
+        {
+             nearestObject.GetComponent<SpriteRenderer>().color = Color.yellow;
+        }
+       
 
     }
 
