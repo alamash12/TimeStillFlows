@@ -3758,6 +3758,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MovingPlatform1
       objectReference: {fileID: 0}
+    - target: {fileID: 4737745962282160252, guid: 7af792931bcef4f498d731c1d1433a97, type: 3}
+      propertyPath: m_TagString
+      value: MovingPlatform
+      objectReference: {fileID: 0}
     - target: {fileID: 6640690698392923829, guid: 7af792931bcef4f498d731c1d1433a97, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4062,11 +4066,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3556775118508309258, guid: 907b41dee88383745a13184e33f1f259, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.42
+      value: -4.79
       objectReference: {fileID: 0}
     - target: {fileID: 3556775118508309258, guid: 907b41dee88383745a13184e33f1f259, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.27
+      value: -1.32
       objectReference: {fileID: 0}
     - target: {fileID: 3556775118508309258, guid: 907b41dee88383745a13184e33f1f259, type: 3}
       propertyPath: m_LocalPosition.z

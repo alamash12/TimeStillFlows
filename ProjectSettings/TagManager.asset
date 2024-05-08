@@ -9,6 +9,7 @@ TagManager:
   - MovngPlatform
   - Water
   - Laser
+  - MovingPlatform
   layers:
   - Default
   - TransparentFX
