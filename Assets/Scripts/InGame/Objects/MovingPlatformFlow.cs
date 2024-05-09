@@ -42,7 +42,7 @@ public class MovingPlatformFlow : MonoBehaviour
     }
 
     //Player가 이동발판위에 '안착'하는 경우 아래 코드를 추가
-    /*
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //레이저와 충돌하는건 나중에 구현
@@ -62,5 +62,5 @@ public class MovingPlatformFlow : MonoBehaviour
         //물체가 MovingPlatform에서 떠났을 때 부모를 초기화하여 원래 상태로 되돌림
         collision.transform.SetParent(null);
     }
-    */
+    
 }

@@ -12,14 +12,14 @@ public class HourArea : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Object") || collision.CompareTag("Block") || collision.CompareTag("MovingPlatform") || collision.CompareTag("Laser") || collision.CompareTag("Water"))
+        if (collision.CompareTag("Object"))
         {
             triggeredObject.Add(collision.gameObject);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Object") || collision.CompareTag("Block") || collision.CompareTag("MovingPlatform") || collision.CompareTag("Laser") || collision.CompareTag("Water"))
+        if (collision.CompareTag("Object"))
         {
             triggeredObject.Remove(collision.gameObject);
         }
