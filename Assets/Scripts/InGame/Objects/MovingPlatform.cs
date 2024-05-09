@@ -30,16 +30,18 @@ public class MovingPlatform : MonoBehaviour, IChangable
 
     private void Start()
     {
+        stateType = StateType.Stop;
         gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
     }
 
+    //스크립트를 활성, 비활성
     public void ChangeState<T1, T2>() where T1:Component where T2:Component
     {
         Component destroyComponent = gameObject.GetComponent<T1>();
         Component addComponent = gameObject.GetComponent<T2>();
 
         Destroy(destroyComponent);
-        if(addComponent != null)
+        if (addComponent == null)
         {
             addComponent = gameObject.AddComponent<T2>();
             ChangeSprite(addComponent);
@@ -48,11 +50,11 @@ public class MovingPlatform : MonoBehaviour, IChangable
 
     void ChangeSprite(Component component)
     {
-        if(component == GetComponent<BlockFlow>())
+        if(component == GetComponent<MovingPlatformFlow>())
         {
             gameObject.GetComponent<SpriteRenderer>().color = Color.white;
         }
-        else if (component == GetComponent<BlockStop>()) 
+        else if (component == GetComponent<MovingPlatformStop>()) 
         {
             gameObject.GetComponent <SpriteRenderer>().color = Color.gray;
         }

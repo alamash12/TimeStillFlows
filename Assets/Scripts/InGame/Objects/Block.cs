@@ -30,6 +30,7 @@ public class Block : MonoBehaviour, IChangable
 
     private void Start()
     {
+        stateType = StateType.Stop;
         gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
     }
 
@@ -41,7 +42,7 @@ public class Block : MonoBehaviour, IChangable
         Component addComponent = gameObject.GetComponent<T2>();
 
         Destroy(destroyComponent);
-        if(addComponent != null )
+        if(addComponent == null )
         {
             addComponent = gameObject.AddComponent<T2>();
             ChangeSprite(addComponent);
