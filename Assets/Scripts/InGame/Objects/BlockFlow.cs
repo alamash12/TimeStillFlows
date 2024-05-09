@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BlockFlow : MonoBehaviour
 {
-    void Awake()
+    void Start()
     {
         gameObject.GetComponent<Rigidbody2D>().isKinematic = false;       
     }
