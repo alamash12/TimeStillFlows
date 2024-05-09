@@ -23,7 +23,7 @@ public class MinuteArea : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Object")|| collision.CompareTag("Block")|| collision.CompareTag("MovingPlatform")|| collision.CompareTag("Laser")|| collision.CompareTag("Water"))
+        if (collision.CompareTag("Object"))
         {
             //충돌한 오브젝트의 상태를 가져옴
             IChangable changableObject = collision.GetComponent<IChangable>();
@@ -33,20 +33,17 @@ public class MinuteArea : MonoBehaviour
             {
                 triggeredObjectRigid.Add(collision.GetComponent<Rigidbody2D>());
             }
-           
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Object") || collision.CompareTag("Block") || collision.CompareTag("MovingPlatform") || collision.CompareTag("Laser") || collision.CompareTag("Water"))
+        if (collision.CompareTag("Object"))
         {
             triggeredObjectRigid.Remove(collision.GetComponent<Rigidbody2D>());
             if(collision.gameObject == nearestObject)
             {     
-                nearestObject.GetComponent<SpriteRenderer>().color = Color.gray;
                 nearestObject = null;
                 nearestDistance = Mathf.Infinity;
-          
             }
         }
     }
@@ -59,17 +56,14 @@ public class MinuteArea : MonoBehaviour
             {
                 nearestObject = rigidbody2d.gameObject;
                 //Debug.Log(nearestObject);
-                
             }
             nearestDistance = (playerPosition - nearestObject.GetComponent<Rigidbody2D>().ClosestPoint(playerPosition)).sqrMagnitude;
         }
         //노란 박스 키고 끄는 부분, 임시로 노란색으로 변하는걸로 구현 
         if(nearestObject != null)
         {
-             nearestObject.GetComponent<SpriteRenderer>().color = Color.yellow;
+             //nearestObject.GetComponent<SpriteRenderer>().color = Color.yellow;
         }
-       
-
     }
 
     private void Update()

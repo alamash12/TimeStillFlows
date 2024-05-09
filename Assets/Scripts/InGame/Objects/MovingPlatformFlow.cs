@@ -46,7 +46,7 @@ public class MovingPlatformFlow : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //레이저와 충돌하는건 나중에 구현
-        if (collision.gameObject.CompareTag("Block") || collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Object") || collision.gameObject.CompareTag("Player"))
         {
             Rigidbody2D objectRigidbody = collision.gameObject.GetComponent<Rigidbody2D>();
             if (objectRigidbody != null)
