@@ -14,16 +14,6 @@ public class HourButtonTest : MonoBehaviour
 
     public void HourClicked()
     {
-        if(hourArea.triggeredObject != null)
-        {
-            foreach (GameObject gameObject in hourArea.triggeredObject)
-            {
-                IChangable changable = gameObject.GetComponent<IChangable>();
-                if(changable != null)
-                {
-                    hourArea.ChangeStrategy(changable);
-                }
-            }
-        }
+        hourArea.ChangeState();
     }
 }

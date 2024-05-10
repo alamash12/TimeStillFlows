@@ -14,6 +14,8 @@ public class LaserStop : MonoBehaviour
     {
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.SetPosition(0, gameObject.transform.position);
+        lineRenderer.startWidth = laserRadius;
+        lineRenderer.endWidth = laserRadius;
         parentPosition = gameObject.transform.parent.position;
         laserDirection = (gameObject.transform.position - parentPosition).normalized;
     }

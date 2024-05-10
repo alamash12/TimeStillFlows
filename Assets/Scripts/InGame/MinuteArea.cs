@@ -5,17 +5,25 @@ using UnityEngine.EventSystems;
 
 public class MinuteArea : MonoBehaviour
 {
-    List<Rigidbody2D> triggeredObjectRigid = new();
+    public Dictionary<Rigidbody2D,StateType> triggeredObjectRigid = new();
     Vector2 playerPosition;
     float nearestDistance;
-    public GameObject nearestObject;
+    GameObject nearestObject;
+    Rigidbody2D nearestRigid;
 
-
-    public void ChangeStrategy(IChangable gameObject)
+    public void ChangeState()
     {
-        gameObject.stateType = StateType.Flow;
+        if (nearestObject != null)
+        {
+            IChangable changableComponent = nearestObject.GetComponent<IChangable>();
+            if (changableComponent != null)
+            {
+                changableComponent.stateType = StateType.Flow;
+                triggeredObjectRigid[nearestObject.GetComponent<Rigidbody2D>()] = changableComponent.stateType;
+                MinuteAreaClear();
+            }
+        }
     }
-
     private void Awake()
     {
         nearestDistance = Mathf.Infinity;
@@ -23,53 +31,49 @@ public class MinuteArea : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Object")|| collision.CompareTag("Block")|| collision.CompareTag("MovingPlatform")|| collision.CompareTag("Laser")|| collision.CompareTag("Water"))
+        if (collision.CompareTag("Object"))
         {
             //충돌한 오브젝트의 상태를 가져옴
             IChangable changableObject = collision.GetComponent<IChangable>();
 
             //상태가 Stop인 경우에만 리스트에 추가
-            if (changableObject != null && changableObject.stateType == StateType.Stop)
+            if (changableObject != null)
             {
-                triggeredObjectRigid.Add(collision.GetComponent<Rigidbody2D>());
+                triggeredObjectRigid.Add(collision.GetComponent<Rigidbody2D>(), changableObject.stateType);
             }
-           
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Object") || collision.CompareTag("Block") || collision.CompareTag("MovingPlatform") || collision.CompareTag("Laser") || collision.CompareTag("Water"))
+        if (collision.CompareTag("Object"))
         {
             triggeredObjectRigid.Remove(collision.GetComponent<Rigidbody2D>());
             if(collision.gameObject == nearestObject)
-            {     
-                nearestObject.GetComponent<SpriteRenderer>().color = Color.gray;
-                nearestObject = null;
-                nearestDistance = Mathf.Infinity;
-          
+            {
+                MinuteAreaClear();
             }
         }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        foreach (Rigidbody2D rigidbody2d in triggeredObjectRigid)
-        {  
-            if ((playerPosition - rigidbody2d.ClosestPoint(playerPosition)).sqrMagnitude < nearestDistance) // 플레이어와 가장 가까운 collider의 지점과 가장 가까운 부분을 비교
+        foreach (KeyValuePair<Rigidbody2D,StateType> kvp in triggeredObjectRigid)
+        {
+            if(kvp.Value == StateType.Stop)
             {
-                nearestObject = rigidbody2d.gameObject;
-                //Debug.Log(nearestObject);
-                
+                if ((playerPosition - kvp.Key.ClosestPoint(playerPosition)).sqrMagnitude < nearestDistance) // 플레이어와 가장 가까운 collider의 지점과 가장 가까운 부분을 비교
+                {
+                    nearestObject = kvp.Key.gameObject;
+                    nearestRigid = nearestObject.GetComponent<Rigidbody2D>();
+                }
+                nearestDistance = (playerPosition - nearestRigid.ClosestPoint(playerPosition)).sqrMagnitude;
             }
-            nearestDistance = (playerPosition - nearestObject.GetComponent<Rigidbody2D>().ClosestPoint(playerPosition)).sqrMagnitude;
         }
         //노란 박스 키고 끄는 부분, 임시로 노란색으로 변하는걸로 구현 
         if(nearestObject != null)
         {
-             nearestObject.GetComponent<SpriteRenderer>().color = Color.yellow;
+             //nearestObject.GetComponent<SpriteRenderer>().color = Color.yellow;
         }
-       
-
     }
 
     private void Update()
@@ -77,5 +81,10 @@ public class MinuteArea : MonoBehaviour
         playerPosition = gameObject.transform.parent.position;
     }
 
- 
+    public void MinuteAreaClear()
+    {
+        nearestObject = null;
+        nearestDistance = Mathf.Infinity;
+        nearestRigid = null;
+    }
 }
