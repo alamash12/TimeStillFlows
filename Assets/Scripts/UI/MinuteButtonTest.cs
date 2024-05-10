@@ -14,13 +14,6 @@ public class MinuteButtonTest : MonoBehaviour
 
     public void MinuteClicked()
     {
-        if (minuteArea.nearestObject != null)
-        {
-            IChangable changableComponent = minuteArea.nearestObject.GetComponent<IChangable>();
-            if (changableComponent != null)
-            {
-                minuteArea.ChangeStrategy(changableComponent);
-            }
-        }
+        minuteArea.ChangeState();
     }
 }

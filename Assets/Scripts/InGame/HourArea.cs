@@ -5,9 +5,31 @@ using UnityEngine;
 public class HourArea : MonoBehaviour
 {
     public List<GameObject> triggeredObject = new();
-    public void ChangeStrategy(IChangable gameObject)
+    MinuteArea minuteArea;
+    private void Awake()
     {
-        gameObject.stateType = StateType.Stop;
+        minuteArea = GameObject.Find("minuteArea").GetComponent<MinuteArea>();
+    }
+    public void ChangeState()
+    {
+        if (triggeredObject != null)
+        {
+            foreach (GameObject gameObject in triggeredObject)
+            {
+                IChangable changableComponent = gameObject.GetComponent<IChangable>();
+                Rigidbody2D rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
+                if (changableComponent != null)
+                {
+                    changableComponent.stateType = StateType.Stop;
+                    if(minuteArea.triggeredObjectRigid.ContainsKey(rigidbody2D))
+                    {
+                        minuteArea.triggeredObjectRigid[rigidbody2D] = changableComponent.stateType;
+                        rigidbody2D.WakeUp();
+                    }
+                }
+            }
+        }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
