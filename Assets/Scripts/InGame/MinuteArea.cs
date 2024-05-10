@@ -50,7 +50,6 @@ public class MinuteArea : MonoBehaviour
             triggeredObjectRigid.Remove(collision.GetComponent<Rigidbody2D>());
             if(collision.gameObject == nearestObject)
             {
-                Debug.Log("nearest Exit");
                 MinuteAreaClear();
             }
         }

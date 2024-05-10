@@ -14,6 +14,8 @@ public class LaserFlow : MonoBehaviour
     {
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.SetPosition(0, gameObject.transform.position);
+        lineRenderer.startWidth = laserRadius;
+        lineRenderer.endWidth = laserRadius;
         parentPosition = gameObject.transform.parent.position;
         laserDirection = (gameObject.transform.position - parentPosition).normalized;
     }
@@ -30,6 +32,10 @@ public class LaserFlow : MonoBehaviour
             else if (laserDirection.y == 0) // 레이저가 가로일때
             {
                 lineRenderer.SetPosition(1, new Vector2(raycastHit.point.x, parentPosition.y));
+            }
+            if(raycastHit.collider.gameObject.CompareTag("Player"))
+            {
+                //게임오버
             }
         }
         else // 물체가 닿지 않았을때
