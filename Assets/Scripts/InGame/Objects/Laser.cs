@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Laser : MonoBehaviour, IChangable
 {
+    GameObject laserBody;
     private StateType _stateType; //값 저장 필드
     public StateType stateType
     {
@@ -27,6 +28,8 @@ public class Laser : MonoBehaviour, IChangable
     void Awake()
     {
         ChangeState<LaserStop, LaserFlow>();
+        laserBody = gameObject.transform.parent.gameObject; // 레이저 바디를 받아옴
+        Debug.Log(laserBody);
     }
     /// <summary>
     /// 상태를 변화시키는 함수
@@ -45,7 +48,7 @@ public class Laser : MonoBehaviour, IChangable
             ChangeSprite(addComponent);
         }
     }
-    void ChangeSprite(Component component) // 미완
+    void ChangeSprite(Component component) // 레이저 바디와 연동해서 바꿔야 한다.
     {
         if (component == GetComponent<LaserFlow>())
         {
