@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class MinuteArea : MonoBehaviour
 {
-    private ObjectContainer objectContainer; // 영역에 들어온 오브젝트를 관리하는 객체
+    ObjectContainer objectContainer; // 영역에 들어온 오브젝트를 관리하는 객체
     Vector2 playerPosition;
     float nearestDistance;
     GameObject nearestObject;

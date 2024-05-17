@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         minuteArea = GetComponentInChildren<MinuteArea>();
-        hourArea = GetComponentInChildren<HourArea>();
+        hourArea = GameObject.Find("HourArea").GetComponent<HourArea>();
     }
     private void Start()
     {

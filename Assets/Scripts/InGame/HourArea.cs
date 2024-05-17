@@ -4,7 +4,20 @@ using UnityEngine;
 
 public class HourArea : MonoBehaviour
 {
-    private ObjectContainer objectContainer; // 영역에 들어온 오브젝트를 관리하는 객체
+    ObjectContainer objectContainer; // 영역에 들어온 오브젝트를 관리하는 객체
+    SpriteRenderer spriteRenderer;
+
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        float spriteX = spriteRenderer.sprite.bounds.size.x;
+        float spriteY = spriteRenderer.sprite.bounds.size.y;
+
+        float screenY = Camera.main.orthographicSize * 2f;
+        float screenX = screenY/ Screen.height * Screen.width;
+
+        transform.localScale = new Vector2(Mathf.Ceil(screenX/spriteX), Mathf.Ceil(screenY/spriteY));
+    }
     public void Initialize(ObjectContainer container)
     {
         objectContainer = container;
@@ -28,9 +41,11 @@ public class HourArea : MonoBehaviour
                 }
             }
         }
-        
     }
+    public void SizeDecision()
+    {
 
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Object"))

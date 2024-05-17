@@ -24,7 +24,6 @@ public class LaserStop : MonoBehaviour
         Debug.DrawRay(gameObject.transform.position, laserDirection * laserLength, Color.red);
         if (raycastHit.collider != null)
         {
-            Debug.Log(raycastHit.collider);
             if (raycastHit.transform.CompareTag("Object"))
             {
                 if (laserDirection.x == 0)
