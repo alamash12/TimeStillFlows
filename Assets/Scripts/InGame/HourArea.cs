@@ -4,27 +4,26 @@ using UnityEngine;
 
 public class HourArea : MonoBehaviour
 {
-    public List<GameObject> triggeredObject = new();
-    MinuteArea minuteArea;
-    private void Awake()
+    private ObjectContainer objectContainer; // 영역에 들어온 오브젝트를 관리하는 객체
+    public void Initialize(ObjectContainer container)
     {
-        minuteArea = GameObject.Find("minuteArea").GetComponent<MinuteArea>();
+        objectContainer = container;
     }
     public void ChangeState()
     {
-        if (triggeredObject != null)
+        if (objectContainer.triggeredObject != null)
         {
-            foreach (GameObject gameObject in triggeredObject)
+            foreach (GameObject gameObject in objectContainer.triggeredObject)
             {
                 IChangable changableComponent = gameObject.GetComponent<IChangable>();
                 Rigidbody2D rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
                 if (changableComponent != null)
                 {
-                    changableComponent.stateType = StateType.Stop;
-                    if(minuteArea.triggeredObjectRigid.ContainsKey(rigidbody2D))
+                    changableComponent.stateType = StateType.Stop; // 상태를 변경
+                    if(objectContainer.triggeredObjectRigid.ContainsKey(rigidbody2D))
                     {
-                        minuteArea.triggeredObjectRigid[rigidbody2D] = changableComponent.stateType;
-                        rigidbody2D.WakeUp();
+                        objectContainer.triggeredObjectRigid[rigidbody2D] = changableComponent.stateType; // minuteArea의 상태를 변경
+                        rigidbody2D.WakeUp(); // OntriggerStay를 실행시키기 위해
                     }
                 }
             }
@@ -36,14 +35,14 @@ public class HourArea : MonoBehaviour
     {
         if (collision.CompareTag("Object"))
         {
-            triggeredObject.Add(collision.gameObject);
+            objectContainer.triggeredObject.Add(collision.gameObject);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Object"))
         {
-            triggeredObject.Remove(collision.gameObject);
+            objectContainer.triggeredObject.Remove(collision.gameObject);
         }
     }
 }

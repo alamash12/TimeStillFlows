@@ -5,12 +5,16 @@ using UnityEngine.EventSystems;
 
 public class MinuteArea : MonoBehaviour
 {
-    public Dictionary<Rigidbody2D,StateType> triggeredObjectRigid = new();
+    private ObjectContainer objectContainer; // 영역에 들어온 오브젝트를 관리하는 객체
     Vector2 playerPosition;
     float nearestDistance;
     GameObject nearestObject;
     Rigidbody2D nearestRigid;
 
+    public void Initialize(ObjectContainer container)
+    {
+        objectContainer = container;
+    }
     public void ChangeState()
     {
         if (nearestObject != null)
@@ -18,9 +22,9 @@ public class MinuteArea : MonoBehaviour
             IChangable changableComponent = nearestObject.GetComponent<IChangable>();
             if (changableComponent != null)
             {
-                changableComponent.stateType = StateType.Flow;
-                triggeredObjectRigid[nearestObject.GetComponent<Rigidbody2D>()] = changableComponent.stateType;
-                MinuteAreaClear();
+                changableComponent.stateType = StateType.Flow; // 상태를 변경
+                objectContainer.triggeredObjectRigid[nearestObject.GetComponent<Rigidbody2D>()] = changableComponent.stateType; // 딕셔너리에 변경된 상태를 갱신
+                MinuteAreaClear(); // nearestObject의 상태가 변경되었기 때문에 새로운 nearestObject를 받아오기 위해 초기화
             }
         }
     }
@@ -38,8 +42,8 @@ public class MinuteArea : MonoBehaviour
 
             if (changableObject != null)
             {
-                if(triggeredObjectRigid.ContainsKey(collision.GetComponent<Rigidbody2D>()) == false) // 같은 값이 없는지 체크
-                    triggeredObjectRigid.Add(collision.GetComponent<Rigidbody2D>(), changableObject.stateType);
+                if(objectContainer.triggeredObjectRigid.ContainsKey(collision.GetComponent<Rigidbody2D>()) == false) // 같은 값이 없는지 체크
+                    objectContainer.triggeredObjectRigid.Add(collision.GetComponent<Rigidbody2D>(), changableObject.stateType);
             }
         }
     }
@@ -47,8 +51,8 @@ public class MinuteArea : MonoBehaviour
     {
         if (collision.CompareTag("Object"))
         {
-            triggeredObjectRigid.Remove(collision.GetComponent<Rigidbody2D>());
-            if(collision.gameObject == nearestObject)
+            objectContainer.triggeredObjectRigid.Remove(collision.GetComponent<Rigidbody2D>());
+            if(collision.gameObject == nearestObject) // 영역내에서 모든 오브젝트가 사라졌을 경우
             {
                 MinuteAreaClear();
             }
@@ -57,7 +61,7 @@ public class MinuteArea : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        foreach (KeyValuePair<Rigidbody2D,StateType> kvp in triggeredObjectRigid)
+        foreach (KeyValuePair<Rigidbody2D,StateType> kvp in objectContainer.triggeredObjectRigid)
         {
             if(kvp.Value == StateType.Stop)
             {

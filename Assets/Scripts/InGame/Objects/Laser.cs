@@ -29,7 +29,6 @@ public class Laser : MonoBehaviour, IChangable
     {
         ChangeState<LaserStop, LaserFlow>();
         laserBody = gameObject.transform.parent.gameObject; // 레이저 바디를 받아옴
-        Debug.Log(laserBody);
     }
     /// <summary>
     /// 상태를 변화시키는 함수
@@ -52,11 +51,11 @@ public class Laser : MonoBehaviour, IChangable
     {
         if (component == GetComponent<LaserFlow>())
         {
-            Debug.Log("Flow");
+            
         }
         else if (component == GetComponent<LaserStop>())
         {
-            Debug.Log("Stop");
+            
         }
         else
         {

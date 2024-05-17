@@ -5,6 +5,19 @@ using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
+    ObjectContainer container = new();
+    MinuteArea minuteArea;
+    HourArea hourArea;
+    private void Awake()
+    {
+        minuteArea = GetComponentInChildren<MinuteArea>();
+        hourArea = GetComponentInChildren<HourArea>();
+    }
+    private void Start()
+    {
+        minuteArea.Initialize(container);
+        hourArea.Initialize(container);
+    }
     //player의 위치 반환
     public Vector3 GetLocation()
     {
