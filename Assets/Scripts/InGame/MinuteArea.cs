@@ -36,10 +36,10 @@ public class MinuteArea : MonoBehaviour
             //충돌한 오브젝트의 상태를 가져옴
             IChangable changableObject = collision.GetComponent<IChangable>();
 
-            //상태가 Stop인 경우에만 리스트에 추가
             if (changableObject != null)
             {
-                triggeredObjectRigid.Add(collision.GetComponent<Rigidbody2D>(), changableObject.stateType);
+                if(triggeredObjectRigid.ContainsKey(collision.GetComponent<Rigidbody2D>()) == false) // 같은 값이 없는지 체크
+                    triggeredObjectRigid.Add(collision.GetComponent<Rigidbody2D>(), changableObject.stateType);
             }
         }
     }

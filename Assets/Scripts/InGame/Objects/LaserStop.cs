@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class LaserStop : MonoBehaviour
 {
-    [SerializeField] float laserRadius = 0.5f;
+    [SerializeField] float laserRadius = 0.3f;
     [SerializeField] float laserLength = 10f;
     RaycastHit2D raycastHit; // 레이저가 닿은 물체
     Vector3 parentPosition; // 레이저 몸통의 포지션
@@ -20,10 +20,11 @@ public class LaserStop : MonoBehaviour
 
     private void Update()
     {
-        raycastHit = Physics2D.Raycast(gameObject.transform.position, laserDirection, laserLength);
+        raycastHit = Physics2D.CircleCast(gameObject.transform.position, laserRadius, laserDirection, laserLength);
         Debug.DrawRay(gameObject.transform.position, laserDirection * laserLength, Color.red);
         if (raycastHit.collider != null)
         {
+            Debug.Log(raycastHit.collider);
             if (raycastHit.transform.CompareTag("Object"))
             {
                 if (laserDirection.x == 0)
@@ -37,6 +38,10 @@ public class LaserStop : MonoBehaviour
             }
             else if (raycastHit.transform.CompareTag("Player"))
                 Debug.Log("Game Over");
+        }
+        else
+        {
+            transform.localScale = originalScale;
         }
     }
 }
