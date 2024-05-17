@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class LaserFlow : MonoBehaviour
 {
-    [SerializeField] float laserRadius = 0.3f;
+    [SerializeField] float laserRadius = 0.2f;
     [SerializeField] float laserLength = 10f;
     RaycastHit2D raycastHit; // 레이저가 닿은 물체
     Vector3 parentPosition; // 레이저 몸통의 포지션
@@ -15,7 +15,11 @@ public class LaserFlow : MonoBehaviour
     {
         parentPosition = gameObject.transform.parent.position;
         laserDirection = (gameObject.transform.position - parentPosition).normalized;
-        originalScale = transform.localScale;
+
+        if (laserDirection.x == 0)
+            originalScale = new Vector2(laserRadius + 0.1f, laserLength);
+        if (laserDirection.y == 0)
+            originalScale = new Vector2(laserLength, laserRadius + 0.1f);
     }
 
     private void Update()

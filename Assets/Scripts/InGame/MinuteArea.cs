@@ -68,6 +68,7 @@ public class MinuteArea : MonoBehaviour
                 if ((playerPosition - kvp.Key.ClosestPoint(playerPosition)).sqrMagnitude < nearestDistance) // 플레이어와 가장 가까운 collider의 지점과 가장 가까운 부분을 비교
                 {
                     nearestObject = kvp.Key.gameObject;
+                    //Debug.Log(nearestObject);
                     nearestRigid = nearestObject.GetComponent<Rigidbody2D>();
                 }
                 nearestDistance = (playerPosition - nearestRigid.ClosestPoint(playerPosition)).sqrMagnitude;
