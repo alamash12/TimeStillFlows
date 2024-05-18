@@ -28,7 +28,7 @@ public class Water : MonoBehaviour , IChangable
     }
     private void Awake()
     {
-        waterPivot = gameObject.transform.GetChild(0);
+        waterPivot = gameObject.transform.GetChild(1);
         waterY = waterPivot.position.y;
         ChangeState<WaterStop, WaterFlow>(); // 초기상태 flow로 지정
     }

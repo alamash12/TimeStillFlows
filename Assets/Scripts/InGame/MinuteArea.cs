@@ -63,16 +63,24 @@ public class MinuteArea : MonoBehaviour
             {
                 if ((playerPosition - kvp.Key.ClosestPoint(playerPosition)).sqrMagnitude < nearestDistance) // 플레이어와 가장 가까운 collider의 지점과 가장 가까운 부분을 비교
                 {
+                    if(nearestObject != null)
+                    {
+                        Transform border = nearestObject.GetComponent<Transform>().GetChild(0);
+                        border.GetComponent<SpriteRenderer>().enabled = false;
+                    }
+                 
+
                     nearestObject = kvp.Key.gameObject;
                     nearestRigid = nearestObject.GetComponent<Rigidbody2D>();
                 }
                 nearestDistance = (playerPosition - nearestRigid.ClosestPoint(playerPosition)).sqrMagnitude;
             }
         }
-        //노란 박스 키고 끄는 부분, 임시로 노란색으로 변하는걸로 구현 
+        //노란 테두리 표시
         if(nearestObject != null)
         {
-             //nearestObject.GetComponent<SpriteRenderer>().color = Color.yellow;
+            Transform border = nearestObject.GetComponent<Transform>().GetChild(0);
+            border.GetComponent<SpriteRenderer>().enabled = true;
         }
     }
 
@@ -83,6 +91,9 @@ public class MinuteArea : MonoBehaviour
 
     public void MinuteAreaClear()
     {
+        Transform border = nearestObject.GetComponent<Transform>().GetChild(0);
+        border.GetComponent<SpriteRenderer>().enabled = false;
+
         nearestObject = null;
         nearestDistance = Mathf.Infinity;
         nearestRigid = null;
