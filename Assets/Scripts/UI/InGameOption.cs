@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 public class InGameOption : MonoBehaviour
 {
     public GameObject optionPanel; // 옵션 패널
@@ -31,5 +32,13 @@ public class InGameOption : MonoBehaviour
     public void ExitButton()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    [SerializeField] private Slider bgmSlider;
+    [SerializeField] private Slider effectSlider;
+    private void Start()
+    {
+        bgmSlider.value = SoundManager.Instance.bgmVolume;
+        bgmSlider.onValueChanged.AddListener(SoundManager.Instance.OnVolumeChange);
     }
 }

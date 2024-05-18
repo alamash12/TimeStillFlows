@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainScene: MonoBehaviour
 {
@@ -37,5 +38,15 @@ public class MainScene: MonoBehaviour
     public void OptionIntroBtn()
     {
         SceneManager.LoadScene("Intro");
+    }
+
+    [SerializeField] private Slider bgmSlider;
+    [SerializeField] private Slider effectSlider;
+
+    private void Start()
+    {
+        if (bgmSlider == null) Debug.Log("오류가 여기서 나나");
+        bgmSlider.value = SoundManager.Instance.bgmVolume;
+        bgmSlider.onValueChanged.AddListener(SoundManager.Instance.OnVolumeChange);
     }
 }
