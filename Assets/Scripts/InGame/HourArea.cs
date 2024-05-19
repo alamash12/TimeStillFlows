@@ -35,7 +35,7 @@ public class HourArea : MonoBehaviour
             }
         }
     }
-    public void SizeDecision()
+    public void SizeDecision() // 카메라의 크기에 맞춰서 hourArea의 크기를 맞춰주는 함수
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         float spriteX = spriteRenderer.sprite.bounds.size.x;

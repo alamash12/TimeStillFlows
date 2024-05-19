@@ -33,7 +33,6 @@ public class Block : MonoBehaviour, IChangable
     {
         boxCollider = gameObject.GetComponent<BoxCollider2D>();
         stateType = StateType.Stop;
-        gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
     }
 
 
@@ -47,19 +46,20 @@ public class Block : MonoBehaviour, IChangable
         if(addComponent == null )
         {
             addComponent = gameObject.AddComponent<T2>();
-            ChangeSprite(addComponent);
+            DecisionSprite(addComponent);
         }
     }
 
-    void ChangeSprite(Component component)
+    void DecisionSprite(Component component)
     {
-        if(component == GetComponent<BlockFlow>())
+        SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        if (component == GetComponent<BlockFlow>())
         {
-            gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+            GameManager.ChangeSprite(spriteRenderer, -1);
         }
         else if(component == GetComponent<BlockStop>())
         {
-            gameObject.GetComponent <SpriteRenderer>().color = Color.gray;
+            GameManager.ChangeSprite(spriteRenderer, 1);
         }
         else
         {

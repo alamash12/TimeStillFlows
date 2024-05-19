@@ -47,11 +47,11 @@ public class MovingPlatform : MonoBehaviour, IChangable
         if (addComponent == null)
         {
             addComponent = gameObject.AddComponent<T2>();
-            ChangeSprite(addComponent);
+            DecisionSprite(addComponent);
         }
     }
 
-    void ChangeSprite(Component component)
+    void DecisionSprite(Component component)
     {
         if(component == GetComponent<MovingPlatformFlow>())
         {

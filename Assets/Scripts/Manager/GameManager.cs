@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,5 +38,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
+    static public void ChangeSprite(SpriteRenderer spriteRenderer, int count) // count는 enum값 변경을 위한 매개변수
+    {
+        string spriteName = spriteRenderer.sprite.name;
+        string spritePath = spriteName.Split('_')[0]; // 폴더를 지정해주기 위한 스트링
+        SpriteDefine.ObjectSprite result;
+        if (Enum.TryParse(spriteName, out result)) // 스프라이트의 이름을 enum값으로 변환후 result에 저장
+        {
+            SpriteDefine.ObjectSprite newResult = (SpriteDefine.ObjectSprite)((int)result + count);
+            spriteRenderer.sprite = Resources.Load<Sprite>("Sprites/" + spritePath + "/" + newResult.ToString());
+        }
+    }
 }

@@ -44,18 +44,19 @@ public class Laser : MonoBehaviour, IChangable
         if (addComponent == null)
         {
             addComponent = gameObject.AddComponent<T2>();
-            ChangeSprite(addComponent);
+            DecisionSprite(addComponent);
         }
     }
-    void ChangeSprite(Component component) // 레이저 바디와 연동해서 바꿔야 한다.
+    void DecisionSprite(Component component) // 레이저 바디와 연동해서 바꿔야 한다.
     {
-        if (component == GetComponent<LaserFlow>())
+        SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        if (component == GetComponent<LaserFlow>()) // flow면 count를 1로
         {
-            
+            GameManager.ChangeSprite(spriteRenderer, 1);
         }
-        else if (component == GetComponent<LaserStop>())
+        else if (component == GetComponent<LaserStop>()) // stop이면 count를 -1로
         {
-            
+            GameManager.ChangeSprite(spriteRenderer, -1);
         }
         else
         {
