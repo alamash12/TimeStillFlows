@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum StateType
 {
-    Flow = 0,
-    Stop = 1,
+    None = 0,
+    Flow = 1,
+    Stop = 2,
 }

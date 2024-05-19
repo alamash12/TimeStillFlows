@@ -69,11 +69,8 @@ public class MinuteArea : MonoBehaviour
                 {
                     if(nearestObject != null)
                     {
-                        Transform border = nearestObject.GetComponent<Transform>().GetChild(0);
-                        border.GetComponent<SpriteRenderer>().enabled = false;
+                        nearestObject.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
                     }
-                 
-
                     nearestObject = kvp.Key.gameObject;
                     //Debug.Log(nearestObject);
                     nearestRigid = nearestObject.GetComponent<Rigidbody2D>();
@@ -84,8 +81,8 @@ public class MinuteArea : MonoBehaviour
         //노란 테두리 표시
         if(nearestObject != null)
         {
-            Transform border = nearestObject.GetComponent<Transform>().GetChild(0);
-            border.GetComponent<SpriteRenderer>().enabled = true;
+            nearestObject.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
+
         }
     }
 
@@ -96,9 +93,7 @@ public class MinuteArea : MonoBehaviour
 
     public void MinuteAreaClear()
     {
-        Transform border = nearestObject.GetComponent<Transform>().GetChild(0);
-        border.GetComponent<SpriteRenderer>().enabled = false;
-
+        nearestObject.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
         nearestObject = null;
         nearestDistance = Mathf.Infinity;
         nearestRigid = null;

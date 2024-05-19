@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Water : MonoBehaviour , IChangable
+public class Laser : MonoBehaviour, IChangable
 {
-    Transform waterPivot;
-    public float waterY { get; set; }
-    private StateType _stateType; // 값 저장 필드
-    public StateType stateType 
+    GameObject laserBody;
+    private StateType _stateType; //값 저장 필드
+    public StateType stateType
     {
-        get {  return _stateType; }
+        get { return _stateType; }
         set
         {
             if (_stateType != value)
@@ -17,48 +16,46 @@ public class Water : MonoBehaviour , IChangable
                 _stateType = value;
                 if (stateType == StateType.Flow)
                 {
-                    ChangeState<WaterStop, WaterFlow>();
+                    ChangeState<LaserStop, LaserFlow>();
                 }
                 else if (stateType == StateType.Stop)
                 {
-                    ChangeState<WaterFlow, WaterStop>();
+                    ChangeState<LaserFlow, LaserStop>();
                 }
             }
         }
     }
-    private void Awake()
+    void Awake()
     {
-        waterPivot = gameObject.transform.GetChild(1);
-        waterY = waterPivot.position.y;
-        ChangeState<WaterStop, WaterFlow>(); // 초기상태 flow로 지정
+        stateType = StateType.Flow;
+        laserBody = gameObject.transform.parent.gameObject; // 레이저 바디를 받아옴
     }
     /// <summary>
     /// 상태를 변화시키는 함수
     /// </summary>
     /// <typeparam name="T1">변화하기 전의 상태</typeparam>
     /// <typeparam name="T2">변화한 후의 상태</typeparam>
-    public void ChangeState<T1,T2>() where T1 : Component where T2 : Component
+    public void ChangeState<T1, T2>() where T1 : Component where T2 : Component
     {
         Component destroyComponent = gameObject.GetComponent<T1>();
         Component addComponent = gameObject.GetComponent<T2>();
 
         Destroy(destroyComponent);
-        if(addComponent == null)
+        if (addComponent == null)
         {
             addComponent = gameObject.AddComponent<T2>();
             ChangeSprite(addComponent);
         }
     }
-
-    void ChangeSprite(Component component)
+    void ChangeSprite(Component component) // 레이저 바디와 연동해서 바꿔야 한다.
     {
-        if(component == GetComponent<WaterFlow>())
+        if (component == GetComponent<LaserFlow>())
         {
-            gameObject.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 1f, 0.75f);
+            
         }
-        else if(component == GetComponent<WaterStop>())
+        else if (component == GetComponent<LaserStop>())
         {
-            gameObject.GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 0.75f); // 임시로 색깔만 바꾸기
+            
         }
         else
         {
