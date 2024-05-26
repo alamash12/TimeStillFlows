@@ -45,11 +45,13 @@ public class Block : MonoBehaviour, IChangable
         {
             if(result == StateType.Flow)
             {
+                _stateType = StateType.Flow;
                 ChangeState<BlockStop, BlockFlow>();
             }
             else if(result == StateType.Stop)
             {
-                ChangeState<BlockStop, BlockStop>();
+                _stateType = StateType.Stop;
+                ChangeState<BlockFlow, BlockStop>();
             }
             else
             {
@@ -58,6 +60,11 @@ public class Block : MonoBehaviour, IChangable
         }
     }
 
+    /// <summary>
+    /// 상태를 변화시키는 함수
+    /// </summary>
+    /// <typeparam name="T1">변화하기 전의 상태</typeparam>
+    /// <typeparam name="T2">변화한 후의 상태</typeparam>
     public void ChangeState<T1,T2>() where T1:Component where T2:Component
     {
         Component destroyComponent = gameObject.GetComponent<T1>();

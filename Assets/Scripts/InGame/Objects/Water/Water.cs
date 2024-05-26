@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,10 +19,12 @@ public class Water : MonoBehaviour , IChangable
                 if (stateType == StateType.Flow)
                 {
                     ChangeState<WaterStop, WaterFlow>();
+                    DecisionSprite(stateType);
                 }
                 else if (stateType == StateType.Stop)
                 {
                     ChangeState<WaterFlow, WaterStop>();
+                    DecisionSprite(stateType);
                 }
             }
         }
@@ -30,8 +33,31 @@ public class Water : MonoBehaviour , IChangable
     {
         waterPivot = gameObject.transform.GetChild(1);
         waterY = waterPivot.position.y;
-        stateType = StateType.Stop; // 초기상태 flow로 지정
+        Init();
     }
+    public void Init()
+    {
+        string stateParse = gameObject.transform.GetChild(2).GetComponent<SpriteRenderer>().sprite.name.Split('_')[2];
+        StateType result;
+        if (Enum.TryParse(stateParse, out result))
+        {
+            if (result == StateType.Flow)
+            {
+                _stateType = StateType.Flow;
+                ChangeState<WaterStop, WaterFlow>();
+            }
+            else if (result == StateType.Stop)
+            {
+                _stateType = StateType.Stop;
+                ChangeState<WaterFlow, WaterStop>();
+            }
+            else
+            {
+                Debug.LogError(gameObject.name + "이 제대로 초기화되지 않았습니다.");
+            }
+        }
+    }
+
     /// <summary>
     /// 상태를 변화시키는 함수
     /// </summary>
@@ -46,18 +72,17 @@ public class Water : MonoBehaviour , IChangable
         if(addComponent == null)
         {
             addComponent = gameObject.AddComponent<T2>();
-            DecisionSprite(addComponent);
         }
     }
 
-    void DecisionSprite(Component component)
+    void DecisionSprite(StateType stateType)
     {
-        if(component == GetComponent<WaterFlow>())
+        if(stateType == StateType.Flow)
         {
             GameManager.ChangeSprite(gameObject.transform.GetChild(2).GetComponent<SpriteRenderer>(), -1);
             GameManager.ChangeSprite(gameObject.transform.GetChild(3).GetComponent<SpriteRenderer>(), -1);
         }
-        else if(component == GetComponent<WaterStop>())
+        else if(stateType == StateType.Stop)
         {
             GameManager.ChangeSprite(gameObject.transform.GetChild(2).GetComponent<SpriteRenderer>(), 1);
             GameManager.ChangeSprite(gameObject.transform.GetChild(3).GetComponent<SpriteRenderer>(), 1);

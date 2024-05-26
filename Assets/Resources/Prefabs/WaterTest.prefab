@@ -213,7 +213,7 @@ GameObject:
   - component: {fileID: 6226303798913553792}
   m_Layer: 2
   m_Name: WaterTest
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
