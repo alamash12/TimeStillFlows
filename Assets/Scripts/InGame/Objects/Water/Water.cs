@@ -30,7 +30,7 @@ public class Water : MonoBehaviour , IChangable
     {
         waterPivot = gameObject.transform.GetChild(1);
         waterY = waterPivot.position.y;
-        stateType = StateType.Flow; // 초기상태 flow로 지정
+        stateType = StateType.Stop; // 초기상태 flow로 지정
     }
     /// <summary>
     /// 상태를 변화시키는 함수
@@ -54,11 +54,13 @@ public class Water : MonoBehaviour , IChangable
     {
         if(component == GetComponent<WaterFlow>())
         {
-            gameObject.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 1f, 0.75f);
+            GameManager.ChangeSprite(gameObject.transform.GetChild(2).GetComponent<SpriteRenderer>(), -1);
+            GameManager.ChangeSprite(gameObject.transform.GetChild(3).GetComponent<SpriteRenderer>(), -1);
         }
         else if(component == GetComponent<WaterStop>())
         {
-            gameObject.GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 0.75f); // 임시로 색깔만 바꾸기
+            GameManager.ChangeSprite(gameObject.transform.GetChild(2).GetComponent<SpriteRenderer>(), 1);
+            GameManager.ChangeSprite(gameObject.transform.GetChild(3).GetComponent<SpriteRenderer>(), 1);
         }
         else
         {

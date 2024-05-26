@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -8,7 +9,6 @@ public class Block : MonoBehaviour, IChangable
 {
     private StateType _stateType;
     private BoxCollider2D boxCollider;
-
     public StateType stateType
     {
         get { return _stateType; }
@@ -20,10 +20,12 @@ public class Block : MonoBehaviour, IChangable
                 if (stateType == StateType.Flow)
                 {
                     ChangeState<BlockStop, BlockFlow>();
+                    DecisionSprite(stateType);
                 }
                 else if (stateType == StateType.Stop)
                 {
                     ChangeState<BlockFlow, BlockStop>();
+                    DecisionSprite(stateType);
                 }
             }
         }
@@ -32,10 +34,29 @@ public class Block : MonoBehaviour, IChangable
     private void Start()
     {
         boxCollider = gameObject.GetComponent<BoxCollider2D>();
-        stateType = StateType.Stop;
+        Init();
     }
 
-
+    public void Init()
+    {
+        string stateParse = gameObject.GetComponent<SpriteRenderer>().sprite.name.Split('_')[2];
+        StateType result;
+        if(Enum.TryParse(stateParse, out result))
+        {
+            if(result == StateType.Flow)
+            {
+                ChangeState<BlockStop, BlockFlow>();
+            }
+            else if(result == StateType.Stop)
+            {
+                ChangeState<BlockStop, BlockStop>();
+            }
+            else
+            {
+                Debug.LogError(gameObject.name + "이 제대로 초기화되지 않았습니다.");
+            }
+        }
+    }
 
     public void ChangeState<T1,T2>() where T1:Component where T2:Component
     {
@@ -45,19 +66,18 @@ public class Block : MonoBehaviour, IChangable
         Destroy(destroyComponent);
         if(addComponent == null )
         {
-            addComponent = gameObject.AddComponent<T2>();
-            DecisionSprite(addComponent);
+            gameObject.AddComponent<T2>();
         }
     }
 
-    void DecisionSprite(Component component)
+    void DecisionSprite(StateType stateType)
     {
         SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        if (component == GetComponent<BlockFlow>())
+        if (stateType == StateType.Flow)
         {
             GameManager.ChangeSprite(spriteRenderer, -1);
         }
-        else if(component == GetComponent<BlockStop>())
+        else if(stateType == StateType.Stop)
         {
             GameManager.ChangeSprite(spriteRenderer, 1);
         }

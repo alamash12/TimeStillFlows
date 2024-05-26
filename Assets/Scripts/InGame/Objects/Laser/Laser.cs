@@ -2,65 +2,48 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Laser : MonoBehaviour, IChangable
+public class Laser : MonoBehaviour
 {
     GameObject laserBody;
-    private StateType _stateType; //값 저장 필드
-    public StateType stateType
+    [SerializeField] float laserRadius = 0.2f;
+    [SerializeField] float laserLength = 10f;
+    RaycastHit2D raycastHit; // 레이저가 닿은 물체
+    Vector3 parentPosition; // 레이저 몸통의 포지션
+    Vector3 laserDirection; // 레이저의 방향
+    Vector2 originalScale;
+    private void Awake()
     {
-        get { return _stateType; }
-        set
-        {
-            if (_stateType != value)
-            {
-                _stateType = value;
-                if (stateType == StateType.Flow)
-                {
-                    ChangeState<LaserStop, LaserFlow>();
-                }
-                else if (stateType == StateType.Stop)
-                {
-                    ChangeState<LaserFlow, LaserStop>();
-                }
-            }
-        }
-    }
-    void Awake()
-    {
-        stateType = StateType.Flow;
+        parentPosition = gameObject.transform.parent.position;
+        laserDirection = (gameObject.transform.position - parentPosition).normalized;
         laserBody = gameObject.transform.parent.gameObject; // 레이저 바디를 받아옴
-    }
-    /// <summary>
-    /// 상태를 변화시키는 함수
-    /// </summary>
-    /// <typeparam name="T1">변화하기 전의 상태</typeparam>
-    /// <typeparam name="T2">변화한 후의 상태</typeparam>
-    public void ChangeState<T1, T2>() where T1 : Component where T2 : Component
-    {
-        Component destroyComponent = gameObject.GetComponent<T1>();
-        Component addComponent = gameObject.GetComponent<T2>();
 
-        Destroy(destroyComponent);
-        if (addComponent == null)
-        {
-            addComponent = gameObject.AddComponent<T2>();
-            DecisionSprite(addComponent);
-        }
+        if (laserDirection.x == 0)
+            originalScale = new Vector2(laserRadius + 0.1f, laserLength);
+        if (laserDirection.y == 0)
+            originalScale = new Vector2(laserLength, laserRadius + 0.1f);
     }
-    void DecisionSprite(Component component) // 레이저 바디와 연동해서 바꿔야 한다.
+
+    private void Update()
     {
-        SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        if (component == GetComponent<LaserFlow>()) // flow면 count를 1로
+        raycastHit = Physics2D.CircleCast(gameObject.transform.position, laserRadius, laserDirection, laserLength);
+        Debug.DrawRay(gameObject.transform.position, laserDirection * laserLength, Color.red);
+        if (raycastHit.collider != null) // 물체가 닿아있을때
         {
-            GameManager.ChangeSprite(spriteRenderer, 1);
-        }
-        else if (component == GetComponent<LaserStop>()) // stop이면 count를 -1로
-        {
-            GameManager.ChangeSprite(spriteRenderer, -1);
+            if (raycastHit.transform.CompareTag("Player")) // 게임 오버 판정
+                Debug.Log("Game Over");
+
+            if (laserDirection.x == 0) // 레이저가 세로일때
+            {
+                transform.localScale = new Vector2(originalScale.x, Mathf.Abs(raycastHit.point.y - gameObject.transform.position.y));
+            }
+            else if (laserDirection.y == 0) // 레이저가 가로일때
+            {
+                transform.localScale = new Vector2(Mathf.Abs(raycastHit.point.x - gameObject.transform.position.x), originalScale.y);
+            }
         }
         else
         {
-            Debug.LogError("Not Available Component");
+            transform.localScale = originalScale;
         }
     }
 }

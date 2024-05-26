@@ -8,7 +8,7 @@ public class MinuteArea : MonoBehaviour
     ObjectContainer objectContainer; // 영역에 들어온 오브젝트를 관리하는 객체
     Vector2 playerPosition;
     float nearestDistance;
-    GameObject nearestObject;
+    public GameObject nearestObject;
     Rigidbody2D nearestRigid;
 
     public void Initialize(ObjectContainer container)
@@ -72,7 +72,6 @@ public class MinuteArea : MonoBehaviour
                         nearestObject.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
                     }
                     nearestObject = kvp.Key.gameObject;
-                    //Debug.Log(nearestObject);
                     nearestRigid = nearestObject.GetComponent<Rigidbody2D>();
                 }
                 nearestDistance = (playerPosition - nearestRigid.ClosestPoint(playerPosition)).sqrMagnitude;
@@ -81,7 +80,7 @@ public class MinuteArea : MonoBehaviour
         //노란 테두리 표시
         if(nearestObject != null)
         {
-            nearestObject.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
+            //nearestObject.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
 
         }
     }
@@ -93,7 +92,7 @@ public class MinuteArea : MonoBehaviour
 
     public void MinuteAreaClear()
     {
-        nearestObject.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
+        //nearestObject.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
         nearestObject = null;
         nearestDistance = Mathf.Infinity;
         nearestRigid = null;
