@@ -29,4 +29,20 @@ public class Player : MonoBehaviour
     {
         gameObject.GetComponent<Transform>().position = location;
     }
+    public IEnumerator FollowParent(Vector3 lastPosition) //부모를 따라 움직임
+    {
+        WaitForFixedUpdate wait = new WaitForFixedUpdate();
+        while (true)
+        {
+            yield return wait;
+            Vector3 currentPosition = transform.parent.position;
+            Vector3 movementDelta = currentPosition - lastPosition;
+
+            if (transform.parent != null)
+            {
+                transform.position += movementDelta;
+                lastPosition = currentPosition;
+            }
+        }
+    }
 }
