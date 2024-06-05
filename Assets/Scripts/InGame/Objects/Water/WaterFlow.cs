@@ -7,7 +7,8 @@ using UnityEngine;
 public class WaterFlow : MonoBehaviour
 {
     float waterY;
-    private Dictionary<Rigidbody2D, Coroutine> activeCoroutines = new Dictionary<Rigidbody2D, Coroutine>(); // 코루틴을 저장하는 용도
+    Dictionary<Rigidbody2D, Coroutine> activeCoroutines = new Dictionary<Rigidbody2D, Coroutine>(); // 코루틴을 저장하는 용도
+    public List<GameObject> TriggedBlock = new();
     private void Awake()
     {
         waterY = gameObject.GetComponent<Water>().waterY;
@@ -18,6 +19,8 @@ public class WaterFlow : MonoBehaviour
         {
             Rigidbody2D rigid = collision.GetComponent<Rigidbody2D>();
             rigid.gravityScale = 0f;
+            TriggedBlock.Add(rigid.gameObject);
+            rigid.gameObject.layer = 2;
             activeCoroutines.Add(rigid, StartCoroutine(Buoyancy(rigid)));
         }
         if (collision.CompareTag("Player")) // 잠시 테스트로 부력 놔둠
@@ -51,6 +54,7 @@ public class WaterFlow : MonoBehaviour
             StopCoroutine(activeCoroutines[rigid]);
             activeCoroutines.Remove(rigid);
             rigid.gravityScale = 1f;
+            TriggedBlock.Remove(rigid.gameObject);
         }
     }
 }

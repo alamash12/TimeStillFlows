@@ -18,6 +18,7 @@ public class WaterStop : MonoBehaviour
         {
             rigid = collision.GetComponent<Rigidbody2D>();
             rigid.gravityScale = 0f;
+            rigid.gameObject.layer = 0;
         }
         if (collision.CompareTag("Player")) // 잠시 테스트로 부력 놔둠
         {

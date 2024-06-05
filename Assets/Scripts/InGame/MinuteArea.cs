@@ -22,8 +22,10 @@ public class MinuteArea : MonoBehaviour
             IChangable changableComponent = nearestObject.GetComponent<IChangable>();
             if (changableComponent != null)
             {
+                Rigidbody2D rigidbody = nearestObject.GetComponent<Rigidbody2D>();
                 changableComponent.stateType = StateType.Flow; // 상태를 변경
-                objectContainer.triggeredObjectRigid[nearestObject.GetComponent<Rigidbody2D>()] = changableComponent.stateType; // 딕셔너리에 변경된 상태를 갱신
+                objectContainer.triggeredObjectRigid[rigidbody] = changableComponent.stateType; // 딕셔너리에 변경된 상태를 갱신
+                rigidbody.WakeUp(); // stay()함수를 돌리기 위해 리지드바디를 깨운다.
                 MinuteAreaClear(); // nearestObject의 상태가 변경되었기 때문에 새로운 nearestObject를 받아오기 위해 초기화
             }
         }
