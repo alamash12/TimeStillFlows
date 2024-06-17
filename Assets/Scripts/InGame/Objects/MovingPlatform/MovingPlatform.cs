@@ -35,7 +35,6 @@ public class MovingPlatform : MonoBehaviour, IChangable
     {
         boxCollider = gameObject.GetComponent<BoxCollider2D>();
         stateType = StateType.Stop;
-        gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
     }
 
     //스크립트를 활성, 비활성
@@ -51,16 +50,46 @@ public class MovingPlatform : MonoBehaviour, IChangable
             DecisionSprite(addComponent);
         }
     }
-
+     
     void DecisionSprite(Component component)
     {
+        List<SpriteRenderer> spriteRenderers = new List<SpriteRenderer>();
+
+
+        if (gameObject.GetComponent<SpriteRenderer>() != null) //spriteRender이 오브젝트에 있다면
+        {
+            spriteRenderers.Add(gameObject.GetComponent<SpriteRenderer>());
+            Debug.Log("부모 스프라이트");
+        }
+
+        else //spiteRender이 오브젝트의 자식에 있다면 
+        {    
+            for (int i = 3; i < 6; i++)
+            {
+                //오브젝트의 자식의 spriteRenderer을 저장
+                spriteRenderers.Add(transform.GetChild(i).GetComponent<SpriteRenderer>());
+                Debug.Log("자식스프라이트");
+            }
+            
+   
+        }
+
+
         if(component == GetComponent<MovingPlatformFlow>())
         {
-            gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+           foreach(SpriteRenderer spriteRenderer in spriteRenderers)
+           {
+                GameManager.ChangeSprite(spriteRenderer, -1);
+           }
+           
         }
         else if (component == GetComponent<MovingPlatformStop>()) 
         {
-            gameObject.GetComponent <SpriteRenderer>().color = Color.gray;
+
+            foreach (SpriteRenderer spriteRenderer in spriteRenderers)
+            {
+                GameManager.ChangeSprite(spriteRenderer, 1);
+            }
         }
         else
         {
