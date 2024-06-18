@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,9 +15,12 @@ public class PlayerMove : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoi
     private bool isDragging = false;
     Action moveFunc;
 
+    Animator animator;
+
     void Awake()
     {
         player = GameObject.Find("Player");
+        animator = gameObject.GetComponent<Animator>();
     }
     public void OnPointerDown(PointerEventData eventData)
     {

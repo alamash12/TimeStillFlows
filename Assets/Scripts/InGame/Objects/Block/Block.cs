@@ -130,7 +130,8 @@ public class Block : MonoBehaviour, IChangable
             {
                 collision.transform.SetParent(transform);
                 //코루틴 시작
-                followParent.Add(childRigid, StartCoroutine(childObject.GetComponent<Block>().FollowParent(transform.position)));
+                if (childObject.CompareTag("Object"))
+                    followParent.Add(childRigid, StartCoroutine(childObject.GetComponent<Block>().FollowParent(transform.position)));
             }
             else
             {

@@ -1,15 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerJump : MonoBehaviour
 {
-    [SerializeField] private float jumpPower = 5f;
+    [SerializeField] float jumpPower;
     Rigidbody2D playerRigid;
+    [SerializeField] GameObject pivot;
+    [SerializeField] Transform groundCheck;
+    Vector2 groundCheckSize = new Vector2(1f, 0.05f);
     private bool isGround = false;
+    Animator animator;
     private void Awake()
     {
         playerRigid = gameObject.GetComponent<Rigidbody2D>();
+        animator = gameObject.GetComponent<Animator>();
     }
     public void Jump()
     {
@@ -22,11 +28,23 @@ public class PlayerJump : MonoBehaviour
     }
     void Update()
     {
-        isGround = Physics2D.Raycast(gameObject.transform.position, Vector3.down, 0.6f); // 레이캐스트로 땅에 닿으면 점프 가능하게
-        Debug.DrawRay(gameObject.transform.position, Vector2.down * 0.6f, Color.red); // 나중에 캐릭터 크기에 따라서 조절
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(groundCheck.position, groundCheckSize, 0f);
+        foreach (Collider2D collider in colliders)
+        {
+            if (collider.gameObject != gameObject && playerRigid.velocity.y < 0) // 자기 자신을 제외한 충돌 감지
+            {
+                isGround = true;
+                playerRigid.gravityScale = 2f;
+                break;
+            }
+        }
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
+        }
+        if(playerRigid.velocity.y < -0.5f)
+        {
+            playerRigid.gravityScale = 3.5f;
         }
     }
 }

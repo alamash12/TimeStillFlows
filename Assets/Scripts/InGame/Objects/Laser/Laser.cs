@@ -30,7 +30,9 @@ public class Laser : MonoBehaviour
         if (raycastHit.collider != null) // 물체가 닿아있을때
         {
             if (raycastHit.transform.CompareTag("Player")) // 게임 오버 판정
-                Debug.Log("Game Over");
+            {
+
+            }
 
             if (laserDirection.x == 0) // 레이저가 세로일때
             {
