@@ -10,7 +10,7 @@ public class PlayerJump : MonoBehaviour
     [SerializeField] GameObject pivot;
     [SerializeField] Transform groundCheck;
     Vector2 groundCheckSize = new Vector2(1f, 0.05f);
-    private bool isGround = false;
+    public bool isGround = false;
     Animator animator;
     private void Awake()
     {

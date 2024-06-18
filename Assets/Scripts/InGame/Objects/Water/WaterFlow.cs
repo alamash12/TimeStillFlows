@@ -36,7 +36,7 @@ public class WaterFlow : MonoBehaviour
     {
         while(true)
         {
-            yield return new WaitForSeconds(0.15f);
+            yield return new WaitForSeconds(0.2f);
             while (collision.transform.position.y < waterY)
             {
                 collision.velocity = new Vector2(0, Mathf.Clamp((collision.velocity.y + 0.07f), -10, 5));
