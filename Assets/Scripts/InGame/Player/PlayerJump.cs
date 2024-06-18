@@ -28,23 +28,28 @@ public class PlayerJump : MonoBehaviour
     }
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Jump();
+            animator.SetBool("isJump", true);
+        }
+        if(playerRigid.velocity.y < -0.5f)
+        {
+            playerRigid.gravityScale = 3.5f;
+        }
+    }
+    private void LateUpdate()
+    {
         Collider2D[] colliders = Physics2D.OverlapBoxAll(groundCheck.position, groundCheckSize, 0f);
         foreach (Collider2D collider in colliders)
         {
             if (collider.gameObject != gameObject && playerRigid.velocity.y < 0) // 자기 자신을 제외한 충돌 감지
             {
+                playerRigid.gravityScale = 2f; // 스케일 조절로 인해서 lateUpdate 사용
                 isGround = true;
-                playerRigid.gravityScale = 2f;
+                animator.SetBool("isJump", false);
                 break;
             }
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Jump();
-        }
-        if(playerRigid.velocity.y < -0.5f)
-        {
-            playerRigid.gravityScale = 3.5f;
         }
     }
 }

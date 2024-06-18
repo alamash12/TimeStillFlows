@@ -20,7 +20,7 @@ public class PlayerMove : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoi
     void Awake()
     {
         player = GameObject.Find("Player");
-        animator = gameObject.GetComponent<Animator>();
+        animator = player.GetComponent<Animator>();
     }
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -31,10 +31,12 @@ public class PlayerMove : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoi
     {
         moveFunc = null;
         isDragging = false;
+        animator.SetBool("isWalk", false);
     }
     public void OnPointerExit(PointerEventData eventData)
     {
         isDragging = false;
+        animator.SetBool("isWalk", false);
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -51,6 +53,13 @@ public class PlayerMove : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoi
     {
         if (Mathf.Abs(deltaX) > 4) // 감도 조절을 위해서 
             direction = Mathf.Sign(deltaX);
+
+        if (direction < 0) // 드래그하는 방향에 따라서 방향 애니메이터 변수 조절
+            animator.SetBool("isRight", false);
+        else
+            animator.SetBool("isRight", true);
+
+        animator.SetBool("isWalk", true);
         player.transform.Translate(direction * moveSpeed * Time.deltaTime * Vector3.right);
     }
     void FixedUpdate()

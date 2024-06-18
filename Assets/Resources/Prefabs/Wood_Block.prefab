@@ -121,12 +121,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3556775118508309258}
-  - component: {fileID: 5421422192535059482}
+  - component: {fileID: 483563213324321701}
   - component: {fileID: 2896435995837273725}
   - component: {fileID: -3311662097896433363}
   - component: {fileID: 8547882290292324003}
   m_Layer: 0
-  m_Name: Block
+  m_Name: Wood_Block
   m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,7 +148,7 @@ Transform:
   - {fileID: 3645895914354389495}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &5421422192535059482
+--- !u!61 &483563213324321701
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -184,14 +184,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.7011904, y: 1.6638107}
+    oldSize: {x: 2.0471427, y: 1.9911661}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.7011904, y: 1.6638107}
+  m_Size: {x: 2.0414286, y: 1.996573}
   m_EdgeRadius: 0
 --- !u!50 &2896435995837273725
 Rigidbody2D:
@@ -261,7 +261,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: adf07a0bf5a84f44a8d000f2600b145c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 77a79b551d5eab146a6e9303029f841d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

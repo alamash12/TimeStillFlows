@@ -171,6 +171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8fe4bff40b94dd45a6957381319f3eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  laserRadius: 0.2
+  laserLength: 10
 --- !u!1 &8151404149600110150
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,7 +185,7 @@ GameObject:
   - component: {fileID: 4034838893431647575}
   m_Layer: 0
   m_Name: VerLaserBody
-  m_TagString: Object
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

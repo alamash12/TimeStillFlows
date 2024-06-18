@@ -112,7 +112,7 @@ public class MovingPlatform : MonoBehaviour, IChangable
                 {
                     collision.transform.SetParent(transform);
                     //코루틴 시작
-                    if (collision.gameObject.CompareTag("object"))
+                    if (collision.gameObject.CompareTag("Object"))
                     {
                         followParent.Add(childRigid, StartCoroutine(childObject.GetComponent<Block>().FollowParent(transform.position)));
                     }
