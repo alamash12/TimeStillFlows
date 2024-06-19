@@ -6,6 +6,8 @@ using UnityEngine;
 public class Water : MonoBehaviour , IChangable
 {
     Transform waterPivot;
+    public List<GameObject> TriggeredBlock = new(); // 물에 닿은 블록을 저장하기 위한 리스트
+    Dictionary<Rigidbody2D, Coroutine> activeCoroutines = new Dictionary<Rigidbody2D, Coroutine>(); // 코루틴을 저장하는 용도
     public float waterY { get; set; }
     private StateType _stateType; // 값 저장 필드
     public StateType stateType 
@@ -90,6 +92,54 @@ public class Water : MonoBehaviour , IChangable
         else
         {
             Debug.LogError("Not Available Component");
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Object"))
+        {
+            TriggeredBlock.Add(collision.gameObject);
+            collision.gameObject.layer = 2; // 물에 닿은 블록을 Ignore Raycast로 설정
+
+            Rigidbody2D rigid = collision.GetComponent<Rigidbody2D>();
+            rigid.gravityScale = 0f;
+            activeCoroutines.Add(rigid, StartCoroutine(Buoyancy(rigid)));
+        }
+        if (collision.CompareTag("Player")) // 잠시 테스트로 부력 놔둠
+        {
+            Rigidbody2D rigid = collision.GetComponent<Rigidbody2D>();
+            rigid.gravityScale = 0f;
+            activeCoroutines.Add(rigid, StartCoroutine(Buoyancy(rigid)));
+            //게임 오버 구현
+        }
+    }
+
+    IEnumerator Buoyancy(Rigidbody2D collision)
+    {
+        while (true)
+        {
+            yield return new WaitWhile(() => collision.transform.position.y > waterY); // 물체가 waterY보다 밑에 있을때부터 코루틴 시작
+            while (collision.transform.position.y < waterY)
+            {
+                collision.velocity = new Vector2(0, Mathf.Clamp((collision.velocity.y + 0.07f), -10, 5));
+                yield return null;
+            }
+            collision.velocity = new Vector2(0, 0);
+            yield return new WaitWhile(() => collision.velocity.y >= 0); // 물체가 아래로 떨어지기 전까지 대기상태
+        }
+    }
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        Rigidbody2D rigid = collision.GetComponent<Rigidbody2D>();
+        if (rigid != null && activeCoroutines.ContainsKey(rigid))
+        {
+            StopCoroutine(activeCoroutines[rigid]);
+            activeCoroutines.Remove(rigid);
+            rigid.gravityScale = 1f;
+
+            TriggeredBlock.Remove(collision.gameObject); // 물에서 블록이 나갈때 다시 레이캐스트 가능하도록 변경
+            collision.gameObject.layer = 0;
         }
     }
 }

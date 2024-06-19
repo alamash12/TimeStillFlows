@@ -4,18 +4,15 @@ using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
-    GameObject laserBody;
+    [SerializeField] GameObject laserBody;
     [SerializeField] float laserRadius = 0.2f;
     [SerializeField] float laserLength = 10f;
     RaycastHit2D raycastHit; // 레이저가 닿은 물체
-    Vector3 parentPosition; // 레이저 몸통의 포지션
     Vector3 laserDirection; // 레이저의 방향
     Vector2 originalScale;
     private void Awake()
     {
-        parentPosition = gameObject.transform.parent.position;
-        laserDirection = (gameObject.transform.position - parentPosition).normalized;
-        laserBody = gameObject.transform.parent.gameObject; // 레이저 바디를 받아옴
+        laserDirection = (gameObject.transform.position - laserBody.transform.position).normalized;
 
         if (laserDirection.x == 0)
             originalScale = new Vector2(laserRadius + 0.1f, laserLength);
@@ -31,7 +28,7 @@ public class Laser : MonoBehaviour
         {
             if (raycastHit.transform.CompareTag("Player")) // 게임 오버 판정
             {
-
+                
             }
 
             if (laserDirection.x == 0) // 레이저가 세로일때

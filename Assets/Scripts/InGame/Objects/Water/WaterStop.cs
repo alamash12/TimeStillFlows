@@ -4,33 +4,11 @@ using UnityEngine;
 
 public class WaterStop : MonoBehaviour
 {
-    float waterY;
-    Rigidbody2D rigid;
-
     private void Awake()
     {
-        waterY = gameObject.GetComponent<Water>().waterY;
-    }
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Object"))
+        foreach (GameObject gameObject in gameObject.GetComponent<Water>().TriggeredBlock) // 상태가 변경되었을때 물에 닿아있는 블록을 레이캐스트 가능하게 변경
         {
-            rigid = collision.GetComponent<Rigidbody2D>();
-            rigid.gravityScale = 0f;
-            rigid.gameObject.layer = 0;
+            gameObject.layer = 0;
         }
-        if (collision.CompareTag("Player")) // 잠시 테스트로 부력 놔둠
-        {
-            rigid = collision.GetComponent<Rigidbody2D>();
-            rigid.gravityScale = 0f;
-            //게임 오버 구현
-        }
-    }
-    public void OnTriggerExit2D(Collider2D collision)
-    {
-        rigid = collision.GetComponent<Rigidbody2D>();
-        if (rigid != null)
-            rigid.gravityScale = 1f;
     }
 }

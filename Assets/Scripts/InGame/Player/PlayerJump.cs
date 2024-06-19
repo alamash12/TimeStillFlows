@@ -40,15 +40,14 @@ public class PlayerJump : MonoBehaviour
     }
     private void LateUpdate()
     {
-        Collider2D[] colliders = Physics2D.OverlapBoxAll(groundCheck.position, groundCheckSize, 0f);
-        foreach (Collider2D collider in colliders)
+        Collider2D collider = Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0f);
+        if (collider != null)
         {
             if (collider.gameObject != gameObject && playerRigid.velocity.y < 0) // 자기 자신을 제외한 충돌 감지
             {
                 playerRigid.gravityScale = 2f; // 스케일 조절로 인해서 lateUpdate 사용
                 isGround = true;
                 animator.SetBool("isJump", false);
-                break;
             }
         }
     }
