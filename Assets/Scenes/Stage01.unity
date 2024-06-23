@@ -2035,7 +2035,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4566754996317878114, guid: 6d72ee5566e0936429e3f85e342b80ff, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.6758399
+      value: -0.85
       objectReference: {fileID: 0}
     - target: {fileID: 4566754996317878114, guid: 6d72ee5566e0936429e3f85e342b80ff, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2956,7 +2956,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4566754996317878114, guid: 6d72ee5566e0936429e3f85e342b80ff, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.6758399
+      value: -0.88
       objectReference: {fileID: 0}
     - target: {fileID: 4566754996317878114, guid: 6d72ee5566e0936429e3f85e342b80ff, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3339,7 +3339,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4566754996317878114, guid: 6d72ee5566e0936429e3f85e342b80ff, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.6758399
+      value: -0.885
       objectReference: {fileID: 0}
     - target: {fileID: 4566754996317878114, guid: 6d72ee5566e0936429e3f85e342b80ff, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4055,8 +4055,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d6b39e97d3ecb04a926eb7cbcc4e13b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minCameraBoundary: {x: 0, y: -10}
-  maxCameraBoundary: {x: 64, y: 10}
+  minCameraBoundary: {x: 0, y: 0}
+  maxCameraBoundary: {x: 64, y: 4}
 --- !u!1 &1666238998
 GameObject:
   m_ObjectHideFlags: 0

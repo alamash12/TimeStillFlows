@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6751150255952970812}
   - component: {fileID: 3587474651323172942}
   m_Layer: 0
-  m_Name: High_Floor
+  m_Name: Forest_High_Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
