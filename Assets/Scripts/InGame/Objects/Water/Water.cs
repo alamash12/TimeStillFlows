@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Water : MonoBehaviour , IChangable
 {
@@ -108,10 +109,7 @@ public class Water : MonoBehaviour , IChangable
         }
         if (collision.CompareTag("Player")) // 잠시 테스트로 부력 놔둠
         {
-            Rigidbody2D rigid = collision.GetComponent<Rigidbody2D>();
-            rigid.gravityScale = 0f;
-            activeCoroutines.Add(rigid, StartCoroutine(Buoyancy(rigid)));
-            //게임 오버 구현
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name); // 다시시작
         }
     }
 

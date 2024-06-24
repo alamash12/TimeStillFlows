@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Laser : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class Laser : MonoBehaviour
         {
             if (raycastHit.transform.CompareTag("Player")) // 게임 오버 판정
             {
-                
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
 
             if (laserDirection.x == 0) // 레이저가 세로일때
