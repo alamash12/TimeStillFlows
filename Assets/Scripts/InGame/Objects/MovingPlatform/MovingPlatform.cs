@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.TerrainUtils;
 using UnityEngine.XR;
 
-public class MovingPlatform : MonoBehaviour, IChangable
+public class MovingPlatform : MonoBehaviour, IChangeable
 {
     private StateType _stateType;
     private BoxCollider2D boxCollider;
@@ -41,7 +41,15 @@ public class MovingPlatform : MonoBehaviour, IChangable
     }
     public void Init()
     {
-        string stateParse = gameObject.transform.GetChild(3).GetComponent<SpriteRenderer>().sprite.name.Split('_')[2];
+        string stateParse;
+        if (gameObject.GetComponent<SpriteRenderer>() != null) //spriteRender이 오브젝트에 있다면
+        {
+            stateParse = gameObject.GetComponent<SpriteRenderer>().sprite.name.Split('_')[2];
+        }
+        else //spiteRender이 오브젝트의 자식에 있다면 
+        {
+            stateParse = gameObject.transform.GetChild(3).GetComponent<SpriteRenderer>().sprite.name.Split('_')[2];
+        }
         StateType result;
         if (Enum.TryParse(stateParse, out result))
         {

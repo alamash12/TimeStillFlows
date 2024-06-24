@@ -13,7 +13,7 @@ public class MinuteArea : MonoBehaviour
     SpriteRenderer nearestObjectSR;
     SpriteRenderer nearestObjectOutlineSR;
 
-    public void Initialize(ObjectContainer container)
+    public void Init(ObjectContainer container)
     {
         objectContainer = container;
     }
@@ -21,7 +21,7 @@ public class MinuteArea : MonoBehaviour
     {
         if (nearestObject != null)
         {
-            IChangable changableComponent = nearestObject.GetComponent<IChangable>();
+            IChangeable changableComponent = nearestObject.GetComponent<IChangeable>();
             if (changableComponent != null)
             {
                 Rigidbody2D rigidbody = nearestObject.GetComponent<Rigidbody2D>();
@@ -42,7 +42,7 @@ public class MinuteArea : MonoBehaviour
         if (collision.CompareTag("Object"))
         {
             //충돌한 오브젝트의 상태를 가져옴
-            IChangable changableObject = collision.GetComponent<IChangable>();
+            IChangeable changableObject = collision.GetComponent<IChangeable>();
 
             if (changableObject != null)
             {
@@ -95,7 +95,7 @@ public class MinuteArea : MonoBehaviour
         playerPosition = gameObject.transform.parent.position;
     }
 
-    public void MinuteAreaClear()
+    void MinuteAreaClear()
     {
         OrderDecision(false);
         nearestObject = null;
