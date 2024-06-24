@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Linq;
@@ -22,10 +23,12 @@ public class MovingPlatform : MonoBehaviour, IChangable
                 if(stateType == StateType.Flow)
                 {
                     ChangeState<MovingPlatformStop, MovingPlatformFlow>();
+                    DecisionSprite(stateType);
                 }
                 else if(stateType == StateType.Stop)
                 {
                     ChangeState<MovingPlatformFlow, MovingPlatformStop>();
+                    DecisionSprite(stateType);
                 }
             }
         }
@@ -34,9 +37,30 @@ public class MovingPlatform : MonoBehaviour, IChangable
     private void Start()
     {
         boxCollider = gameObject.GetComponent<BoxCollider2D>();
-        stateType = StateType.Stop;
+        Init();
     }
-
+    public void Init()
+    {
+        string stateParse = gameObject.transform.GetChild(3).GetComponent<SpriteRenderer>().sprite.name.Split('_')[2];
+        StateType result;
+        if (Enum.TryParse(stateParse, out result))
+        {
+            if (result == StateType.Flow)
+            {
+                _stateType = StateType.Flow;
+                ChangeState<MovingPlatformStop, MovingPlatformFlow>();
+            }
+            else if (result == StateType.Stop)
+            {
+                _stateType = StateType.Stop;
+                ChangeState<MovingPlatformFlow, MovingPlatformStop>();
+            }
+            else
+            {
+                Debug.LogError(gameObject.name + "이 제대로 초기화되지 않았습니다.");
+            }
+        }
+    }
     //스크립트를 활성, 비활성
     public void ChangeState<T1, T2>() where T1:Component where T2:Component
     {
@@ -47,11 +71,10 @@ public class MovingPlatform : MonoBehaviour, IChangable
         if (addComponent == null)
         {
             addComponent = gameObject.AddComponent<T2>();
-            DecisionSprite(addComponent);
         }
     }
      
-    void DecisionSprite(Component component)
+    void DecisionSprite(StateType stateType)
     {
         List<SpriteRenderer> spriteRenderers = new List<SpriteRenderer>();
 
@@ -70,12 +93,9 @@ public class MovingPlatform : MonoBehaviour, IChangable
                 spriteRenderers.Add(transform.GetChild(i).GetComponent<SpriteRenderer>());
                 Debug.Log("자식스프라이트");
             }
-            
-   
         }
 
-
-        if(component == GetComponent<MovingPlatformFlow>())
+        if(stateType == StateType.Flow)
         {
            foreach(SpriteRenderer spriteRenderer in spriteRenderers)
            {
@@ -83,7 +103,7 @@ public class MovingPlatform : MonoBehaviour, IChangable
            }
            
         }
-        else if (component == GetComponent<MovingPlatformStop>()) 
+        else if (stateType == StateType.Stop) 
         {
 
             foreach (SpriteRenderer spriteRenderer in spriteRenderers)
