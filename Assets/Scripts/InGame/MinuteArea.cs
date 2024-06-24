@@ -73,9 +73,7 @@ public class MinuteArea : MonoBehaviour
                 {
                     if(nearestObject != null)
                     {
-                        nearestObjectSR.sortingOrder = 1;
-                        nearestObjectOutlineSR.sortingOrder = 0;
-                        nearestObjectOutlineSR.enabled = false;
+                        OrderDecision(false);
                     }
                     nearestObject = kvp.Key.gameObject;
                     nearestObjectSR = nearestObject.GetComponent<SpriteRenderer>();
@@ -88,9 +86,7 @@ public class MinuteArea : MonoBehaviour
         //노란 테두리 표시
         if(nearestObject != null)
         {
-            nearestObjectSR.sortingOrder = 3;
-            nearestObjectOutlineSR.sortingOrder = 2;
-            nearestObjectOutlineSR.enabled = true;
+            OrderDecision(true);
         }
     }
 
@@ -101,11 +97,55 @@ public class MinuteArea : MonoBehaviour
 
     public void MinuteAreaClear()
     {
-        nearestObjectSR.sortingOrder = 1;
-        nearestObjectOutlineSR.sortingOrder = 0;
-        nearestObjectOutlineSR.enabled = false;
+        OrderDecision(false);
         nearestObject = null;
         nearestDistance = Mathf.Infinity;
         nearestRigid = null;
+    }
+    /// <summary>
+    /// 아웃라인을 보여주고, 아웃라인이 나타나는 오브젝트의 sortingorder를 조절해주는 함수
+    /// </summary>
+    /// <param name="isEnabled">윤곽선의 여부</param>
+    /// 바닥 > 물 > 플레이어 = 블록/발판 > 아웃라인
+    /// 8      6       4          1          0      <- 각 오브젝트의 sortingorder
+    /// nearestObject가 되었을때 아웃라인과 오브젝트 order++
+    void OrderDecision(bool isEnabled)
+    {
+        if (isEnabled) // 윤곽선을 켜줘야하는 경우
+        {
+            if (nearestObjectSR == null) // 부모 오브젝트에 SpriteRenderer가 없는 경우 ex) 물, 움직이는 발판중 긴것
+            {
+                for (int i = 3; i < nearestObject.transform.childCount; i++)
+                {
+                    nearestObject.transform.GetChild(i).GetComponent<SpriteRenderer>().sortingOrder++;
+                }
+                nearestObjectOutlineSR.sortingOrder++;
+                nearestObjectOutlineSR.enabled = isEnabled;
+            }
+            else // 부모 오브젝트에 SpriteRenderer가 있는 경우 ex) 위의 경우를 제외한 나머지
+            {
+                nearestObjectSR.sortingOrder++;
+                nearestObjectOutlineSR.sortingOrder++;
+                nearestObjectOutlineSR.enabled = isEnabled;
+            }
+        }
+        else // 윤곽선을 꺼줘야하는 경우
+        {
+            if (nearestObjectSR == null) // 부모 오브젝트에 SpriteRenderer가 없는 경우 ex) 물, 움직이는 발판중 긴것
+            {
+                for (int i = 3; i < nearestObject.transform.childCount; i++)
+                {
+                    nearestObject.transform.GetChild(i).GetComponent<SpriteRenderer>().sortingOrder--;
+                }
+                nearestObjectOutlineSR.sortingOrder--;
+                nearestObjectOutlineSR.enabled = isEnabled;
+            }
+            else // 부모 오브젝트에 SpriteRenderer가 있는 경우 ex) 위의 경우를 제외한 나머지
+            {
+                nearestObjectSR.sortingOrder--;
+                nearestObjectOutlineSR.sortingOrder--;
+                nearestObjectOutlineSR.enabled = isEnabled;
+            }
+        }
     }
 }
