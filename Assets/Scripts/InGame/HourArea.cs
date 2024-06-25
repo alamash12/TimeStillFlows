@@ -7,11 +7,11 @@ public class HourArea : MonoBehaviour
     ObjectContainer objectContainer; // 영역에 들어온 오브젝트를 관리하는 객체
     SpriteRenderer spriteRenderer;
 
-    private void Awake()
+    void Awake()
     {
         SizeDecision();
     }
-    public void Initialize(ObjectContainer container)
+    public void Init(ObjectContainer container)
     {
         objectContainer = container;
     }
@@ -21,7 +21,7 @@ public class HourArea : MonoBehaviour
         {
             foreach (GameObject gameObject in objectContainer.triggeredObject)
             {
-                IChangable changableComponent = gameObject.GetComponent<IChangable>();
+                IChangeable changableComponent = gameObject.GetComponent<IChangeable>();
                 Rigidbody2D rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
                 if (changableComponent != null)
                 {
@@ -35,7 +35,7 @@ public class HourArea : MonoBehaviour
             }
         }
     }
-    public void SizeDecision() // 카메라의 크기에 맞춰서 hourArea의 크기를 맞춰주는 함수
+    void SizeDecision() // 카메라의 크기에 맞춰서 hourArea의 크기를 맞춰주는 함수
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         float spriteX = spriteRenderer.sprite.bounds.size.x;
@@ -46,14 +46,14 @@ public class HourArea : MonoBehaviour
 
         transform.localScale = new Vector2(Mathf.Ceil(screenX / spriteX), Mathf.Ceil(screenY / spriteY));
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Object"))
         {
             objectContainer.triggeredObject.Add(collision.gameObject);
         }
     }
-    private void OnTriggerExit2D(Collider2D collision)
+    void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Object"))
         {

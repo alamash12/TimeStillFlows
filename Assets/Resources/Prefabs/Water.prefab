@@ -452,3 +452,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed3a882708aea8a41bff1a471285ec63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TriggeredBlock: []

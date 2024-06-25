@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using UnityEngine;
 using UnityEngine.XR;
 
-public class Block : MonoBehaviour, IChangable
+public class Block : MonoBehaviour, IChangeable
 {
     private StateType _stateType;
     private BoxCollider2D boxCollider;
@@ -59,7 +59,7 @@ public class Block : MonoBehaviour, IChangable
         }
     }
 
-    public void Init()
+    void Init()
     {
         string stateParse = gameObject.GetComponent<SpriteRenderer>().sprite.name.Split('_')[2];
         StateType result;

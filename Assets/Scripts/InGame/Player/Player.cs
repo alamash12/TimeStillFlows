@@ -15,8 +15,8 @@ public class Player : MonoBehaviour
     }
     private void Start()
     {
-        minuteArea.Initialize(container);
-        hourArea.Initialize(container);
+        minuteArea.Init(container);
+        hourArea.Init(container);
     }
     //player의 위치 반환
     public Vector3 GetLocation()

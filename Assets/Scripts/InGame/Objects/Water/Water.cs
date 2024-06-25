@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class Water : MonoBehaviour , IChangable
+public class Water : MonoBehaviour , IChangeable
 {
     Transform waterPivot;
     public List<GameObject> TriggeredBlock = new(); // 물에 닿은 블록을 저장하기 위한 리스트
     Dictionary<Rigidbody2D, Coroutine> activeCoroutines = new Dictionary<Rigidbody2D, Coroutine>(); // 코루틴을 저장하는 용도
-    public float waterY { get; set; }
+    float waterY;
     private StateType _stateType; // 값 저장 필드
     public StateType stateType 
     {
@@ -37,7 +38,7 @@ public class Water : MonoBehaviour , IChangable
         waterY = waterPivot.position.y;
         Init();
     }
-    public void Init()
+    void Init()
     {
         string stateParse = gameObject.transform.GetChild(2).GetComponent<SpriteRenderer>().sprite.name.Split('_')[2];
         StateType result;
@@ -108,10 +109,7 @@ public class Water : MonoBehaviour , IChangable
         }
         if (collision.CompareTag("Player")) // 잠시 테스트로 부력 놔둠
         {
-            Rigidbody2D rigid = collision.GetComponent<Rigidbody2D>();
-            rigid.gravityScale = 0f;
-            activeCoroutines.Add(rigid, StartCoroutine(Buoyancy(rigid)));
-            //게임 오버 구현
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name); // 다시시작
         }
     }
 

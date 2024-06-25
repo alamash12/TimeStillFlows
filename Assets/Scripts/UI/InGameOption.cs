@@ -26,8 +26,7 @@ public class InGameOption : MonoBehaviour
     public void RetryButton()
     {
         Time.timeScale = 1.0f;
-        string sceneName = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void ExitButton()
     {
