@@ -143,7 +143,7 @@ public class Block : MonoBehaviour, IChangeable
     private void OnCollisionExit2D(Collision2D collision)
     {
         //물체가 block에서 떠났을 때 부모를 초기화하여 원래 상태로 되돌림
-        if (collision.gameObject.GetComponent<Rigidbody2D>().transform.parent == transform)
+        if (collision.gameObject.CompareTag("Object") && collision.gameObject.GetComponent<Rigidbody2D>().transform.parent == transform)
         {
             collision.transform.SetParent(null);
 
