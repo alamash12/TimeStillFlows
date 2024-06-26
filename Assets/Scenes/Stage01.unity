@@ -140,7 +140,6 @@ GameObject:
   - component: {fileID: 61936848}
   - component: {fileID: 61936847}
   - component: {fileID: 61936846}
-  - component: {fileID: 61936845}
   m_Layer: 5
   m_Name: Silhouette
   m_TagString: Untagged
@@ -168,18 +167,6 @@ RectTransform:
   m_AnchoredPosition: {x: 324, y: -271}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &61936845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 61936843}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac83231aab4a8c1478517909b9d23c32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &61936846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1458,7 +1445,6 @@ GameObject:
   - component: {fileID: 663120052}
   - component: {fileID: 663120051}
   - component: {fileID: 663120050}
-  - component: {fileID: 663120049}
   m_Layer: 5
   m_Name: Minute
   m_TagString: Untagged
@@ -1486,18 +1472,6 @@ RectTransform:
   m_AnchoredPosition: {x: 559, y: -38}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &663120049
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 663120047}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afa7a2c87b17d1a4787ca1d34a88d0fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &663120050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2556,6 +2530,7 @@ RectTransform:
   m_SizeDelta: {x: 675, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1001 &1007083774
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2763,6 +2738,8 @@ CanvasRenderer:
   m_CullTransparentMesh: 1
 =======
 >>>>>>> 6e6056b4fcb25ec14c3878516cb6ee02f05e2045
+=======
+>>>>>>> 9aa4f8cd0358f67021d24aaff3ab559cd7f5fd2e
 --- !u!1 &1084440816
 GameObject:
   m_ObjectHideFlags: 0
@@ -3391,6 +3368,7 @@ GameObject:
   - component: {fileID: 1356818156}
   - component: {fileID: 1356818161}
   - component: {fileID: 1356818162}
+  - component: {fileID: 1356818166}
   - component: {fileID: 1356818163}
   m_Layer: 0
   m_Name: Player
@@ -3602,6 +3580,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.3663383, y: 2.384666}
   m_EdgeRadius: 0
+--- !u!114 &1356818166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356818155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 799e0925c05e71e408527638e376fa5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minuteButton: {fileID: 663120050}
+  hourButton: {fileID: 1938960687}
+  gearButton: {fileID: 61936846}
+  hourArea: {fileID: 314158303}
 --- !u!1 &1365815593
 GameObject:
   m_ObjectHideFlags: 0
@@ -4740,7 +4734,6 @@ GameObject:
   - component: {fileID: 1938960689}
   - component: {fileID: 1938960688}
   - component: {fileID: 1938960687}
-  - component: {fileID: 1938960690}
   m_Layer: 5
   m_Name: Hour
   m_TagString: Untagged
@@ -4850,18 +4843,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1938960685}
   m_CullTransparentMesh: 1
---- !u!114 &1938960690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1938960685}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2e365b2860766d46b2c5a7b4896a792, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1968957701
 GameObject:
   m_ObjectHideFlags: 0
