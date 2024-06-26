@@ -10,6 +10,8 @@ public class Water : MonoBehaviour , IChangeable
     public List<GameObject> TriggeredBlock = new(); // 물에 닿은 블록을 저장하기 위한 리스트
     Dictionary<Rigidbody2D, Coroutine> activeCoroutines = new Dictionary<Rigidbody2D, Coroutine>(); // 코루틴을 저장하는 용도
     float waterY;
+    float buoyancyStrength = 10.0f; // 부력의 세기
+    float dampingFactor = 0.99f; // 감쇠 계수
     private StateType _stateType; // 값 저장 필드
     public StateType stateType 
     {
@@ -112,19 +114,21 @@ public class Water : MonoBehaviour , IChangeable
             SceneManager.LoadScene(SceneManager.GetActiveScene().name); // 다시시작
         }
     }
-
     IEnumerator Buoyancy(Rigidbody2D collision)
     {
         while (true)
         {
-            yield return new WaitWhile(() => collision.transform.position.y > waterY); // 물체가 waterY보다 밑에 있을때부터 코루틴 시작
+            // 물체가 물보다 위에 있을 때 대기
+            yield return new WaitWhile(() => collision.transform.position.y > waterY);
+
             while (collision.transform.position.y < waterY)
             {
-                collision.velocity = new Vector2(0, Mathf.Clamp((collision.velocity.y + 0.07f), -10, 5));
+                collision.AddForce(new Vector2(0, (waterY - collision.transform.position.y) * buoyancyStrength), ForceMode2D.Force); // 깊이에 따라 강해지는 부력 적용
+                collision.velocity = new Vector2(collision.velocity.x, collision.velocity.y * dampingFactor); // 감쇠 적용
+
                 yield return null;
             }
-            collision.velocity = new Vector2(0, 0);
-            yield return new WaitWhile(() => collision.velocity.y >= 0); // 물체가 아래로 떨어지기 전까지 대기상태
+            collision.velocity = new Vector2(collision.velocity.x, 0); // 원하는 높이까지 왔으면 속력을 0으로
         }
     }
     void OnTriggerExit2D(Collider2D collision)

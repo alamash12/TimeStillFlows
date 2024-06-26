@@ -29,7 +29,7 @@ public class MinuteArea : MonoBehaviour
                 changableComponent.stateType = StateType.Flow; // 상태를 변경
                 objectContainer.triggeredObjectRigid[rigidbody] = changableComponent.stateType; // 딕셔너리에 변경된 상태를 갱신
 
-                //이동 발판의 경우 Minute 버튼을 누르지 않더라도 도착지점에 도달하면 정지 상태로 바껴야 함. 
+                //이동 발판의 경우 Minute 버튼을 누르지 않더라도 도착지점에 도달하면 정지 상태로 바뀌어야 함. 
                 if(rigidbody.GetComponent<MovingPlatformFlow>() != null) 
                 {
                     rigidbody.GetComponent<MovingPlatformFlow>().setObjectContainer(objectContainer);
