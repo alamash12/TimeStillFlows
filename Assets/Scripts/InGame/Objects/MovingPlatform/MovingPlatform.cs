@@ -138,15 +138,15 @@ public class MovingPlatform : MonoBehaviour, IChangeable
 
                 if (childRigid != null && !followParent.ContainsKey(childRigid))
                 {
-                    collision.transform.SetParent(transform);
+                 
                     //코루틴 시작
                     if (collision.gameObject.CompareTag("Object"))
                     {
-                        followParent.Add(childRigid, StartCoroutine(childObject.GetComponent<Block>().FollowParent(transform.position)));
+                        followParent.Add(childRigid, StartCoroutine(childObject.GetComponent<Block>().FollowParent(transform.position,transform)));
                     }
                     else if (collision.gameObject.CompareTag("player"))
                     {
-                        followParent.Add(childRigid, StartCoroutine(childObject.GetComponent<Player>().FollowParent(transform.position)));
+                        followParent.Add(childRigid, StartCoroutine(childObject.GetComponent<Player>().FollowParent(transform.position, transform)));
                     }
                    
                 }
@@ -162,8 +162,6 @@ public class MovingPlatform : MonoBehaviour, IChangeable
     private void OnCollisionExit2D(Collision2D collision)
     {
         //물체가 MovingPlatform에서 떠났을 때 부모를 초기화하여 원래 상태로 되돌림
-        collision.transform.SetParent(null);
-
 
         Rigidbody2D childRigid = collision.gameObject.GetComponent<Rigidbody2D>();
 

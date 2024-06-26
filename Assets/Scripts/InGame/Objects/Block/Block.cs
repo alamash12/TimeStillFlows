@@ -42,20 +42,19 @@ public class Block : MonoBehaviour, IChangeable
         Init();
     }
     
-    public IEnumerator FollowParent(Vector3 lastPosition) //부모를 따라 움직임
+    public IEnumerator FollowParent(Vector3 lastPosition, Transform parent) //부모를 따라 움직임
     {
         WaitForFixedUpdate wait = new WaitForFixedUpdate();
         while (true)
         {
             yield return wait;
-            Vector3 currentPosition = transform.parent.position;
+            Vector3 currentPosition = parent.position;
             Vector3 movementDelta = currentPosition - lastPosition;
 
-            if(transform.parent != null) 
-            {
-                transform.position += movementDelta;
-                lastPosition = currentPosition;
-            }
+         
+            transform.position += movementDelta;
+            lastPosition = currentPosition;
+        
         }
     }
 
@@ -126,12 +125,17 @@ public class Block : MonoBehaviour, IChangeable
         {
             Rigidbody2D childRigid = childObject.GetComponent<Rigidbody2D>();
 
-            if (childRigid != null&&!followParent.ContainsKey(childRigid))
+            if (childRigid != null && !followParent.ContainsKey(childRigid))
             {
-                collision.transform.SetParent(transform);
                 //코루틴 시작
-                if (childObject.CompareTag("Object"))
-                    followParent.Add(childRigid, StartCoroutine(childObject.GetComponent<Block>().FollowParent(transform.position)));
+                if (collision.gameObject.CompareTag("Object")) //this: block의 부모 역할 
+                {
+                    followParent.Add(childRigid, StartCoroutine(childObject.GetComponent<Block>().FollowParent(transform.position, transform)));
+                }
+                else if (collision.gameObject.CompareTag("Player"))//this: player의 부모 역할 
+                {
+                    followParent.Add(childRigid, StartCoroutine(childObject.GetComponent<Player>().FollowParent(transform.position, transform)));
+                }
             }
             else
             {
@@ -143,19 +147,14 @@ public class Block : MonoBehaviour, IChangeable
     private void OnCollisionExit2D(Collision2D collision)
     {
         //물체가 block에서 떠났을 때 부모를 초기화하여 원래 상태로 되돌림
-        if (collision.gameObject.CompareTag("Object") && collision.gameObject.GetComponent<Rigidbody2D>().transform.parent == transform)
+        Rigidbody2D childRigid = collision.gameObject.GetComponent<Rigidbody2D>();
+
+        //코루틴 종료
+        if (followParent.ContainsKey(childRigid))
         {
-            collision.transform.SetParent(null);
-
-            Rigidbody2D childRigid = collision.gameObject.GetComponent<Rigidbody2D>();
-
-            //코루틴 종료
-            if (followParent.ContainsKey(childRigid))
-            {
             StopCoroutine(followParent[childRigid]);
             followParent.Remove(childRigid);
-            }
-        }  
+        }
     }
 
     private bool CheckCollision(Collision2D collision)
