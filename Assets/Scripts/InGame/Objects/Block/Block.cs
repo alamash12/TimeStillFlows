@@ -128,7 +128,7 @@ public class Block : MonoBehaviour, IChangeable
             if (childRigid != null && !followParent.ContainsKey(childRigid))
             {
                 //코루틴 시작
-                if (collision.gameObject.CompareTag("Object")) //this: block의 부모 역할 
+                if (collision.gameObject.CompareTag("Object") && collision.gameObject.GetComponent<IChangeable>().stateType == StateType.Flow) //this: block의 부모 역할 
                 {
                     followParent.Add(childRigid, StartCoroutine(childObject.GetComponent<Block>().FollowParent(transform.position, transform)));
                 }
