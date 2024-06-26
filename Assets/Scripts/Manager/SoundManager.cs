@@ -33,41 +33,57 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField] AudioClip bgmWood;
     [SerializeField] AudioClip bgmTown;
-    private AudioSource audioSource;
-    void Start()
+    private AudioSource audioSource1; // 배경음
+    private AudioSource audioSource2; // 효과음
+    void Start() // 게임 처음 시작시 음악세팅
     {
-        audioSource = gameObject.AddComponent<AudioSource>();
-        if(bgmWood == null) 
+        audioSource1 = gameObject.AddComponent<AudioSource>(); // audioSource에 AudioSource 컴포넌트를 추가
+        audioSource1.loop = true;
+        audioSource2 = gameObject.AddComponent<AudioSource>();
+
+        if(bgmWood == null) // bgmWood AudioClip에 클립 추가
         {
             bgmWood = Resources.Load<AudioClip>("Audio/Background/Wood");
         }
-        if(bgmTown == null)
+        if(bgmTown == null) // bgmTown AudioClip에 클립 추가
         {
             bgmTown = Resources.Load<AudioClip>("Audio/Background/Town");
         }
-        audioSource.clip = bgmWood;
-        audioSource.Play();
+        audioSource1.clip = bgmWood; // 메인화면에서 재생할 클립 bgmWood
+        audioSource1.Play(); // 재생
     }
-    void Update()
+    void Update() // 씬 바뀌면 어떤 bgm을 틀것인가?
     {
-        if( audioSource.clip != bgmWood && SceneManager.GetActiveScene().name == "MainMenu")
+        if( audioSource1.clip != bgmWood && SceneManager.GetActiveScene().name == "MainMenu")
         {
-            audioSource.clip = bgmWood;
-            audioSource.Play();
+            audioSource1.clip = bgmWood;
+            audioSource1.Play();
         }
-        if (audioSource.clip != bgmTown && SceneManager.GetActiveScene().name == "Stage01")
+        if (audioSource1.clip != bgmTown && SceneManager.GetActiveScene().name == "Stage01")
         {
-            audioSource.clip = bgmTown;
-            audioSource.Play();
+            audioSource1.clip = bgmTown;
+            audioSource1.Play();
         }
     }
 
-    public float bgmVolume = 1.0f;// 메인화면과 인게임 옵션 bgm 슬라이드 값을 이 값으로 통일한다.
-    public float effentVolume = 1.0f; //
-    public void OnVolumeChange(float volume)
+    public float bgmVolume = 1.0f;// 게임 내에서 공유하는 bgm 슬라이드 값
+    public float effectVolume = 1.0f; // 게임 내에서 공유하는 효과음 슬라이드 값
+    public void OnBgmVolumeChange(float volume)
     {
-        audioSource.volume = volume;
+        audioSource1.volume = volume;
         bgmVolume = volume;
     }
+    public void OnEffectVolumeChange(float volume)
+    {
+        audioSource2.volume = volume;
+        effectVolume = volume;
+    }
 
+    public void EffectSoundOn(string effectName)
+    {
+        string effect = "Audio/Effect/" + effectName;
+        AudioClip effectClip = Resources.Load<AudioClip>(effect);
+        audioSource2.clip = effectClip;
+        audioSource2.Play();
+    }
 }

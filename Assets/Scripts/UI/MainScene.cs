@@ -42,11 +42,12 @@ public class MainScene: MonoBehaviour
 
     [SerializeField] private Slider bgmSlider;
     [SerializeField] private Slider effectSlider;
-
     private void Start()
     {
-        if (bgmSlider == null) Debug.Log("오류가 여기서 나나");
-        bgmSlider.value = SoundManager.Instance.bgmVolume;
-        bgmSlider.onValueChanged.AddListener(SoundManager.Instance.OnVolumeChange);
+        bgmSlider.value = SoundManager.Instance.bgmVolume; // SoundManager의 bgmVolume을 슬라이더 값에 넣는다.
+        bgmSlider.onValueChanged.AddListener(SoundManager.Instance.OnBgmVolumeChange);
+
+        effectSlider.value = SoundManager.Instance.effectVolume;
+        effectSlider.onValueChanged.AddListener(SoundManager.Instance.OnEffectVolumeChange);
     }
 }
