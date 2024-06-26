@@ -12,6 +12,10 @@ public class MovingPlatform : MonoBehaviour, IChangeable
     private BoxCollider2D boxCollider;
     private Dictionary<Rigidbody2D, Coroutine> followParent = new Dictionary<Rigidbody2D, Coroutine>(); //자식의 코루틴을 저장 
 
+    [SerializeField]
+    public Vector2 startLocation;
+    public Vector2 endLocation;
+
     public StateType stateType
     {
         get { return _stateType; }
@@ -95,7 +99,7 @@ public class MovingPlatform : MonoBehaviour, IChangeable
 
         else //spiteRender이 오브젝트의 자식에 있다면 
         {    
-            for (int i = 3; i < 6; i++)
+            for (int i = 1; i < 4; i++)
             {
                 //오브젝트의 자식의 spriteRenderer을 저장
                 spriteRenderers.Add(transform.GetChild(i).GetComponent<SpriteRenderer>());
