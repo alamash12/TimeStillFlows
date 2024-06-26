@@ -33,11 +33,15 @@ public class InGameOption : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
+    // 음량 조절 파트
     [SerializeField] private Slider bgmSlider;
     [SerializeField] private Slider effectSlider;
     private void Start()
     {
-        bgmSlider.value = SoundManager.Instance.bgmVolume;
-        bgmSlider.onValueChanged.AddListener(SoundManager.Instance.OnVolumeChange);
+        bgmSlider.value = SoundManager.Instance.bgmVolume; // SoundManager의 bgmVolume을 슬라이더 값에 넣는다.
+        bgmSlider.onValueChanged.AddListener(SoundManager.Instance.OnBgmVolumeChange);
+
+        effectSlider.value = SoundManager.Instance.effectVolume;
+        effectSlider.onValueChanged.AddListener(SoundManager.Instance.OnEffectVolumeChange);
     }
 }
