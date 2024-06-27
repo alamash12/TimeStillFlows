@@ -161,17 +161,12 @@ public class Block : MonoBehaviour, IChangeable
     {
         // BoxCollider2D의 윗면의 Y 위치
         float topY = boxCollider.bounds.max.y;
+        float buttomY = collision.gameObject.GetComponent<BoxCollider2D>().bounds.min.y;
 
-        foreach (ContactPoint2D contact in collision.contacts)
+        if (buttomY - topY >= -0.1)
         {
-            // 충돌 지점의 Y 위치가 BoxCollider2D의 윗면과 같은지 확인
-            if (contact.point.y +0.005 >= topY)
-            {
-                return true;
-            }
+            return true;
         }
-
         return false;
-       
     }
 }
