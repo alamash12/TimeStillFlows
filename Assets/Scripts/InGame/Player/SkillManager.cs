@@ -11,6 +11,9 @@ public class SkillManager : MonoBehaviour
     public Button gearButton;
     public HourArea hourArea;
     MinuteArea minuteArea;
+
+    [Serialize]
+    public GameObject Silhouette;
     
     float cooltime = 1f;
     bool isCooltime = false;
@@ -50,11 +53,16 @@ public class SkillManager : MonoBehaviour
         {
             playerLocation = gameObject.transform.position;
             isSilhouette = true;
+            Silhouette.transform.position = playerLocation;
+            Silhouette.GetComponent<SpriteRenderer>().sprite = gameObject.GetComponent<SpriteRenderer>().sprite;
+            Silhouette.GetComponent<SpriteRenderer>().enabled = true;
         }
         else //실루엣이 형성되어있는 상태. 플레이어를 이동시킴.
         {
             gameObject.transform.position = playerLocation;
             isSilhouette = false;
+            Silhouette.GetComponent<SpriteRenderer>().enabled = false;
+
         }
 
         if (!isCooltime)

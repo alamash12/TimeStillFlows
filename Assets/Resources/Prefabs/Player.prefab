@@ -366,6 +366,7 @@ MonoBehaviour:
   hourButton: {fileID: 0}
   gearButton: {fileID: 0}
   hourArea: {fileID: 0}
+  Silhouette: {fileID: 0}
 --- !u!95 &2095901328093647086
 Animator:
   serializedVersion: 5
