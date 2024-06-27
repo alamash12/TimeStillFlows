@@ -587,9 +587,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 6aa669bc1f4df4c828b77680aec38275, type: 3}
-        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
-        m_MethodName: 
+      - m_Target: {fileID: 1434151255}
+        m_TargetAssemblyTypeName: StageSelect, Assembly-CSharp
+        m_MethodName: RetToMain
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
