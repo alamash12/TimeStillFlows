@@ -30,7 +30,6 @@ public class PlayerJump : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            //SoundManager.Instance.EffectSoundOn("돌 위에 착지할 때 소리"); // * 효과음 넣기 이런식으로 *
             Jump();
             animator.SetBool("isJump", true);
         }
@@ -47,6 +46,7 @@ public class PlayerJump : MonoBehaviour
             if (collider.gameObject != gameObject && playerRigid.velocity.y < 0) // 자기 자신을 제외한 충돌 감지
             {
                 playerRigid.gravityScale = 2f; // 스케일 조절로 인해서 lateUpdate 사용
+                SoundManager.Instance.EffectSoundOn("GrassLanding"); // 흙 착지 소리
                 isGround = true;
                 animator.SetBool("isJump", false);
             }

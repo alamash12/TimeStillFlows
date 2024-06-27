@@ -47,7 +47,7 @@ public class SoundManager : MonoBehaviour
         }
         if(bgmTown == null) // bgmTown AudioClip에 클립 추가
         {
-            bgmTown = Resources.Load<AudioClip>("Audio/Background/Town");
+            bgmTown = Resources.Load<AudioClip>("Audio/Background/TownFinal");
         }
         audioSource1.clip = bgmWood; // 메인화면에서 재생할 클립 bgmWood
         audioSource1.Play(); // 재생

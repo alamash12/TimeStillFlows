@@ -49,7 +49,7 @@ public class PlayerMove : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoi
         moveFunc += Move;
         lastPosition = eventData.position;
     }
-    private void Move()
+    private void Move() 
     {
         if (Mathf.Abs(deltaX) > 1) // 감도 조절을 위해서 
             direction = Mathf.Sign(deltaX);

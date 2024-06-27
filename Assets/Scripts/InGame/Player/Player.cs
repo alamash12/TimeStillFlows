@@ -41,7 +41,6 @@ public class Player : MonoBehaviour
            
                 transform.position += movementDelta;
                 lastPosition = currentPosition;
-        
         }
     }
 }
