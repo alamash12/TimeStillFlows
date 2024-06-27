@@ -52,7 +52,7 @@ public class MovingPlatform : MonoBehaviour, IChangeable
         }
         else //spiteRender이 오브젝트의 자식에 있다면 
         {
-            stateParse = gameObject.transform.GetChild(3).GetComponent<SpriteRenderer>().sprite.name.Split('_')[2];
+            stateParse = gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite.name.Split('_')[2];
         }
         StateType result;
         if (Enum.TryParse(stateParse, out result))
@@ -99,7 +99,7 @@ public class MovingPlatform : MonoBehaviour, IChangeable
 
         else //spiteRender이 오브젝트의 자식에 있다면 
         {    
-            for (int i = 1; i < 4; i++)
+            for (int i = 1; i < transform.childCount; i++)
             {
                 //오브젝트의 자식의 spriteRenderer을 저장
                 spriteRenderers.Add(transform.GetChild(i).GetComponent<SpriteRenderer>());

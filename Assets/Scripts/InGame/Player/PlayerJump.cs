@@ -30,7 +30,7 @@ public class PlayerJump : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SoundManager.Instance.EffectSoundOn("돌 위에 착지할 때 소리"); // * 효과음 넣기 이런식으로 *
+            //SoundManager.Instance.EffectSoundOn("돌 위에 착지할 때 소리"); // * 효과음 넣기 이런식으로 *
             Jump();
             animator.SetBool("isJump", true);
         }

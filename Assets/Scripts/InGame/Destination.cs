@@ -19,16 +19,13 @@ public class Destination : MonoBehaviour
             switch(sceneName)
             {
                 case "Stage01":
-                    // 스킬 해금
                     // 씬 이동
                     // PlayerPrefs.SetInt("SkillUnlocked", 변수명 ? 1 : 0); 이런식으로 bool 표현가능
                     break;
                 case "Stage02":
-                    // 스킬 해금
                     // 씬 이동
                     break;
                 case "Stage03":
-                    // 스킬 해금
                     // 씬 이동
                     break;
                 default :

@@ -87,14 +87,10 @@ public class MinuteArea : MonoBehaviour
                     nearestObjectSR = nearestObject.GetComponent<SpriteRenderer>();
                     nearestObjectOutlineSR = nearestObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
                     nearestRigid = nearestObject.GetComponent<Rigidbody2D>();
+                    OrderDecision(true);
                 }
                 nearestDistance = (playerPosition - nearestRigid.ClosestPoint(playerPosition)).sqrMagnitude;
             }
-        }
-        //노란 테두리 표시
-        if(nearestObject != null)
-        {
-            OrderDecision(true);
         }
     }
 
@@ -125,15 +121,19 @@ public class MinuteArea : MonoBehaviour
             {
                 for (int i = 3; i < nearestObject.transform.childCount; i++)
                 {
-                    nearestObject.transform.GetChild(i).GetComponent<SpriteRenderer>().sortingOrder++;
+                    SpriteRenderer spriteRenderer = nearestObject.transform.GetChild(i).GetComponent<SpriteRenderer>();
+                    if (spriteRenderer != null)
+                    {
+                        spriteRenderer.sortingOrder += 2;
+                    }
                 }
-                nearestObjectOutlineSR.sortingOrder++;
+                nearestObjectOutlineSR.sortingOrder += 2;
                 nearestObjectOutlineSR.enabled = isEnabled;
             }
             else // 부모 오브젝트에 SpriteRenderer가 있는 경우 ex) 위의 경우를 제외한 나머지
             {
-                nearestObjectSR.sortingOrder++;
-                nearestObjectOutlineSR.sortingOrder++;
+                nearestObjectSR.sortingOrder += 2;
+                nearestObjectOutlineSR.sortingOrder += 2;
                 nearestObjectOutlineSR.enabled = isEnabled;
             }
         }
@@ -141,17 +141,21 @@ public class MinuteArea : MonoBehaviour
         {
             if (nearestObjectSR == null) // 부모 오브젝트에 SpriteRenderer가 없는 경우 ex) 물, 움직이는 발판중 긴것
             {
-                for (int i = 3; i < nearestObject.transform.childCount; i++)
+                for (int i = 1; i < nearestObject.transform.childCount; i++)
                 {
-                    nearestObject.transform.GetChild(i).GetComponent<SpriteRenderer>().sortingOrder--;
+                    SpriteRenderer spriteRenderer = nearestObject.transform.GetChild(i).GetComponent<SpriteRenderer>();
+                    if (spriteRenderer != null)
+                    {
+                        spriteRenderer.sortingOrder -= 2;
+                    }
                 }
-                nearestObjectOutlineSR.sortingOrder--;
+                nearestObjectOutlineSR.sortingOrder -= 2;
                 nearestObjectOutlineSR.enabled = isEnabled;
             }
             else // 부모 오브젝트에 SpriteRenderer가 있는 경우 ex) 위의 경우를 제외한 나머지
             {
-                nearestObjectSR.sortingOrder--;
-                nearestObjectOutlineSR.sortingOrder--;
+                nearestObjectSR.sortingOrder -= 2;
+                nearestObjectOutlineSR.sortingOrder -= 2;
                 nearestObjectOutlineSR.enabled = isEnabled;
             }
         }
