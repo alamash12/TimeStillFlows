@@ -119,7 +119,7 @@ public class MinuteArea : MonoBehaviour
         {
             if (nearestObjectSR == null) // 부모 오브젝트에 SpriteRenderer가 없는 경우 ex) 물, 움직이는 발판중 긴것
             {
-                for (int i = 3; i < nearestObject.transform.childCount; i++)
+                for (int i = 1; i < nearestObject.transform.childCount; i++)
                 {
                     SpriteRenderer spriteRenderer = nearestObject.transform.GetChild(i).GetComponent<SpriteRenderer>();
                     if (spriteRenderer != null)
