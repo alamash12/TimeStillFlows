@@ -44,9 +44,6 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Backgrouond
-    uniqueID: 731271265
-    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
