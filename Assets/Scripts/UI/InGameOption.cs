@@ -30,6 +30,7 @@ public class InGameOption : MonoBehaviour
     }
     public void ExitButton()
     {
+        Time.timeScale = 1.0f;
         SceneManager.LoadScene("MainMenu");
     }
 

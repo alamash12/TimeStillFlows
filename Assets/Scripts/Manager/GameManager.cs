@@ -49,4 +49,6 @@ public class GameManager : MonoBehaviour
             spriteRenderer.sprite = Resources.Load<Sprite>("Sprites/" + spritePath + "/" + newResult.ToString());
         }
     }
+
+    //public bool[] stageClear = new bool[8];
 }

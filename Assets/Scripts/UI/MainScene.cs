@@ -9,8 +9,11 @@ public class MainScene: MonoBehaviour
     /*
      * MainScene : 메인화면에서 일어나는 씬의 전환과 각종 상호작용들을 저장하는 클래스입니다.
      */
+    
     public void StartNewGame() // NewGame을 누를 시 Intro화면으로 씬을 전환함.
     {
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.SetInt("Stage01", 1);
         SceneManager.LoadScene("Intro"); 
     }
     public void ContinueGame() // Continue를 누를 시 StageSelect화면으로 씬을 전환함.
@@ -49,5 +52,6 @@ public class MainScene: MonoBehaviour
 
         effectSlider.value = SoundManager.Instance.effectVolume;
         effectSlider.onValueChanged.AddListener(SoundManager.Instance.OnEffectVolumeChange);
+    
     }
 }
