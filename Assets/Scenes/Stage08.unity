@@ -2531,6 +2531,7 @@ Transform:
   - {fileID: 1493409867}
   - {fileID: 1590077790}
   - {fileID: 1919577488}
+  - {fileID: 936825632}
   - {fileID: 1223203426}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2763,19 +2764,19 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 835576231}
     m_Modifications:
     - target: {fileID: 2191995816002543873, guid: d0300b4a66b1e304b9e63e533ee50f41, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.604
+      value: 4.2013
       objectReference: {fileID: 0}
     - target: {fileID: 2191995816002543873, guid: d0300b4a66b1e304b9e63e533ee50f41, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 36.764
+      value: 36.210464
       objectReference: {fileID: 0}
     - target: {fileID: 2191995816002543873, guid: d0300b4a66b1e304b9e63e533ee50f41, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1
+      value: 1.9419596
       objectReference: {fileID: 0}
     - target: {fileID: 2191995816002543873, guid: d0300b4a66b1e304b9e63e533ee50f41, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2814,6 +2815,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0300b4a66b1e304b9e63e533ee50f41, type: 3}
+--- !u!4 &936825632 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2191995816002543873, guid: d0300b4a66b1e304b9e63e533ee50f41, type: 3}
+  m_PrefabInstance: {fileID: 936825631}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &943627810
 GameObject:
   m_ObjectHideFlags: 0
@@ -4360,6 +4366,7 @@ MonoBehaviour:
   hourButton: {fileID: 1938960687}
   gearButton: {fileID: 61936846}
   hourArea: {fileID: 314158303}
+  Silhouette: {fileID: 0}
 --- !u!1 &1365815593
 GameObject:
   m_ObjectHideFlags: 0
@@ -7509,4 +7516,3 @@ SceneRoots:
   - {fileID: 2108915327}
   - {fileID: 1356818160}
   - {fileID: 803484559}
-  - {fileID: 936825631}
