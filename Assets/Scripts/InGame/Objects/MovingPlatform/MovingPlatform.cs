@@ -94,7 +94,6 @@ public class MovingPlatform : MonoBehaviour, IChangeable
         if (gameObject.GetComponent<SpriteRenderer>() != null) //spriteRender이 오브젝트에 있다면
         {
             spriteRenderers.Add(gameObject.GetComponent<SpriteRenderer>());
-            Debug.Log("부모 스프라이트");
         }
 
         else //spiteRender이 오브젝트의 자식에 있다면 
@@ -103,7 +102,6 @@ public class MovingPlatform : MonoBehaviour, IChangeable
             {
                 //오브젝트의 자식의 spriteRenderer을 저장
                 spriteRenderers.Add(transform.GetChild(i).GetComponent<SpriteRenderer>());
-                Debug.Log("자식스프라이트");
             }
         }
 
