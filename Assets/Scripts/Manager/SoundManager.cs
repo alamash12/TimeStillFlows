@@ -33,6 +33,7 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField] AudioClip bgmWood;
     [SerializeField] AudioClip bgmTown;
+    [SerializeField] AudioClip bgmOpening;
     private AudioSource audioSource1; // 배경음
     private AudioSource audioSource2; // 효과음
     void Start() // 게임 처음 시작시 음악세팅
@@ -43,25 +44,29 @@ public class SoundManager : MonoBehaviour
 
         if(bgmWood == null) // bgmWood AudioClip에 클립 추가
         {
-            bgmWood = Resources.Load<AudioClip>("Audio/Background/Wood");
+            bgmWood = Resources.Load<AudioClip>("Audio/Background/WoodFinal");
         }
         if(bgmTown == null) // bgmTown AudioClip에 클립 추가
         {
             bgmTown = Resources.Load<AudioClip>("Audio/Background/TownFinal");
         }
-        audioSource1.clip = bgmWood; // 메인화면에서 재생할 클립 bgmWood
+        if(bgmOpening == null)
+        {
+            bgmOpening = Resources.Load<AudioClip>("Audio/Background/Opening");
+        }
+        audioSource1.clip = bgmOpening; // 메인화면에서 재생할 클립 bgmWood
         audioSource1.Play(); // 재생
     }
     void Update() // 씬 바뀌면 어떤 bgm을 틀것인가?
     {
-        if( audioSource1.clip != bgmWood && SceneManager.GetActiveScene().name == "MainMenu")
+        if( audioSource1.clip != bgmOpening && SceneManager.GetActiveScene().name == "MainMenu")
         {
-            audioSource1.clip = bgmWood;
+            audioSource1.clip = bgmOpening;
             audioSource1.Play();
         }
-        if (audioSource1.clip != bgmTown && SceneManager.GetActiveScene().name == "Stage01")
+        if (audioSource1.clip != bgmWood && SceneManager.GetActiveScene().name == "Stage01")
         {
-            audioSource1.clip = bgmTown;
+            audioSource1.clip = bgmWood;
             audioSource1.Play();
         }
     }
