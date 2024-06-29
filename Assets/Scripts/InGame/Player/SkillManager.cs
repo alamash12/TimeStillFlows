@@ -60,6 +60,7 @@ public class SkillManager : MonoBehaviour
         else //실루엣이 형성되어있는 상태. 플레이어를 이동시킴.
         {
             gameObject.transform.position = playerLocation;
+            gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero; // 점프하면서 이동하면 점프 가속도가 반영되던 문제 수정
             isSilhouette = false;
             Silhouette.GetComponent<SpriteRenderer>().enabled = false;
 

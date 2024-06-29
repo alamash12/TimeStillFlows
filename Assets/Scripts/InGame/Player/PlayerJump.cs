@@ -10,7 +10,7 @@ public class PlayerJump : MonoBehaviour
     [SerializeField] GameObject pivot;
     [SerializeField] Transform groundCheck;
     Vector2 groundCheckSize = new Vector2(1f, 0.05f);
-    public bool isGround = false;
+    bool isGround = false;
     Animator animator;
     private void Awake()
     {
@@ -24,6 +24,7 @@ public class PlayerJump : MonoBehaviour
             isGround = false;
             playerRigid.velocity = new Vector2(playerRigid.velocity.x, 0);
             playerRigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+            animator.SetBool("isJump", true);
         }
     }
     void Update()
@@ -31,7 +32,6 @@ public class PlayerJump : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
-            animator.SetBool("isJump", true);
         }
         if(playerRigid.velocity.y < -0.5f)
         {
