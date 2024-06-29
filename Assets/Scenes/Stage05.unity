@@ -5846,6 +5846,14 @@ PrefabInstance:
       propertyPath: minuteButton
       value: 
       objectReference: {fileID: 389694383}
+    - target: {fileID: 6866654174833211948, guid: c44c3365d155f9e4f8477fe67c07bdc4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 6866654174833211948, guid: c44c3365d155f9e4f8477fe67c07bdc4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.433
+      objectReference: {fileID: 0}
     - target: {fileID: 8115621605884452051, guid: c44c3365d155f9e4f8477fe67c07bdc4, type: 3}
       propertyPath: m_Name
       value: Player

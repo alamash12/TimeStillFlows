@@ -66,7 +66,7 @@ public class SkillManager : MonoBehaviour
             gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero; // 점프하면서 이동하면 점프 가속도가 반영되던 문제 수정
             isSilhouette = false;
             Silhouette.GetComponent<SpriteRenderer>().enabled = false;
-
+            gameObject.GetComponent<PlayerJump>().JumpStateReset();
         }
 
         if (!isCooltime)
