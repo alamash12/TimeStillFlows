@@ -27,8 +27,11 @@ public class SkillManager : MonoBehaviour
     void Start()
     {
         minuteButton.onClick.AddListener(MinuteClicked);
+        minuteButton.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.1f;
         hourButton.onClick.AddListener (HourClicked);
+        hourButton.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.1f;
         gearButton.onClick.AddListener(GearClicked);
+        gearButton.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.1f;
     }
 
     public void HourClicked()
