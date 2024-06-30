@@ -575,8 +575,6 @@ MonoBehaviour:
   bgmWood: {fileID: 0}
   bgmTown: {fileID: 0}
   bgmOpening: {fileID: 0}
-  bgmVolume: 1
-  effectVolume: 1
 --- !u!4 &165265326
 Transform:
   m_ObjectHideFlags: 0
@@ -694,7 +692,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &216083015
 RectTransform:
   m_ObjectHideFlags: 0
@@ -828,7 +826,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &287423451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1107,7 +1105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16fea3e4d9d1b40458f944ad4545fcca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  optionPanel: {fileID: 287423450}
+  optionPanel: {fileID: 216083014}
   bgmSlider: {fileID: 1572136813}
   effectSlider: {fileID: 1801487460}
 --- !u!1 &549285191
