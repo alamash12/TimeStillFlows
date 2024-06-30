@@ -18,7 +18,7 @@ public class StageSelect : MonoBehaviour
         //Debug.Log("for문 시작");
         for(int i=0; i<8; i++)
         {
-            string stageName = "Stage0" + (i + 1);
+            string stageName = "Stage_0" + (i + 1);
             //Debug.Log(stageName);
             //Debug.Log(PlayerPrefs.GetInt(stageName));
             //Debug.Log(i);
@@ -35,31 +35,31 @@ public class StageSelect : MonoBehaviour
     }
     public void StageBtn1()
     {
-        if (PlayerPrefs.GetInt("Stage01") == 1) SceneManager.LoadScene("Stage01");
+        if (PlayerPrefs.GetInt("Stage01") == 1) SceneManager.LoadScene("Stage_01");
     }
     public void StageBtn2()
     {
-        if (PlayerPrefs.GetInt("Stage02") == 1) SceneManager.LoadScene("Stage02");
+        if (PlayerPrefs.GetInt("Stage02") == 1) SceneManager.LoadScene("Stage_02");
     }
     public void StageBtn3()
     {
-        if (PlayerPrefs.GetInt("Stage03") == 1) SceneManager.LoadScene("Stage03");
+        if (PlayerPrefs.GetInt("Stage03") == 1) SceneManager.LoadScene("Stage_03");
     }
     public void StageBtn4()
     {
-        if (PlayerPrefs.GetInt("Stage04") == 1) SceneManager.LoadScene("Stage04");
+        if (PlayerPrefs.GetInt("Stage04") == 1) SceneManager.LoadScene("Stage_04");
     }
     public void StageBtn5()
     {
-        if (PlayerPrefs.GetInt("Stage05") == 1) SceneManager.LoadScene("Stage05");
+        if (PlayerPrefs.GetInt("Stage05") == 1) SceneManager.LoadScene("Stage_05");
     }
     public void StageBtn6()
     {
-        if (PlayerPrefs.GetInt("Stage06") == 1) SceneManager.LoadScene("Stage06");
+        if (PlayerPrefs.GetInt("Stage06") == 1) SceneManager.LoadScene("Stage_06");
     }
     public void StageBtn7()
     {
-        if (PlayerPrefs.GetInt("Stage07") == 1) SceneManager.LoadScene("Stage07");
+        if (PlayerPrefs.GetInt("Stage07") == 1) SceneManager.LoadScene("Stage_07");
     }
     public void StageBtn8()
     {
