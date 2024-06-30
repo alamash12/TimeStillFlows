@@ -60,10 +60,11 @@ public class SoundManager : MonoBehaviour
         }
         audioSource1.clip = bgmOpening; // 메인화면에서 재생할 클립 bgmWood
         audioSource1.Play(); // 재생
-        stageNum = float.Parse((SceneManager.GetActiveScene().name).Split('_')[1]);
+        
     }
     void Update() // 씬 바뀌면 어떤 bgm을 틀것인가?
     {
+        stageNum = float.Parse((SceneManager.GetActiveScene().name).Split('_')[1]);
         if (audioSource1.clip != bgmOpening && (CurrentScene() == "MainMenu"))
         {
             audioSource1.clip = bgmOpening;
