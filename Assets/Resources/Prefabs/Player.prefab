@@ -41,7 +41,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2528164034316605226}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -337,7 +337,6 @@ MonoBehaviour:
   jumpPower: 54
   pivot: {fileID: 8250870602404178377}
   groundCheck: {fileID: 6866654174833211948}
-  isGround: 0
 --- !u!114 &1915456369642072283
 MonoBehaviour:
   m_ObjectHideFlags: 0
