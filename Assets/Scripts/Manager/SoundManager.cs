@@ -60,12 +60,20 @@ public class SoundManager : MonoBehaviour
         }
         audioSource1.clip = bgmOpening; // 메인화면에서 재생할 클립 bgmWood
         audioSource1.Play(); // 재생
-        
+
+        if (CurrentScene() == "MainMenu")
+        {
+            stageNum = 16;
+        }
+        else
+        {
+            stageNum = float.Parse((SceneManager.GetActiveScene().name).Split('_')[1]);
+
+        }
     }
     void Update() // 씬 바뀌면 어떤 bgm을 틀것인가?
     {
-        stageNum = float.Parse((SceneManager.GetActiveScene().name).Split('_')[1]);
-        if (audioSource1.clip != bgmOpening && (CurrentScene() == "MainMenu"))
+        if (audioSource1.clip != bgmOpening && (stageNum == 16))
         {
             audioSource1.clip = bgmOpening;
             audioSource1.volume = PlayerPrefs.GetFloat("bgmVolume");
@@ -78,7 +86,7 @@ public class SoundManager : MonoBehaviour
             audioSource1.Play();
         }
         
-        if (audioSource1.clip != bgmTown && stageNum > 4)
+        if (audioSource1.clip != bgmTown && stageNum != 16 && stageNum > 4)
         {
             audioSource1.clip = bgmTown;
             audioSource1.volume = PlayerPrefs.GetFloat("bgmVolume");
