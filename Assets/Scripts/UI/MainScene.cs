@@ -62,7 +62,7 @@ public class MainScene: MonoBehaviour
     [SerializeField] private Slider effectSlider;
     private void Start()
     {
-        Debug.Log(PlayerPrefs.GetFloat("bgmVolume"));
+        //Debug.Log(PlayerPrefs.GetFloat("bgmVolume"));
         //bgmSlider.value = SoundManager.Instance.bgmVolume; // SoundManager의 bgmVolume을 슬라이더 값에 넣는다.
         bgmSlider.value = PlayerPrefs.GetFloat("bgmVolume");
         bgmSlider.onValueChanged.AddListener(SoundManager.Instance.OnBgmVolumeChange);
