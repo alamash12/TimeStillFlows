@@ -33,7 +33,7 @@ public class Intro : MonoBehaviour, IPointerDownHandler
             child.SetActive(true);
             yield return StartCoroutine(FadeIn());
 
-            yield return new WaitForSeconds(2.5f);
+            yield return new WaitForSeconds(3.0f);
 
             if (i != childNum - 1)
             {

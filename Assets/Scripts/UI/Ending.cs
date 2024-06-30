@@ -24,7 +24,7 @@ public class Ending : MonoBehaviour, IPointerDownHandler
     IEnumerator SceneChange()
     {
         int childNum = transform.childCount;
-        float waitSec = 2.5f; // 씬 전환되기 전에 멈춰있는 시간
+        float waitSec = 3.0f; // 씬 전환되기 전에 멈춰있는 시간
 
         for (int i = 0; i < childNum; i++)
         {
