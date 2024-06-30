@@ -1985,8 +1985,6 @@ MonoBehaviour:
   bgmWood: {fileID: 0}
   bgmTown: {fileID: 0}
   bgmOpening: {fileID: 0}
-  bgmVolume: 1
-  effectVolume: 1
 --- !u!4 &945212491
 Transform:
   m_ObjectHideFlags: 0

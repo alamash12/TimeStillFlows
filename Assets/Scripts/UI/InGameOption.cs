@@ -39,10 +39,12 @@ public class InGameOption : MonoBehaviour
     [SerializeField] private Slider effectSlider;
     private void Start()
     {
-        bgmSlider.value = SoundManager.Instance.bgmVolume; // SoundManager의 bgmVolume을 슬라이더 값에 넣는다.
+        //bgmSlider.value = SoundManager.Instance.bgmVolume; // SoundManager의 bgmVolume을 슬라이더 값에 넣는다.
+        bgmSlider.value = PlayerPrefs.GetFloat("bgmVolume");
         bgmSlider.onValueChanged.AddListener(SoundManager.Instance.OnBgmVolumeChange);
 
-        effectSlider.value = SoundManager.Instance.effectVolume;
+        //effectSlider.value = SoundManager.Instance.effectVolume;
+        effectSlider.value = PlayerPrefs.GetFloat("effectVolume");
         effectSlider.onValueChanged.AddListener(SoundManager.Instance.OnEffectVolumeChange);
     }
 }

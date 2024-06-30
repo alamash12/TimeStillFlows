@@ -12,7 +12,14 @@ public class MainScene: MonoBehaviour
     
     public void StartNewGame() // NewGame을 누를 시 Intro화면으로 씬을 전환함.
     {
-        PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteKey("Stage02");
+        PlayerPrefs.DeleteKey("Stage03");
+        PlayerPrefs.DeleteKey("Stage04");
+        PlayerPrefs.DeleteKey("Stage05");
+        PlayerPrefs.DeleteKey("Stage06");
+        PlayerPrefs.DeleteKey("Stage07");
+        PlayerPrefs.DeleteKey("Stage08");
+
         PlayerPrefs.SetInt("Stage01", 1);
         SceneManager.LoadScene("Intro"); 
     }
@@ -30,11 +37,12 @@ public class MainScene: MonoBehaviour
      */
     public GameObject optionPanel; // 옵션 패널
     
-    public void ToggleOptionPanel()// 옵션버튼을 누를 시 옵션 패널과 옵션 바깥패널을 띄움
+    public void ToggleOptionPanel()// 옵션버튼을 누를 시 옵션 패널 생성
     {
-        if(!optionPanel.activeSelf) optionPanel.SetActive(true);
+        optionPanel.SetActive(!optionPanel.activeSelf);
+        //optionPanel.SetActive(true);
     }
-    public void CloseOptionPanel()// 옵션 바깥패널을 누를 시 옵션 패널과 옵션 바깥패널을 없앰
+    public void CloseOptionPanel()// 옵션 x 버튼을 누를 시 옵션 패널 없앰
     {
         optionPanel.SetActive (false);
     }
@@ -42,15 +50,18 @@ public class MainScene: MonoBehaviour
     {
         SceneManager.LoadScene("Intro");
     }
-
+    
     [SerializeField] private Slider bgmSlider;
     [SerializeField] private Slider effectSlider;
     private void Start()
     {
-        bgmSlider.value = SoundManager.Instance.bgmVolume; // SoundManager의 bgmVolume을 슬라이더 값에 넣는다.
+        Debug.Log(PlayerPrefs.GetFloat("bgmVolume"));
+        //bgmSlider.value = SoundManager.Instance.bgmVolume; // SoundManager의 bgmVolume을 슬라이더 값에 넣는다.
+        bgmSlider.value = PlayerPrefs.GetFloat("bgmVolume");
         bgmSlider.onValueChanged.AddListener(SoundManager.Instance.OnBgmVolumeChange);
 
-        effectSlider.value = SoundManager.Instance.effectVolume;
+        //effectSlider.value = SoundManager.Instance.effectVolume;
+        effectSlider.value = PlayerPrefs.GetFloat("effectVolume");
         effectSlider.onValueChanged.AddListener(SoundManager.Instance.OnEffectVolumeChange);
     
     }

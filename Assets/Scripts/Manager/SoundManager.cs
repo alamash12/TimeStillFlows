@@ -38,6 +38,9 @@ public class SoundManager : MonoBehaviour
     private AudioSource audioSource2; // 효과음
     void Start() // 게임 처음 시작시 음악세팅
     {
+        PlayerPrefs.SetFloat("bgmVolume", 1.0f);
+        PlayerPrefs.SetFloat("effectVolume", 1.0f);
+
         audioSource1 = gameObject.AddComponent<AudioSource>(); // audioSource에 AudioSource 컴포넌트를 추가
         audioSource1.loop = true;
         audioSource2 = gameObject.AddComponent<AudioSource>();
@@ -62,29 +65,41 @@ public class SoundManager : MonoBehaviour
         if( audioSource1.clip != bgmOpening && SceneManager.GetActiveScene().name == "MainMenu")
         {
             audioSource1.clip = bgmOpening;
+            audioSource1.volume = PlayerPrefs.GetFloat("bgmVolume");
             audioSource1.Play();
         }
         if (audioSource1.clip != bgmWood && SceneManager.GetActiveScene().name == "Stage01")
         {
             audioSource1.clip = bgmWood;
+            audioSource1.volume = PlayerPrefs.GetFloat("bgmVolume");
             audioSource1.Play();
         }
+        if (audioSource1.clip != bgmWood && SceneManager.GetActiveScene().name == "Stage05")
+        {
+            audioSource1.clip = bgmTown;
+            audioSource1.volume = PlayerPrefs.GetFloat("bgmVolume");
+            audioSource1.Play();
+        }
+
     }
 
-    public float bgmVolume = 1.0f;// 게임 내에서 공유하는 bgm 슬라이드 값
-    public float effectVolume = 1.0f; // 게임 내에서 공유하는 효과음 슬라이드 값
+    //public float bgmVolume = 1.0f;// 게임 내에서 공유하는 bgm 슬라이드 값
+    //public float effectVolume = 1.0f; // 게임 내에서 공유하는 효과음 슬라이드 값
+
     public void OnBgmVolumeChange(float volume)
     {
         audioSource1.volume = volume;
-        bgmVolume = volume;
+        //bgmVolume = volume;
+        PlayerPrefs.SetFloat("bgmVolume", volume);
     }
     public void OnEffectVolumeChange(float volume)
     {
         audioSource2.volume = volume;
-        effectVolume = volume;
+        //effectVolume = volume;
+        PlayerPrefs.SetFloat("effectVolume", volume);
     }
 
-    public void EffectSoundOn(string effectName)
+    public void EffectSoundOn(string effectName) // 원하는 곳에 효과음 추가 함수
     {
         string effect = "Audio/Effect/" + effectName;
         AudioClip effectClip = Resources.Load<AudioClip>(effect);
