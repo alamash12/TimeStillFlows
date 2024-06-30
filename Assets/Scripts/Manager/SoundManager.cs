@@ -38,22 +38,22 @@ public class SoundManager : MonoBehaviour
     private AudioSource audioSource2; // 효과음
     void Start() // 게임 처음 시작시 음악세팅
     {
-        if(!PlayerPrefs.HasKey("bgmVolume")) PlayerPrefs.SetFloat("bgmVolume", 1.0f);
+        if (!PlayerPrefs.HasKey("bgmVolume")) PlayerPrefs.SetFloat("bgmVolume", 1.0f);
         if (!PlayerPrefs.HasKey("effectVolume")) PlayerPrefs.SetFloat("effectVolume", 1.0f);
 
         audioSource1 = gameObject.AddComponent<AudioSource>(); // audioSource에 AudioSource 컴포넌트를 추가
         audioSource1.loop = true;
         audioSource2 = gameObject.AddComponent<AudioSource>();
 
-        if(bgmWood == null) // bgmWood AudioClip에 클립 추가
+        if (bgmWood == null) // bgmWood AudioClip에 클립 추가
         {
             bgmWood = Resources.Load<AudioClip>("Audio/Background/WoodFinal");
         }
-        if(bgmTown == null) // bgmTown AudioClip에 클립 추가
+        if (bgmTown == null) // bgmTown AudioClip에 클립 추가
         {
             bgmTown = Resources.Load<AudioClip>("Audio/Background/TownFinal");
         }
-        if(bgmOpening == null)
+        if (bgmOpening == null)
         {
             bgmOpening = Resources.Load<AudioClip>("Audio/Background/Opening");
         }
@@ -62,19 +62,20 @@ public class SoundManager : MonoBehaviour
     }
     void Update() // 씬 바뀌면 어떤 bgm을 틀것인가?
     {
-        if( audioSource1.clip != bgmOpening && SceneManager.GetActiveScene().name == "MainMenu")
+        if (audioSource1.clip != bgmOpening && (CurrentScene() == "MainMenu"))
         {
             audioSource1.clip = bgmOpening;
             audioSource1.volume = PlayerPrefs.GetFloat("bgmVolume");
             audioSource1.Play();
         }
-        if (audioSource1.clip != bgmWood && SceneManager.GetActiveScene().name == "Stage01")
+        if (audioSource1.clip != bgmWood && (CurrentScene() == "Stage01" || CurrentScene() == "Stage02" || CurrentScene() == "Stage03" || CurrentScene() == "Stage04"))
         {
             audioSource1.clip = bgmWood;
             audioSource1.volume = PlayerPrefs.GetFloat("bgmVolume");
             audioSource1.Play();
         }
-        if (audioSource1.clip != bgmWood && SceneManager.GetActiveScene().name == "Stage05")
+        
+        if (audioSource1.clip != bgmTown && (CurrentScene() == "Stage05" || CurrentScene() == "Stage06" || CurrentScene() == "Stage07" || CurrentScene() == "Stage08"))
         {
             audioSource1.clip = bgmTown;
             audioSource1.volume = PlayerPrefs.GetFloat("bgmVolume");
@@ -82,7 +83,10 @@ public class SoundManager : MonoBehaviour
         }
 
     }
-
+    string CurrentScene()
+    {
+        return SceneManager.GetActiveScene().name;
+    }
     //public float bgmVolume = 1.0f;// 게임 내에서 공유하는 bgm 슬라이드 값
     //public float effectVolume = 1.0f; // 게임 내에서 공유하는 효과음 슬라이드 값
 
