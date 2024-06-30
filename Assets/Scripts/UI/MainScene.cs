@@ -48,7 +48,7 @@ public class MainScene: MonoBehaviour
     }
     public void OptionIntroBtn()
     {
-        SceneManager.LoadScene("Intro");
+        SceneManager.LoadScene("OptionIntro");
     }
     
     [SerializeField] private Slider bgmSlider;
