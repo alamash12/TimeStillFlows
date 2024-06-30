@@ -6,9 +6,9 @@ using UnityEngine;
 public class PlayerJump : MonoBehaviour
 {
     [SerializeField] float jumpPower;
+    [SerializeField] Transform groundCheck;    
+    Vector2 groundCheckSize = new Vector2(1f, 0.05f); // 점프를 위한 OverlapBox 크기변수
     Rigidbody2D playerRigid;
-    [SerializeField] Transform groundCheck;
-    Vector2 groundCheckSize = new Vector2(1f, 0.05f);
     bool isGround = false;
     Animator animator;
     private void Awake()
