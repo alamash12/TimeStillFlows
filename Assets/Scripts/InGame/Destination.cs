@@ -25,11 +25,13 @@ public class Destination : MonoBehaviour
 
             if (nextStageNumber <= 8)
             {
+                SoundManager.Instance.EffectSoundOn("StageClear");
                 SceneManager.LoadScene(nextSceneName);
                 PlayerPrefs.SetInt(nextScenePP, 1);
             }
             else if (nextStageNumber == 9)
             {
+                SoundManager.Instance.EffectSoundOn("StageClear");
                 SceneManager.LoadScene("Ending");
                 PlayerPrefs.SetInt("Ending", 1);
             }

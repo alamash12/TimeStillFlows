@@ -13,11 +13,13 @@ public class OptionIntro : MonoBehaviour, IPointerDownHandler
     bool isLastScene = false;
     public void SkipIntro()
     {
+        SoundManager.Instance.audioSource2.volume = PlayerPrefs.GetFloat("effectVolume");
         SceneManager.LoadScene("MainMenu");
     }
 
     private void Start()
     {
+        SoundManager.Instance.audioSource2.volume = 0.4f;
         StartCoroutine(SceneChange());
     }
 
@@ -57,6 +59,8 @@ public class OptionIntro : MonoBehaviour, IPointerDownHandler
     IEnumerator FadeOut()
     {
         float alpha = fadeImg.color.a;
+        SoundManager.Instance.EffectSoundOn("Cutscene2");
+
         while (alpha > 0)
         {
             alpha -= Time.deltaTime * fadeSpeed * 2f;
@@ -74,6 +78,7 @@ public class OptionIntro : MonoBehaviour, IPointerDownHandler
     IEnumerator ExitSequence()
     {
         yield return StartCoroutine(FadeOut());  // FadeOut을 완료할 때까지 기다림
+        SoundManager.Instance.audioSource2.volume = PlayerPrefs.GetFloat("effectVolume");
         SceneManager.LoadScene("MainMenu");  // 페이드 아웃 완료 후 씬 로드
     }
 }
