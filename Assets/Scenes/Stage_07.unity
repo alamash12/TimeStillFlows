@@ -2170,11 +2170,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3621221218168229408, guid: 6d72ee5566e0936429e3f85e342b80ff, type: 3}
       propertyPath: m_Size.x
-      value: 16.986984
+      value: 17.1
       objectReference: {fileID: 0}
     - target: {fileID: 4229592076139847346, guid: 6d72ee5566e0936429e3f85e342b80ff, type: 3}
       propertyPath: m_Size.x
-      value: 16.986235
+      value: 17.1
       objectReference: {fileID: 0}
     - target: {fileID: 4566754996317878114, guid: 6d72ee5566e0936429e3f85e342b80ff, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5268,6 +5268,7 @@ MonoBehaviour:
   bgmWood: {fileID: 0}
   bgmTown: {fileID: 0}
   bgmOpening: {fileID: 0}
+  audioSource2: {fileID: 0}
 --- !u!4 &1870991573
 Transform:
   m_ObjectHideFlags: 0
