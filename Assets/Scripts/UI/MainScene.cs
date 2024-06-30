@@ -50,6 +50,13 @@ public class MainScene: MonoBehaviour
     {
         SceneManager.LoadScene("OptionIntro");
     }
+    public void OptionEndingBtn()
+    {
+        if(PlayerPrefs.GetInt("Ending") == 1)
+        {
+            SceneManager.LoadScene("Ending");
+        }
+    }
     
     [SerializeField] private Slider bgmSlider;
     [SerializeField] private Slider effectSlider;

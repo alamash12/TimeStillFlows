@@ -30,6 +30,7 @@ public class Destination : MonoBehaviour
             else if (nextStageNumber == 9)
             {
                 SceneManager.LoadScene("Ending");
+                PlayerPrefs.SetInt("Ending", 1);
             }
 
             // 스테이지 전환시 페이드인 페이드 아웃 함수 삽입
