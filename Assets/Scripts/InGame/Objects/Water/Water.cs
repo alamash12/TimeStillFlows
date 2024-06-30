@@ -102,6 +102,7 @@ public class Water : MonoBehaviour , IChangeable
     {
         if (collision.CompareTag("Object"))
         {
+            SoundManager.Instance.EffectSoundOn("WaterFall");
             TriggeredBlock.Add(collision.gameObject);
             collision.gameObject.layer = 2; // 물에 닿은 블록을 Ignore Raycast로 설정 (점프가 불가능하게)
 
@@ -111,6 +112,7 @@ public class Water : MonoBehaviour , IChangeable
         }
         if (collision.CompareTag("Player")) // 잠시 테스트로 부력 놔둠
         {
+            SoundManager.Instance.EffectSoundOn("WaterFall");
             SceneManager.LoadScene(SceneManager.GetActiveScene().name); // 다시시작
         }
     }

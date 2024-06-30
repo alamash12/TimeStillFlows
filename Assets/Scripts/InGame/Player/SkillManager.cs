@@ -76,6 +76,7 @@ public class SkillManager : MonoBehaviour
     }
     IEnumerator ApplyCooldown()
     {
+        SoundManager.Instance.EffectSoundOn("SkillSound");
         isCooltime = true;
         minuteButton.interactable = false;
         hourButton.interactable = false;
