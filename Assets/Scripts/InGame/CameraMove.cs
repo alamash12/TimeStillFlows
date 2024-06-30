@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraMove : MonoBehaviour
 {
     GameObject player;
-    float smoothing = 0.2f;
+    float smoothing = 0.2f; // 보간상수
     [SerializeField] Vector2 minCameraBoundary;
     [SerializeField] Vector2 maxCameraBoundary;
 
@@ -19,6 +19,6 @@ public class CameraMove : MonoBehaviour
         targetPos.x = Mathf.Clamp(targetPos.x, minCameraBoundary.x, maxCameraBoundary.x);
         targetPos.y = Mathf.Clamp(targetPos.y, minCameraBoundary.y, maxCameraBoundary.y);
 
-        transform.position = Vector3.Lerp(transform.position, targetPos, smoothing);
+        transform.position = Vector3.Lerp(transform.position, targetPos, smoothing); // 부드럽게 움직이도록 보간
     }
 }
