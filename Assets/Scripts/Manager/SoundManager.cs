@@ -68,14 +68,14 @@ public class SoundManager : MonoBehaviour
             audioSource1.volume = PlayerPrefs.GetFloat("bgmVolume");
             audioSource1.Play();
         }
-        if (audioSource1.clip != bgmWood && (CurrentScene() == "Stage01" || CurrentScene() == "Stage02" || CurrentScene() == "Stage03" || CurrentScene() == "Stage04"))
+        if (audioSource1.clip != bgmWood && (CurrentScene() == "Stage_01" || CurrentScene() == "Stage_02" || CurrentScene() == "Stage_03" || CurrentScene() == "Stage_04"))
         {
             audioSource1.clip = bgmWood;
             audioSource1.volume = PlayerPrefs.GetFloat("bgmVolume");
             audioSource1.Play();
         }
         
-        if (audioSource1.clip != bgmTown && (CurrentScene() == "Stage05" || CurrentScene() == "Stage06" || CurrentScene() == "Stage07" || CurrentScene() == "Stage08"))
+        if (audioSource1.clip != bgmTown && (CurrentScene() == "Stage_05" || CurrentScene() == "Stage_06" || CurrentScene() == "Stage_07" || CurrentScene() == "Stage_08"))
         {
             audioSource1.clip = bgmTown;
             audioSource1.volume = PlayerPrefs.GetFloat("bgmVolume");

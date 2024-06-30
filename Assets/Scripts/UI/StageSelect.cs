@@ -18,7 +18,7 @@ public class StageSelect : MonoBehaviour
         //Debug.Log("for문 시작");
         for(int i=0; i<8; i++)
         {
-            string stageName = "Stage_0" + (i + 1);
+            string stageName = "Stage0" + (i + 1);
             //Debug.Log(stageName);
             //Debug.Log(PlayerPrefs.GetInt(stageName));
             //Debug.Log(i);

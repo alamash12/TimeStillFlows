@@ -21,11 +21,12 @@ public class Destination : MonoBehaviour
             int nextStageNumber = currentStageNumber + 1;
 
             string nextSceneName = $"Stage_0{nextStageNumber}";
+            string nextScenePP = $"Stage0{nextStageNumber}"; // 플레이어프렙스는 Stage01이런식으로 저장
 
             if (nextStageNumber <= 8)
             {
                 SceneManager.LoadScene(nextSceneName);
-                PlayerPrefs.SetInt(nextSceneName, 1);
+                PlayerPrefs.SetInt(nextScenePP, 1);
             }
             else if (nextStageNumber == 9)
             {
