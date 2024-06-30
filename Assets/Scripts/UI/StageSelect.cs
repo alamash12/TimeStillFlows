@@ -22,15 +22,21 @@ public class StageSelect : MonoBehaviour
             //Debug.Log(stageName);
             //Debug.Log(PlayerPrefs.GetInt(stageName));
             //Debug.Log(i);
-            
-            if (PlayerPrefs.GetInt(stageName) == 1) transform.GetChild(i).GetComponent<Image>().color = Color.red;
+
+            if (PlayerPrefs.GetInt(stageName) == 1)
+            {
+                var image = transform.GetChild(i).GetComponent<Image>();
+                Color color = image.color;
+                color.a = 1f;
+                image.color = color;
+            }
         }
         //Debug.Log("for문 끝!");
     }
     public void StageBtn1()
     {
-        Debug.Log("버튼 1 누음");
-        Debug.Log(PlayerPrefs.GetInt("Stage01"));
+        //Debug.Log("버튼 1 누음");
+        //Debug.Log(PlayerPrefs.GetInt("Stage01"));
         if (PlayerPrefs.GetInt("Stage01") == 1) SceneManager.LoadScene("Stage01");
     }
     public void StageBtn2()
