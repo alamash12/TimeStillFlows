@@ -11,7 +11,7 @@ public class Block : MonoBehaviour, IChangeable
     private BoxCollider2D boxCollider;
     private Dictionary<Rigidbody2D, Coroutine> followParent = new Dictionary<Rigidbody2D, Coroutine>(); //자식의 코루틴을 저장 
 
-    Rigidbody2D boxRigid;
+    float previousX;
     bool isDragging = false;
     public StateType stateType
     {
@@ -41,7 +41,7 @@ public class Block : MonoBehaviour, IChangeable
     private void Start()
     {
         boxCollider = gameObject.GetComponent<BoxCollider2D>();
-        boxRigid = gameObject.GetComponent<Rigidbody2D>();
+        previousX = gameObject.transform.position.x;
         Init();
     }
 
@@ -171,9 +171,10 @@ public class Block : MonoBehaviour, IChangeable
         return false;
     }
 
-    private void FixedUpdate()
+    private void FixedUpdate() // 드래그를 하려할때 
     {
-        if (boxRigid.velocity.x != 0)
+        float currentX = gameObject.transform.position.x;
+        if (Mathf.Abs(currentX - previousX) >= 0.03f)
         {
             if (!isDragging)
             {
@@ -190,6 +191,7 @@ public class Block : MonoBehaviour, IChangeable
                 SoundManager.Instance.EffectSoundOff();
             }
         }
+        previousX = currentX;
     }
 
     IEnumerator SFXPlay()
@@ -197,7 +199,6 @@ public class Block : MonoBehaviour, IChangeable
         while (isDragging)
         {
             SoundManager.Instance.EffectSoundOn("BlockPush");
-            Debug.Log("2");
             yield return new WaitForSeconds(10f);
         }
     }
