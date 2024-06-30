@@ -38,8 +38,8 @@ public class SoundManager : MonoBehaviour
     private AudioSource audioSource2; // 효과음
     void Start() // 게임 처음 시작시 음악세팅
     {
-        PlayerPrefs.SetFloat("bgmVolume", 1.0f);
-        PlayerPrefs.SetFloat("effectVolume", 1.0f);
+        if(!PlayerPrefs.HasKey("bgmVolume")) PlayerPrefs.SetFloat("bgmVolume", 1.0f);
+        if (!PlayerPrefs.HasKey("effectVolume")) PlayerPrefs.SetFloat("effectVolume", 1.0f);
 
         audioSource1 = gameObject.AddComponent<AudioSource>(); // audioSource에 AudioSource 컴포넌트를 추가
         audioSource1.loop = true;
