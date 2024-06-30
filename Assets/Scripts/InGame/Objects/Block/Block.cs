@@ -9,11 +9,13 @@ public class Block : MonoBehaviour, IChangeable
 {
     private StateType _stateType;
     private BoxCollider2D boxCollider;
-    private Dictionary<Rigidbody2D, Coroutine> followParent = new Dictionary<Rigidbody2D, Coroutine> (); //자식의 코루틴을 저장 
+    private Dictionary<Rigidbody2D, Coroutine> followParent = new Dictionary<Rigidbody2D, Coroutine>(); //자식의 코루틴을 저장 
 
+    Rigidbody2D boxRigid;
+    bool isDragging = false;
     public StateType stateType
     {
-        get 
+        get
         {
             return _stateType;
         }
@@ -39,9 +41,10 @@ public class Block : MonoBehaviour, IChangeable
     private void Start()
     {
         boxCollider = gameObject.GetComponent<BoxCollider2D>();
+        boxRigid = gameObject.GetComponent<Rigidbody2D>();
         Init();
     }
-    
+
     public IEnumerator FollowParent(Vector3 lastPosition, Transform parent) //부모를 따라 움직임
     {
         WaitForFixedUpdate wait = new WaitForFixedUpdate();
@@ -51,10 +54,10 @@ public class Block : MonoBehaviour, IChangeable
             Vector3 currentPosition = parent.position;
             Vector3 movementDelta = currentPosition - lastPosition;
 
-         
+
             transform.position += movementDelta;
             lastPosition = currentPosition;
-        
+
         }
     }
 
@@ -62,14 +65,14 @@ public class Block : MonoBehaviour, IChangeable
     {
         string stateParse = gameObject.GetComponent<SpriteRenderer>().sprite.name.Split('_')[2];
         StateType result;
-        if(Enum.TryParse(stateParse, out result))
+        if (Enum.TryParse(stateParse, out result))
         {
-            if(result == StateType.Flow)
+            if (result == StateType.Flow)
             {
                 _stateType = StateType.Flow;
                 ChangeState<BlockStop, BlockFlow>();
             }
-            else if(result == StateType.Stop)
+            else if (result == StateType.Stop)
             {
                 _stateType = StateType.Stop;
                 ChangeState<BlockFlow, BlockStop>();
@@ -86,13 +89,13 @@ public class Block : MonoBehaviour, IChangeable
     /// </summary>
     /// <typeparam name="T1">변화하기 전의 상태</typeparam>
     /// <typeparam name="T2">변화한 후의 상태</typeparam>
-    public void ChangeState<T1,T2>() where T1:Component where T2:Component
+    public void ChangeState<T1, T2>() where T1 : Component where T2 : Component
     {
         Component destroyComponent = gameObject.GetComponent<T1>();
         Component addComponent = gameObject.GetComponent<T2>();
 
         Destroy(destroyComponent);
-        if(addComponent == null )
+        if (addComponent == null)
         {
             gameObject.AddComponent<T2>();
         }
@@ -105,7 +108,7 @@ public class Block : MonoBehaviour, IChangeable
         {
             GameManager.ChangeSprite(spriteRenderer, -1);
         }
-        else if(stateType == StateType.Stop)
+        else if (stateType == StateType.Stop)
         {
             GameManager.ChangeSprite(spriteRenderer, 1);
         }
@@ -115,13 +118,11 @@ public class Block : MonoBehaviour, IChangeable
         }
     }
 
-
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject childObject = collision.gameObject;
-        
-        if ((childObject.CompareTag("Object")||childObject.CompareTag("Player"))&&CheckCollision(collision))
+
+        if ((childObject.CompareTag("Object") || childObject.CompareTag("Player")) && CheckCollision(collision))
         {
             Rigidbody2D childRigid = childObject.GetComponent<Rigidbody2D>();
 
@@ -168,5 +169,36 @@ public class Block : MonoBehaviour, IChangeable
             return true;
         }
         return false;
+    }
+
+    private void FixedUpdate()
+    {
+        if (boxRigid.velocity.x != 0)
+        {
+            if (!isDragging)
+            {
+                isDragging = true;
+                StartCoroutine(SFXPlay());
+            }
+        }
+        else
+        {
+            if (isDragging)
+            {
+                isDragging = false;
+                StopCoroutine(SFXPlay());
+                SoundManager.Instance.EffectSoundOff();
+            }
+        }
+    }
+
+    IEnumerator SFXPlay()
+    {
+        while (isDragging)
+        {
+            SoundManager.Instance.EffectSoundOn("BlockPush");
+            Debug.Log("2");
+            yield return new WaitForSeconds(10f);
+        }
     }
 }

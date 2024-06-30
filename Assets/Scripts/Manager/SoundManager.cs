@@ -108,6 +108,11 @@ public class SoundManager : MonoBehaviour
         string effect = "Audio/Effect/" + effectName;
         AudioClip effectClip = Resources.Load<AudioClip>(effect);
         audioSource2.clip = effectClip;
-        audioSource2.Play();
+        audioSource2.PlayOneShot(effectClip);
+    }
+
+    public void EffectSoundOff()
+    {
+        audioSource2.Stop();
     }
 }

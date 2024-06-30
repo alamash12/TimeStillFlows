@@ -42,7 +42,7 @@ public class PlayerJump : MonoBehaviour
         Collider2D collider = Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0f);
         if (collider != null)
         {
-            if (collider.gameObject != gameObject && playerRigid.velocity.y < 0) // 자기 자신을 제외한 충돌 감지
+            if (collider.gameObject != gameObject && playerRigid.velocity.y < -0.01f) // 자기 자신을 제외한 충돌 감지
             {
                 JumpStateReset();
             }
@@ -54,5 +54,6 @@ public class PlayerJump : MonoBehaviour
         SoundManager.Instance.EffectSoundOn("GrassLanding"); // 흙 착지 소리
         isGround = true;
         animator.SetBool("isJump", false);
+        Debug.Log("landing");
     }
 }
