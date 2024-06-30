@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class MovingPlatformFlow : MonoBehaviour
 {
-    public float speed = 2f; //이동 속도
-    public Vector3 startLocation; // 시작 위치
-    public Vector3 endLocation; //종료 위치 
+    float speed = 2f; //이동 속도
+    Vector3 startLocation; // 시작 위치
+    Vector3 endLocation; //종료 위치 
 
-    private Vector3 startPosition;
-    private Vector3 endPosition;
+    Vector3 startPosition;
+    Vector3 endPosition;
 
     ObjectContainer objectContainer;
 

@@ -8,7 +8,7 @@ public class MinuteArea : MonoBehaviour
     ObjectContainer objectContainer; // 영역에 들어온 오브젝트를 관리하는 객체
     Vector2 playerPosition;
     float nearestDistance;
-    public GameObject nearestObject;
+    GameObject nearestObject;
     Rigidbody2D nearestRigid;
     SpriteRenderer nearestObjectSR;
     SpriteRenderer nearestObjectOutlineSR;

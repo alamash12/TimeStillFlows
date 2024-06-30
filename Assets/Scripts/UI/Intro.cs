@@ -8,8 +8,8 @@ using UnityEngine.EventSystems;
 
 public class Intro : MonoBehaviour, IPointerDownHandler
 {
-    public Image fadeImg;
-    public float fadeSpeed = 0.8f;
+    Image fadeImg;
+    float fadeSpeed = 0.8f;
     bool isLastScene = false;
     public void SkipIntro()
     {
