@@ -2023,6 +2023,7 @@ MonoBehaviour:
   bgmWood: {fileID: 0}
   bgmTown: {fileID: 0}
   bgmOpening: {fileID: 0}
+  audioSource2: {fileID: 0}
 --- !u!4 &945212491
 Transform:
   m_ObjectHideFlags: 0
