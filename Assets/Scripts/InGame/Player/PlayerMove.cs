@@ -67,6 +67,21 @@ public class PlayerMove : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoi
 
         animator.SetBool("isWalk", true);
         player.transform.Translate(direction * moveSpeed * Time.deltaTime * Vector3.right);
+
+        if (!isMoving && playerRigid.velocity.y == 0)
+        {
+            isMoving = true;
+            StartCoroutine(SFXPlay());
+        }
+    }
+    private void Update()
+    {
+        if (!isDragging && isMoving)
+        {
+            isMoving = false;
+            StopCoroutine(SFXPlay());
+            SoundManager.Instance.EffectSoundOff();
+        }
     }
     void FixedUpdate()
     {
@@ -74,36 +89,18 @@ public class PlayerMove : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoi
         {
             moveFunc?.Invoke();
         }
-
-        float currentX = gameObject.transform.position.x;
-        if (currentX != previousX)
-        {
-            Debug.Log("1");
-            if (!isMoving && playerRigid.velocity.y == 0)
-            {
-                Debug.Log("2");
-                isMoving = true;
-                StartCoroutine(SFXPlay());
-            }
-        }
-        else
-        {
-            if (isMoving)
-            {
-                isMoving = false;
-                StopCoroutine(SFXPlay());
-                SoundManager.Instance.EffectSoundOff();
-            }
-        }
-        previousX = currentX;
     }
 
     IEnumerator SFXPlay()
     {
-        while (isMoving)
+        while(true)
         {
-            SoundManager.Instance.EffectSoundOn("Walk");
-            yield return new WaitForSeconds(0.5f);
+            while (isMoving && playerRigid.velocity.y == 0)
+            {
+                SoundManager.Instance.EffectSoundOn("Walk");
+                yield return new WaitForSeconds(0.5f);
+            }
+            yield return null;
         }
     }
 }
