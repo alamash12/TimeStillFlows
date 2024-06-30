@@ -13,7 +13,7 @@ public class Intro : MonoBehaviour, IPointerDownHandler
     bool isLastScene = false;
     public void SkipIntro()
     {
-        SceneManager.LoadScene("Stage01");
+        SceneManager.LoadScene("Stage_01");
     }
 
     private void Start()
@@ -74,6 +74,6 @@ public class Intro : MonoBehaviour, IPointerDownHandler
     IEnumerator ExitSequence()
     {
         yield return StartCoroutine(FadeOut());  // FadeOut을 완료할 때까지 기다림
-        SceneManager.LoadScene("Stage01");  // 페이드 아웃 완료 후 씬 로드
+        SceneManager.LoadScene("Stage_01");  // 페이드 아웃 완료 후 씬 로드
     }
 }
