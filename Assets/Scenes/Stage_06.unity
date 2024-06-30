@@ -677,11 +677,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 156003760067174267, guid: 6da6198b49e53454fa4dd88435d77d39, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 59.19
+      value: 59.12
       objectReference: {fileID: 0}
     - target: {fileID: 156003760067174267, guid: 6da6198b49e53454fa4dd88435d77d39, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.24
+      value: 4.17
       objectReference: {fileID: 0}
     - target: {fileID: 156003760067174267, guid: 6da6198b49e53454fa4dd88435d77d39, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2223,6 +2223,7 @@ MonoBehaviour:
   bgmWood: {fileID: 0}
   bgmTown: {fileID: 0}
   bgmOpening: {fileID: 0}
+  audioSource2: {fileID: 0}
 --- !u!4 &799706626
 Transform:
   m_ObjectHideFlags: 0
@@ -5978,7 +5979,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4914481584989628916, guid: feb31c1c83480c0429328535828b4435, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.8
+      value: 2.8025
       objectReference: {fileID: 0}
     - target: {fileID: 6521883703252885318, guid: feb31c1c83480c0429328535828b4435, type: 3}
       propertyPath: m_Size.x
