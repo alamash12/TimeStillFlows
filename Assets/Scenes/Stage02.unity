@@ -238,8 +238,6 @@ MonoBehaviour:
   bgmWood: {fileID: 0}
   bgmTown: {fileID: 0}
   bgmOpening: {fileID: 0}
-  bgmVolume: 1
-  effectVolume: 1
 --- !u!4 &100459158
 Transform:
   m_ObjectHideFlags: 0
@@ -4379,6 +4377,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4596847779571255133, guid: 0948ecdd14ea3364bbd41818cdd71603, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8115621605884452051, guid: 0948ecdd14ea3364bbd41818cdd71603, type: 3}
       propertyPath: m_Name
       value: Silhouette
