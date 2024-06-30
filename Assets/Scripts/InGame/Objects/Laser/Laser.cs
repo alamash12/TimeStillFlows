@@ -30,6 +30,7 @@ public class Laser : MonoBehaviour
         {
             if (raycastHit.transform.CompareTag("Player")) // 게임 오버 판정
             {
+                SoundManager.Instance.EffectSoundOn("LazerContact");
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
 

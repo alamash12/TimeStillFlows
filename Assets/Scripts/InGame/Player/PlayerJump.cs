@@ -21,6 +21,7 @@ public class PlayerJump : MonoBehaviour
     {
         if (isGround && !isJumping)
         {
+            SoundManager.Instance.EffectSoundOn("Jump");
             isGround = false;
             isJumping = true;
             playerRigid.velocity = new Vector2(playerRigid.velocity.x, 0);

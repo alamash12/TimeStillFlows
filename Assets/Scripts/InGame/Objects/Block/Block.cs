@@ -11,7 +11,7 @@ public class Block : MonoBehaviour, IChangeable
     private BoxCollider2D boxCollider;
     private Dictionary<Rigidbody2D, Coroutine> followParent = new Dictionary<Rigidbody2D, Coroutine>(); //자식의 코루틴을 저장 
 
-    float previousX;
+    float previousX; // 효과음 삽입을 위한 변수 설정
     bool isDragging = false;
     public StateType stateType
     {
