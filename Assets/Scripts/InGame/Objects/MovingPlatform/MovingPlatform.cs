@@ -16,6 +16,8 @@ public class MovingPlatform : MonoBehaviour, IChangeable
     public Vector2 startLocation;
     public Vector2 endLocation;
 
+    Vector2 previousPos; // 효과음 삽입을 위한 변수 설정
+    bool isDragging = false;
     public StateType stateType
     {
         get { return _stateType; }
@@ -41,6 +43,7 @@ public class MovingPlatform : MonoBehaviour, IChangeable
     private void Start()
     {
         boxCollider = gameObject.GetComponent<BoxCollider2D>();
+        previousPos = gameObject.transform.position;
         Init();
     }
     public void Init()
@@ -188,5 +191,35 @@ public class MovingPlatform : MonoBehaviour, IChangeable
         }
         return false;
     }
+    private void FixedUpdate() // 움직일때
+    {
+        Vector2 currentPos = gameObject.transform.position;
+        if (currentPos != previousPos)
+        {
+            if (!isDragging)
+            {
+                isDragging = true;
+                StartCoroutine(SFXPlay());
+            }
+        }
+        else
+        {
+            if (isDragging)
+            {
+                isDragging = false;
+                StopCoroutine(SFXPlay());
+                SoundManager.Instance.EffectSoundOff();
+            }
+        }
+        previousPos = currentPos;
+    }
 
+    IEnumerator SFXPlay()
+    {
+        while (isDragging)
+        {
+            SoundManager.Instance.EffectSoundOn("MovingWork");
+            yield return new WaitForSeconds(1.9f);
+        }
+    }
 }

@@ -36,6 +36,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioClip bgmOpening;
     private AudioSource audioSource1; // 배경음
     public AudioSource audioSource2; // 효과음
+    float stageNum; // 스테이지의 번호
     void Start() // 게임 처음 시작시 음악세팅
     {
         if (!PlayerPrefs.HasKey("bgmVolume")) PlayerPrefs.SetFloat("bgmVolume", 1.0f);
@@ -59,6 +60,7 @@ public class SoundManager : MonoBehaviour
         }
         audioSource1.clip = bgmOpening; // 메인화면에서 재생할 클립 bgmWood
         audioSource1.Play(); // 재생
+        stageNum = float.Parse((SceneManager.GetActiveScene().name).Split('_')[1]);
     }
     void Update() // 씬 바뀌면 어떤 bgm을 틀것인가?
     {
@@ -68,14 +70,14 @@ public class SoundManager : MonoBehaviour
             audioSource1.volume = PlayerPrefs.GetFloat("bgmVolume");
             audioSource1.Play();
         }
-        if (audioSource1.clip != bgmWood && (CurrentScene() == "Stage_01" || CurrentScene() == "Stage_02" || CurrentScene() == "Stage_03" || CurrentScene() == "Stage_04"))
+        if (audioSource1.clip != bgmWood && stageNum <= 4)
         {
             audioSource1.clip = bgmWood;
             audioSource1.volume = PlayerPrefs.GetFloat("bgmVolume");
             audioSource1.Play();
         }
         
-        if (audioSource1.clip != bgmTown && (CurrentScene() == "Stage_05" || CurrentScene() == "Stage_06" || CurrentScene() == "Stage_07" || CurrentScene() == "Stage_08"))
+        if (audioSource1.clip != bgmTown && stageNum > 4)
         {
             audioSource1.clip = bgmTown;
             audioSource1.volume = PlayerPrefs.GetFloat("bgmVolume");
