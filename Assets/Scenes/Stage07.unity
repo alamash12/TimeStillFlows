@@ -2386,10 +2386,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa0659906175c9f43987bcf3980b7825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  optionPanel: {fileID: 0}
+  optionPanel: {fileID: 10544711}
   translucentPanel: {fileID: 462748651}
-  bgmSlider: {fileID: 0}
-  effectSlider: {fileID: 0}
+  bgmSlider: {fileID: 1434272396}
+  effectSlider: {fileID: 1779576570}
 --- !u!1 &883267650
 GameObject:
   m_ObjectHideFlags: 0
