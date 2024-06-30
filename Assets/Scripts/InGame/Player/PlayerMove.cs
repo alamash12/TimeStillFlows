@@ -15,12 +15,18 @@ public class PlayerMove : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoi
     bool isDragging = false;
     Action moveFunc;
 
+    float previousX; // 효과음 삽입을 위한 변수 설정
+    bool isMoving = false; // 효과음을 위한 변수
+    Rigidbody2D playerRigid;
+
     Animator animator;
 
     void Awake()
     {
         player = GameObject.Find("Player");
+        playerRigid = player.GetComponent<Rigidbody2D>();
         animator = player.GetComponent<Animator>();
+        previousX = gameObject.transform.position.x;
     }
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -67,6 +73,37 @@ public class PlayerMove : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoi
         if (isDragging)
         {
             moveFunc?.Invoke();
+        }
+
+        float currentX = gameObject.transform.position.x;
+        if (currentX != previousX)
+        {
+            Debug.Log("1");
+            if (!isMoving && playerRigid.velocity.y == 0)
+            {
+                Debug.Log("2");
+                isMoving = true;
+                StartCoroutine(SFXPlay());
+            }
+        }
+        else
+        {
+            if (isMoving)
+            {
+                isMoving = false;
+                StopCoroutine(SFXPlay());
+                SoundManager.Instance.EffectSoundOff();
+            }
+        }
+        previousX = currentX;
+    }
+
+    IEnumerator SFXPlay()
+    {
+        while (isMoving)
+        {
+            SoundManager.Instance.EffectSoundOn("Walk");
+            yield return new WaitForSeconds(0.5f);
         }
     }
 }

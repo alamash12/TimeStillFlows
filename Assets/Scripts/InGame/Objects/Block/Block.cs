@@ -33,6 +33,7 @@ public class Block : MonoBehaviour, IChangeable
                 {
                     ChangeState<BlockFlow, BlockStop>();
                     DecisionSprite(stateType);
+                    gameObject.layer = 0; // stop상태의 물에 빠졌을때에도 레이어 변경을 위해서
                 }
             }
         }
