@@ -35,8 +35,6 @@ public class StageSelect : MonoBehaviour
     }
     public void StageBtn1()
     {
-        //Debug.Log("버튼 1 누음");
-        //Debug.Log(PlayerPrefs.GetInt("Stage01"));
         if (PlayerPrefs.GetInt("Stage01") == 1) SceneManager.LoadScene("Stage01");
     }
     public void StageBtn2()
