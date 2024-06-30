@@ -9,10 +9,10 @@ public class PlayerMove : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoi
     [SerializeField] private float moveSpeed = 5f;
     GameObject player;
 
-    private Vector2 lastPosition;
-    private float deltaX;
-    private float direction = 0;
-    private bool isDragging = false;
+    Vector2 lastPosition;
+    float deltaX; // 드래그의 강도
+    float direction = 0;
+    bool isDragging = false;
     Action moveFunc;
 
     Animator animator;

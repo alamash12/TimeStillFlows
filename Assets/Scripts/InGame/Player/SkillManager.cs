@@ -27,7 +27,7 @@ public class SkillManager : MonoBehaviour
     void Start()
     {
         minuteButton.onClick.AddListener(MinuteClicked);
-        minuteButton.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.1f;
+        minuteButton.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.1f; // 이미지가 있는 부분만 클릭하도록 설정
         hourButton.onClick.AddListener (HourClicked);
         hourButton.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.1f;
         gearButton.onClick.AddListener(GearClicked);
@@ -63,7 +63,7 @@ public class SkillManager : MonoBehaviour
         else //실루엣이 형성되어있는 상태. 플레이어를 이동시킴.
         {
             gameObject.transform.position = playerLocation;
-            gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero; // 점프하면서 이동하면 점프 가속도가 반영되던 문제 수정
+            gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero; // 점프하면서 돌아오면 점프 가속도가 반영되던 문제 수정
             isSilhouette = false;
             Silhouette.GetComponent<SpriteRenderer>().enabled = false;
             gameObject.GetComponent<PlayerJump>().JumpStateReset();

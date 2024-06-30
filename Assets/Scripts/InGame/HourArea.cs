@@ -9,7 +9,7 @@ public class HourArea : MonoBehaviour
 
     void Awake()
     {
-        SizeDecision();
+        //SizeDecision();
     }
     public void Init(ObjectContainer container)
     {
@@ -35,17 +35,17 @@ public class HourArea : MonoBehaviour
             }
         }
     }
-    void SizeDecision() // 카메라의 크기에 맞춰서 hourArea의 크기를 맞춰주는 함수
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        float spriteX = spriteRenderer.sprite.bounds.size.x;
-        float spriteY = spriteRenderer.sprite.bounds.size.y;
+    //void SizeDecision() // 카메라의 크기에 맞춰서 hourArea의 크기를 맞춰주는 함수
+    //{
+    //    spriteRenderer = GetComponent<SpriteRenderer>();
+    //    float spriteX = spriteRenderer.sprite.bounds.size.x;
+    //    float spriteY = spriteRenderer.sprite.bounds.size.y;
 
-        float screenY = Camera.main.orthographicSize * 2f;
-        float screenX = screenY / Screen.height * Screen.width;
+    //    float screenY = Camera.main.orthographicSize * 2f;
+    //    float screenX = screenY / Screen.height * Screen.width;
 
-        transform.localScale = new Vector2(Mathf.Ceil(screenX / spriteX), Mathf.Ceil(screenY / spriteY));
-    }
+    //    transform.localScale = new Vector2(Mathf.Ceil(screenX / spriteX), Mathf.Ceil(screenY / spriteY));
+    //}
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Object"))

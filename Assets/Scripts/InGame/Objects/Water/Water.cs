@@ -103,11 +103,11 @@ public class Water : MonoBehaviour , IChangeable
         if (collision.CompareTag("Object"))
         {
             TriggeredBlock.Add(collision.gameObject);
-            collision.gameObject.layer = 2; // 물에 닿은 블록을 Ignore Raycast로 설정
+            collision.gameObject.layer = 2; // 물에 닿은 블록을 Ignore Raycast로 설정 (점프가 불가능하게)
 
             Rigidbody2D rigid = collision.GetComponent<Rigidbody2D>();
-            rigid.gravityScale = 0f;
-            activeCoroutines.Add(rigid, StartCoroutine(Buoyancy(rigid)));
+            rigid.gravityScale = 0f; //부력 코루틴을 작동시키기 위해 중력을 0으로
+            activeCoroutines.Add(rigid, StartCoroutine(Buoyancy(rigid))); // 부력 구현 코루틴 딕셔너리에 저장하며 시작
         }
         if (collision.CompareTag("Player")) // 잠시 테스트로 부력 놔둠
         {
@@ -124,7 +124,7 @@ public class Water : MonoBehaviour , IChangeable
             while (collision.transform.position.y < waterY)
             {
                 collision.AddForce(new Vector2(0, (waterY - collision.transform.position.y) * buoyancyStrength), ForceMode2D.Force); // 깊이에 따라 강해지는 부력 적용
-                collision.velocity = new Vector2(collision.velocity.x, collision.velocity.y * dampingFactor); // 감쇠 적용
+                collision.velocity = new Vector2(collision.velocity.x, collision.velocity.y * dampingFactor); // 속력 감쇠 적용
 
                 yield return null;
             }
@@ -140,8 +140,8 @@ public class Water : MonoBehaviour , IChangeable
             activeCoroutines.Remove(rigid);
             rigid.gravityScale = 1f;
 
-            TriggeredBlock.Remove(collision.gameObject); // 물에서 블록이 나갈때 다시 레이캐스트 가능하도록 변경
-            collision.gameObject.layer = 0;
+            TriggeredBlock.Remove(collision.gameObject); 
+            collision.gameObject.layer = 0; // 물에서 블록이 나갈때 다시 레이캐스트 가능하도록 변경
         }
     }
 }

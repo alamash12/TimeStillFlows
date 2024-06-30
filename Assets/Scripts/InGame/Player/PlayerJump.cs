@@ -7,7 +7,6 @@ public class PlayerJump : MonoBehaviour
 {
     [SerializeField] float jumpPower;
     Rigidbody2D playerRigid;
-    [SerializeField] GameObject pivot;
     [SerializeField] Transform groundCheck;
     Vector2 groundCheckSize = new Vector2(1f, 0.05f);
     bool isGround = false;
@@ -41,7 +40,6 @@ public class PlayerJump : MonoBehaviour
     private void LateUpdate()
     {
         Collider2D collider = Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0f);
-        Debug.Log(collider);
         if (collider != null)
         {
             if (collider.gameObject != gameObject && playerRigid.velocity.y < 0) // 자기 자신을 제외한 충돌 감지
