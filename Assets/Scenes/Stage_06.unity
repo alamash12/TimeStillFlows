@@ -346,11 +346,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ReferenceResolution: {x: 1280, y: 720}
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -2310,10 +2310,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c135ecd2947ca4c8130f3cd2038d41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgmWood: {fileID: 0}
-  bgmTown: {fileID: 0}
-  bgmOpening: {fileID: 0}
-  audioSource2: {fileID: 0}
 --- !u!4 &799706626
 Transform:
   m_ObjectHideFlags: 0
@@ -5519,11 +5515,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ReferenceResolution: {x: 1280, y: 720}
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -6331,10 +6327,10 @@ SceneRoots:
   - {fileID: 314158300}
   - {fileID: 1322207589}
   - {fileID: 80240594}
+  - {fileID: 1893940463}
   - {fileID: 1768403103}
   - {fileID: 835576231}
   - {fileID: 1125457081}
-  - {fileID: 1893940463}
   - {fileID: 2108915327}
   - {fileID: 236356669}
   - {fileID: 799706626}
