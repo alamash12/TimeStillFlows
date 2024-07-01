@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -37,15 +38,18 @@ public class MainScene: MonoBehaviour
     /*
        옵션 패널관련
     */
-    public GameObject optionPanel; // 옵션 패널
-    
+    [SerializeField] GameObject optionPanel; // 옵션 패널
+    [SerializeField] GameObject backPanel;  
     public void ToggleOptionPanel()// 옵션버튼을 누를 시 옵션 패널 생성
     {
+        if(backPanel == null) { Debug.Log("d"); }
         optionPanel.SetActive(!optionPanel.activeSelf);
+        backPanel.SetActive(!backPanel.activeSelf);
     }
     public void CloseOptionPanel()// 옵션 x 버튼을 누를 시 옵션 패널 없앰
     {
         optionPanel.SetActive (false);
+        backPanel.SetActive (false);
     }
     public void OptionIntroBtn()
     {
@@ -58,6 +62,7 @@ public class MainScene: MonoBehaviour
             SceneManager.LoadScene("Ending");
         }
     }
+    
     // 음량 조절 파트
     [SerializeField] private Slider bgmSlider;
     [SerializeField] private Slider effectSlider;
