@@ -62,7 +62,7 @@ public class SoundManager : MonoBehaviour
         audioSource1.Play(); // 재생
         
     }
-    void Update() // 씬 바뀌면 어떤 bgm을 틀것인가?
+    /*void Update() // 씬 바뀌면 어떤 bgm을 틀것인가?
     {
         stageNum = SceneManager.GetActiveScene().buildIndex;
         if (audioSource1.clip != bgmOpening && (stageNum == 0))
@@ -85,7 +85,7 @@ public class SoundManager : MonoBehaviour
             audioSource1.Play();
         }
 
-    }
+    }*/
     string CurrentScene()
     {
         return SceneManager.GetActiveScene().name;
