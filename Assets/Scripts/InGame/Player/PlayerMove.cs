@@ -57,7 +57,7 @@ public class PlayerMove : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoi
     }
     private void Move() 
     {
-        if (Mathf.Abs(deltaX) > 2) // 감도 조절을 위해서 
+        if (Mathf.Abs(deltaX) > 2.5f) // 감도 조절을 위해서 
             direction = Mathf.Sign(deltaX);
 
         if (direction < 0) // 드래그하는 방향에 따라서 방향 애니메이터 변수 조절
