@@ -11,7 +11,7 @@ public class Water : MonoBehaviour , IChangeable
     Dictionary<Rigidbody2D, Coroutine> activeCoroutines = new Dictionary<Rigidbody2D, Coroutine>(); // 코루틴을 저장하는 용도
     float waterY;
     float buoyancyStrength = 10.0f; // 부력의 세기
-    float dampingFactor = 0.99f; // 감쇠 계수
+    float dampingFactor = 0.96f; // 감쇠 계수
     private StateType _stateType; // 값 저장 필드
     public StateType stateType 
     {
@@ -116,34 +116,21 @@ public class Water : MonoBehaviour , IChangeable
             SceneManager.LoadScene(SceneManager.GetActiveScene().name); // 다시시작
         }
     }
-    //IEnumerator Buoyancy(Rigidbody2D collision)
-    //{
-    //    while (true)
-    //    {
-    //        // 물체가 물보다 위에 있을 때 대기
-    //        yield return new WaitWhile(() => collision.transform.position.y > waterY);
-
-    //        while (collision.transform.position.y < waterY)
-    //        {
-    //            collision.AddForce(new Vector2(0, (waterY - collision.transform.position.y) * buoyancyStrength), ForceMode2D.Force); // 깊이에 따라 강해지는 부력 적용
-    //            collision.velocity = new Vector2(collision.velocity.x, collision.velocity.y * dampingFactor); // 속력 감쇠 적용
-
-    //            yield return null;
-    //        }
-    //        collision.velocity = new Vector2(collision.velocity.x, 0); // 원하는 높이까지 왔으면 속력을 0으로
-    //    }
-    //}
     IEnumerator Buoyancy(Rigidbody2D collision)
     {
-        while (collision != null)
+        while (true)
         {
-            if (collision.transform.position.y < waterY)
-            {
-                collision.AddForce(new Vector2(0, (waterY - collision.transform.position.y) * buoyancyStrength), ForceMode2D.Force);
-                collision.velocity = new Vector2(collision.velocity.x, collision.velocity.y * dampingFactor);
-            }
+            // 물체가 물보다 위에 있을 때 대기
+            yield return new WaitWhile(() => collision.transform.position.y > waterY);
 
-            yield return new WaitForFixedUpdate();
+            while (collision.transform.position.y < waterY)
+            {
+                collision.AddForce(new Vector2(0, (waterY - collision.transform.position.y) * buoyancyStrength), ForceMode2D.Force); // 깊이에 따라 강해지는 부력 적용
+                collision.velocity = new Vector2(collision.velocity.x, collision.velocity.y * dampingFactor); // 속력 감쇠 적용
+
+                yield return null;
+            }
+            collision.velocity = new Vector2(collision.velocity.x, 0); // 원하는 높이까지 왔으면 속력을 0으로
         }
     }
     void OnTriggerExit2D(Collider2D collision)

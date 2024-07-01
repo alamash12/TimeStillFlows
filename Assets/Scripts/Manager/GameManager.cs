@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
         {
             Init();
         }
+        Application.targetFrameRate = 60;
     }
 
     static public void ChangeSprite(SpriteRenderer spriteRenderer, int count) // count는 enum값 변경을 위한 매개변수
