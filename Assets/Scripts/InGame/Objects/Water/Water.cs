@@ -116,21 +116,34 @@ public class Water : MonoBehaviour , IChangeable
             SceneManager.LoadScene(SceneManager.GetActiveScene().name); // 다시시작
         }
     }
+    //IEnumerator Buoyancy(Rigidbody2D collision)
+    //{
+    //    while (true)
+    //    {
+    //        // 물체가 물보다 위에 있을 때 대기
+    //        yield return new WaitWhile(() => collision.transform.position.y > waterY);
+
+    //        while (collision.transform.position.y < waterY)
+    //        {
+    //            collision.AddForce(new Vector2(0, (waterY - collision.transform.position.y) * buoyancyStrength), ForceMode2D.Force); // 깊이에 따라 강해지는 부력 적용
+    //            collision.velocity = new Vector2(collision.velocity.x, collision.velocity.y * dampingFactor); // 속력 감쇠 적용
+
+    //            yield return null;
+    //        }
+    //        collision.velocity = new Vector2(collision.velocity.x, 0); // 원하는 높이까지 왔으면 속력을 0으로
+    //    }
+    //}
     IEnumerator Buoyancy(Rigidbody2D collision)
     {
-        while (true)
+        while (collision != null)
         {
-            // 물체가 물보다 위에 있을 때 대기
-            yield return new WaitWhile(() => collision.transform.position.y > waterY);
-
-            while (collision.transform.position.y < waterY)
+            if (collision.transform.position.y < waterY)
             {
-                collision.AddForce(new Vector2(0, (waterY - collision.transform.position.y) * buoyancyStrength), ForceMode2D.Force); // 깊이에 따라 강해지는 부력 적용
-                collision.velocity = new Vector2(collision.velocity.x, collision.velocity.y * dampingFactor); // 속력 감쇠 적용
-
-                yield return null;
+                collision.AddForce(new Vector2(0, (waterY - collision.transform.position.y) * buoyancyStrength), ForceMode2D.Force);
+                collision.velocity = new Vector2(collision.velocity.x, collision.velocity.y * dampingFactor);
             }
-            collision.velocity = new Vector2(collision.velocity.x, 0); // 원하는 높이까지 왔으면 속력을 0으로
+
+            yield return new WaitForFixedUpdate();
         }
     }
     void OnTriggerExit2D(Collider2D collision)
