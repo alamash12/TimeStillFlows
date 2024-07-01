@@ -35,6 +35,7 @@ public class MovingPlatform : MonoBehaviour, IChangeable
                 {
                     ChangeState<MovingPlatformFlow, MovingPlatformStop>();
                     DecisionSprite(stateType);
+                    StopCoroutine(SFXPlay());
                 }
             }
         }
