@@ -7,12 +7,11 @@ public class Destination : MonoBehaviour
 {
     string currentSceneName;
 
-
     private void Awake()
     {
         currentSceneName = SceneManager.GetActiveScene().name;
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision) // 최종 목적지 도착 시 호출
     {
         if (collision.CompareTag("Player"))
         {
@@ -21,24 +20,21 @@ public class Destination : MonoBehaviour
             int nextStageNumber = currentStageNumber + 1;
 
             string nextSceneName = $"Stage_0{nextStageNumber}";
-            //string nextScenePP = $"Stage0{nextStageNumber}"; // 플레이어프렙스는 Stage01이런식으로 저장
-
+           
             if (nextStageNumber <= 8)
             {
-                if (nextStageNumber == 5) SoundManager.Instance.TownBgmOn();
+                if (nextStageNumber == 5) SoundManager.Instance.TownBgmOn(); // 만약 스테이지 5로 넘어간다면 TownBgm재생
+
                 SoundManager.Instance.EffectSoundOn("StageClear");
                 SceneManager.LoadScene(nextSceneName);
-                PlayerPrefs.SetInt(nextSceneName, 1);
+                PlayerPrefs.SetInt(nextSceneName, 1); // PlayerPrefs의 다음 스테이지 Key를 1로 저장한다 -> 이어하기에서 플레이하기 위해
             }
-            else if (nextStageNumber == 9)
+            else if (nextStageNumber == 9) // 마지막 스테이지 클리어 후
             {
                 SoundManager.Instance.EffectSoundOn("StageClear");
                 SceneManager.LoadScene("Ending");
                 PlayerPrefs.SetInt("Ending", 1);
             }
-
-            // 스테이지 전환시 페이드인 페이드 아웃 함수 삽입
         } 
-        
     }
 }

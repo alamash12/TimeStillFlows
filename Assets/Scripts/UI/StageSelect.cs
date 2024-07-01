@@ -19,6 +19,7 @@ public class StageSelect : MonoBehaviour
         {
             string stageName = "Stage_0" + (i + 1);
 
+            // 각 스테이지의 클리어 여부를 확인한 후, 클리어 되었다면 이미지의 투명도를 1로 설정
             if (PlayerPrefs.GetInt(stageName) == 1)
             {
                 var image = transform.GetChild(i).GetComponent<Image>();
@@ -28,6 +29,7 @@ public class StageSelect : MonoBehaviour
             }
         }
     }
+    // 스테이지 버튼을 누를 시 각 스테이지로 이동.
     public void StageBtn1()
     {
         if (PlayerPrefs.GetInt("Stage_01") == 1) SceneManager.LoadScene("Stage_01");

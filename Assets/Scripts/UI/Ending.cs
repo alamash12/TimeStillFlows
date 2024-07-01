@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class Ending : MonoBehaviour, IPointerDownHandler
 {
     Image fadeImg;
-    float fadeSpeed = 0.8f; // 작을수록 빠르게 페이드 인, 아웃
+    float fadeSpeed = 0.8f; // 클수록 빠르게 페이드 인, 아웃
     bool isLastScene = false;
     public void SkipEnding()
     {
@@ -28,7 +28,7 @@ public class Ending : MonoBehaviour, IPointerDownHandler
 
         for (int i = 0; i < childNum; i++)
         {
-            if (i == 7) waitSec = 4.0f; 
+            if (i == 7) waitSec = 4.0f; // 마지막에서 두번째 씬부터는 4초로 멈춰있는 시간 늘림
 
             GameObject child = transform.GetChild(i).gameObject;
             fadeImg = child.GetComponent<Image>();
@@ -43,7 +43,7 @@ public class Ending : MonoBehaviour, IPointerDownHandler
                 yield return StartCoroutine(FadeOut());
                 child.SetActive(false);
             }
-            if(i == 7 || i == 8)
+            if(i == 7 || i == 8) // 마지막에서 두번째 씬부터는 페이드 스피드 느리게
             {
                 fadeSpeed = 0.3f;
                 yield return StartCoroutine(FadeOut());
@@ -79,8 +79,10 @@ public class Ending : MonoBehaviour, IPointerDownHandler
     {
         if (isLastScene)
         {
+            // 라스트 씬이라면 엔딩씬의 배경화면을 검은색으로 바꾼다.
             Image backGround = GameObject.Find("Background").GetComponent<Image>();
             backGround.color = Color.black;
+
             StartCoroutine(ExitSequence());
         }
     }
