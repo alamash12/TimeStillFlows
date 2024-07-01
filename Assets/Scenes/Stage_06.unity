@@ -5850,7 +5850,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5323880951208996449, guid: 63a07d0888f380746852f9b754f65510, type: 3}
       propertyPath: laserLength
-      value: 14
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8900820718375295638, guid: 63a07d0888f380746852f9b754f65510, type: 3}
       propertyPath: m_Name
