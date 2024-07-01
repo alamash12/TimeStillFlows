@@ -895,7 +895,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8858252195412941185, guid: 7af792931bcef4f498d731c1d1433a97, type: 3}
       propertyPath: m_LocalScale.x
-      value: 4.2
+      value: 3.174929
       objectReference: {fileID: 0}
     - target: {fileID: 8858252195412941185, guid: 7af792931bcef4f498d731c1d1433a97, type: 3}
       propertyPath: m_LocalScale.y
@@ -903,7 +903,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8858252195412941185, guid: 7af792931bcef4f498d731c1d1433a97, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.0225
+      value: -1.5465
       objectReference: {fileID: 0}
     - target: {fileID: 8858252195412941185, guid: 7af792931bcef4f498d731c1d1433a97, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2132,6 +2132,67 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1005220616723288716, guid: d5451f86945115941881f633f39d739e, type: 3}
   m_PrefabInstance: {fileID: 669310544}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &752604378
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1410330102893818131, guid: 8fff59af8da3cfd48b2e64d2eb2e5901, type: 3}
+      propertyPath: laserLength
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842371995061712295, guid: 8fff59af8da3cfd48b2e64d2eb2e5901, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.8046317
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842371995061712295, guid: 8fff59af8da3cfd48b2e64d2eb2e5901, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.7019873
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842371995061712295, guid: 8fff59af8da3cfd48b2e64d2eb2e5901, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842371995061712295, guid: 8fff59af8da3cfd48b2e64d2eb2e5901, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842371995061712295, guid: 8fff59af8da3cfd48b2e64d2eb2e5901, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842371995061712295, guid: 8fff59af8da3cfd48b2e64d2eb2e5901, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842371995061712295, guid: 8fff59af8da3cfd48b2e64d2eb2e5901, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842371995061712295, guid: 8fff59af8da3cfd48b2e64d2eb2e5901, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842371995061712295, guid: 8fff59af8da3cfd48b2e64d2eb2e5901, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842371995061712295, guid: 8fff59af8da3cfd48b2e64d2eb2e5901, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8151404149600110150, guid: 8fff59af8da3cfd48b2e64d2eb2e5901, type: 3}
+      propertyPath: m_Name
+      value: HorLaser_02
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8fff59af8da3cfd48b2e64d2eb2e5901, type: 3}
 --- !u!1001 &795325134
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5789,7 +5850,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5323880951208996449, guid: 63a07d0888f380746852f9b754f65510, type: 3}
       propertyPath: laserLength
-      value: 14
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8900820718375295638, guid: 63a07d0888f380746852f9b754f65510, type: 3}
       propertyPath: m_Name
@@ -6279,3 +6340,4 @@ SceneRoots:
   - {fileID: 799706626}
   - {fileID: 795325134}
   - {fileID: 559787357}
+  - {fileID: 752604378}
