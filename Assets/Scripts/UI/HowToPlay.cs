@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HowToPlay : MonoBehaviour
 {
-    [SerializeField] GameObject panel;
+    [SerializeField] GameObject htpPanel;
     [SerializeField] GameObject backPanel;
     private void Start()
     {
@@ -13,7 +13,7 @@ public class HowToPlay : MonoBehaviour
     public void ClosePanel()
     {
         Time.timeScale = 1.0f;
-        panel.SetActive(false);
+        htpPanel.SetActive(false);
         backPanel.SetActive(false);
     }
 }
