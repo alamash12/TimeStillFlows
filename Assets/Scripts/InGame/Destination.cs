@@ -21,13 +21,14 @@ public class Destination : MonoBehaviour
             int nextStageNumber = currentStageNumber + 1;
 
             string nextSceneName = $"Stage_0{nextStageNumber}";
-            string nextScenePP = $"Stage0{nextStageNumber}"; // 플레이어프렙스는 Stage01이런식으로 저장
+            //string nextScenePP = $"Stage0{nextStageNumber}"; // 플레이어프렙스는 Stage01이런식으로 저장
 
             if (nextStageNumber <= 8)
             {
+                if (nextStageNumber == 5) SoundManager.Instance.TownBgmOn();
                 SoundManager.Instance.EffectSoundOn("StageClear");
                 SceneManager.LoadScene(nextSceneName);
-                PlayerPrefs.SetInt(nextScenePP, 1);
+                PlayerPrefs.SetInt(nextSceneName, 1);
             }
             else if (nextStageNumber == 9)
             {

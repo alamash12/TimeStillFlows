@@ -12,16 +12,18 @@ public class MainScene: MonoBehaviour
     
     public void StartNewGame() // NewGame을 누를 시 Intro화면으로 씬을 전환함.
     {
-        PlayerPrefs.DeleteKey("Stage02");
-        PlayerPrefs.DeleteKey("Stage03");
-        PlayerPrefs.DeleteKey("Stage04");
-        PlayerPrefs.DeleteKey("Stage05");
-        PlayerPrefs.DeleteKey("Stage06");
-        PlayerPrefs.DeleteKey("Stage07");
-        PlayerPrefs.DeleteKey("Stage08");
+        PlayerPrefs.DeleteKey("Stage_02");
+        PlayerPrefs.DeleteKey("Stage_03");
+        PlayerPrefs.DeleteKey("Stage_04");
+        PlayerPrefs.DeleteKey("Stage_05");
+        PlayerPrefs.DeleteKey("Stage_06");
+        PlayerPrefs.DeleteKey("Stage_07");
+        PlayerPrefs.DeleteKey("Stage_08");
 
-        PlayerPrefs.SetInt("Stage01", 1);
-        SceneManager.LoadScene("Intro"); 
+        PlayerPrefs.SetInt("Stage_01", 1);
+        SceneManager.LoadScene("Intro");
+
+        SoundManager.Instance.WoodBgmOn(); // *******
     }
     public void ContinueGame() // Continue를 누를 시 StageSelect화면으로 씬을 전환함.
     {

@@ -15,13 +15,9 @@ public class StageSelect : MonoBehaviour
     }
     public void Start()
     {
-        //Debug.Log("for문 시작");
         for(int i=0; i<8; i++)
         {
-            string stageName = "Stage0" + (i + 1);
-            //Debug.Log(stageName);
-            //Debug.Log(PlayerPrefs.GetInt(stageName));
-            //Debug.Log(i);
+            string stageName = "Stage_0" + (i + 1);
 
             if (PlayerPrefs.GetInt(stageName) == 1)
             {
@@ -31,39 +27,46 @@ public class StageSelect : MonoBehaviour
                 image.color = color;
             }
         }
-        //Debug.Log("for문 끝!");
     }
     public void StageBtn1()
     {
-        if (PlayerPrefs.GetInt("Stage01") == 1) SceneManager.LoadScene("Stage_01");
+        if (PlayerPrefs.GetInt("Stage_01") == 1) SceneManager.LoadScene("Stage_01");
+        SoundManager.Instance.WoodBgmOn();
     }
     public void StageBtn2()
     {
-        if (PlayerPrefs.GetInt("Stage02") == 1) SceneManager.LoadScene("Stage_02");
+        if (PlayerPrefs.GetInt("Stage_02") == 1) SceneManager.LoadScene("Stage_02");
+        SoundManager.Instance.WoodBgmOn();
     }
     public void StageBtn3()
     {
-        if (PlayerPrefs.GetInt("Stage03") == 1) SceneManager.LoadScene("Stage_03");
+        if (PlayerPrefs.GetInt("Stage_03") == 1) SceneManager.LoadScene("Stage_03");
+        SoundManager.Instance.WoodBgmOn();
     }
     public void StageBtn4()
     {
-        if (PlayerPrefs.GetInt("Stage04") == 1) SceneManager.LoadScene("Stage_04");
+        if (PlayerPrefs.GetInt("Stage_04") == 1) SceneManager.LoadScene("Stage_04");
+        SoundManager.Instance.WoodBgmOn();
     }
     public void StageBtn5()
     {
-        if (PlayerPrefs.GetInt("Stage05") == 1) SceneManager.LoadScene("Stage_05");
+        if (PlayerPrefs.GetInt("Stage_05") == 1) SceneManager.LoadScene("Stage_05");
+        SoundManager.Instance.TownBgmOn();
     }
     public void StageBtn6()
     {
-        if (PlayerPrefs.GetInt("Stage06") == 1) SceneManager.LoadScene("Stage_06");
+        if (PlayerPrefs.GetInt("Stage_06") == 1) SceneManager.LoadScene("Stage_06");
+        SoundManager.Instance.TownBgmOn();
     }
     public void StageBtn7()
     {
-        if (PlayerPrefs.GetInt("Stage07") == 1) SceneManager.LoadScene("Stage_07");
+        if (PlayerPrefs.GetInt("Stage_07") == 1) SceneManager.LoadScene("Stage_07");
+        SoundManager.Instance.TownBgmOn();
     }
     public void StageBtn8()
     {
-        if (PlayerPrefs.GetInt("Stage08") == 1) SceneManager.LoadScene("Stage08");
+        if (PlayerPrefs.GetInt("Stage_08") == 1) SceneManager.LoadScene("Stage_08");
+        SoundManager.Instance.TownBgmOn();
     }
 }
 

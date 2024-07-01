@@ -62,7 +62,7 @@ public class SoundManager : MonoBehaviour
         audioSource1.Play(); // 재생
         
     }
-    void Update() // 씬 바뀌면 어떤 bgm을 틀것인가?
+    /*void Update() // 씬 바뀌면 어떤 bgm을 틀것인가?
     {
         stageNum = SceneManager.GetActiveScene().buildIndex;
         if (audioSource1.clip != bgmOpening && (stageNum == 0))
@@ -85,11 +85,30 @@ public class SoundManager : MonoBehaviour
             audioSource1.Play();
         }
 
+
+    }*/
+    public void OpeningBgmOn()
+    {
+        audioSource1.clip = bgmOpening;
+        audioSource1.volume = PlayerPrefs.GetFloat("bgmVolume");
+        audioSource1.Play();
     }
-    string CurrentScene()
+    public void WoodBgmOn()
+    {
+        audioSource1.clip = bgmWood;
+        audioSource1.volume = PlayerPrefs.GetFloat("bgmVolume");
+        audioSource1.Play();
+    }
+    public void TownBgmOn()
+    {
+        audioSource1.clip = bgmTown;
+        audioSource1.volume = PlayerPrefs.GetFloat("bgmVolume");
+        audioSource1.Play();
+    }
+    /*string CurrentScene()
     {
         return SceneManager.GetActiveScene().name;
-    }
+    }*/
     //public float bgmVolume = 1.0f;// 게임 내에서 공유하는 bgm 슬라이드 값
     //public float effectVolume = 1.0f; // 게임 내에서 공유하는 효과음 슬라이드 값
 

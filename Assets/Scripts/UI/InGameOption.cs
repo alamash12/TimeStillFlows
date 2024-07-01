@@ -32,6 +32,7 @@ public class InGameOption : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         SceneManager.LoadScene("MainMenu");
+        SoundManager.Instance.OpeningBgmOn();
     }
 
     // 음량 조절 파트
