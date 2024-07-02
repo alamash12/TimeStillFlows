@@ -219,7 +219,7 @@ public class MovingPlatform : MonoBehaviour, IChangeable
     {
         while (isDragging)
         {
-            SoundManager.Instance.EffectSoundOn("MovingWork");
+            SoundManager.Instance.EffectSoundOn("MovingWorkn");
             yield return new WaitForSeconds(1.9f);
         }
     }
