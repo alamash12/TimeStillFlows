@@ -19,7 +19,7 @@ public class PlayerJump : MonoBehaviour
     public void Jump()
     {
         Debug.Log(isGround);
-        if (isGround && playerRigid.velocity.y >= 0)
+        if (isGround && playerRigid.velocity.y >= -0.3f)
         {
             playerRigid.velocity = new Vector2 (0, 0);
             SoundManager.Instance.EffectSoundOn("Jump");
