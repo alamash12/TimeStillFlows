@@ -661,7 +661,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3315750493617150684, guid: 1671a3ecf72d44f4cb53413157f2685c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5460386749291894734, guid: 1671a3ecf72d44f4cb53413157f2685c, type: 3}
       propertyPath: m_IsActive
@@ -765,7 +765,7 @@ GameObject:
   - component: {fileID: 314158303}
   m_Layer: 2
   m_Name: HourArea
-  m_TagString: Untagged
+  m_TagString: Area
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2636,6 +2636,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2528164034316605226, guid: c44c3365d155f9e4f8477fe67c07bdc4, type: 3}
+      propertyPath: m_TagString
+      value: Area
+      objectReference: {fileID: 0}
     - target: {fileID: 3650733738674516450, guid: c44c3365d155f9e4f8477fe67c07bdc4, type: 3}
       propertyPath: hourArea
       value: 
@@ -2656,6 +2660,22 @@ PrefabInstance:
       propertyPath: minuteButton
       value: 
       objectReference: {fileID: 239175807}
+    - target: {fileID: 6866654174833211948, guid: c44c3365d155f9e4f8477fe67c07bdc4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.3648437
+      objectReference: {fileID: 0}
+    - target: {fileID: 6866654174833211948, guid: c44c3365d155f9e4f8477fe67c07bdc4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.02613
+      objectReference: {fileID: 0}
+    - target: {fileID: 6866654174833211948, guid: c44c3365d155f9e4f8477fe67c07bdc4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.111
+      objectReference: {fileID: 0}
+    - target: {fileID: 6866654174833211948, guid: c44c3365d155f9e4f8477fe67c07bdc4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.4031
+      objectReference: {fileID: 0}
     - target: {fileID: 8115621605884452051, guid: c44c3365d155f9e4f8477fe67c07bdc4, type: 3}
       propertyPath: m_Name
       value: Player
