@@ -10,7 +10,15 @@ public class MainScene: MonoBehaviour
     /*
      * MainScene : 메인화면에서 일어나는 씬의 전환과 각종 상호작용들을 저장하는 클래스입니다.
      */
+    [SerializeField] GameObject warningPanel;
+    [SerializeField] GameObject backPanel;
     public void StartNewGame() // NewGame을 누를 시 Intro화면으로 씬을 전환함.
+    {
+        warningPanel.SetActive(true);
+        backPanel.SetActive(true);
+    }
+    //// Warning 패널 관련/////
+    public void yesBtn()
     {
         // 새로운 게임 시작시 기존 PlayerPrefs 데이터 삭제
         PlayerPrefs.DeleteKey("Stage_02");
@@ -26,6 +34,12 @@ public class MainScene: MonoBehaviour
 
         SoundManager.Instance.WoodBgmOn();
     }
+    public void noBtn()
+    {
+        warningPanel.SetActive(false);
+        backPanel.SetActive(false);
+    }
+    //////////
     public void ContinueGame() 
     {
         SceneManager.LoadScene("StageSelect"); 
@@ -38,15 +52,13 @@ public class MainScene: MonoBehaviour
     /*
        옵션 패널관련
     */
-    [SerializeField] GameObject optionPanel; // 옵션 패널
-    [SerializeField] GameObject backPanel;  
-    public void ToggleOptionPanel()// 옵션버튼을 누를 시 옵션 패널 생성
+    [SerializeField] GameObject optionPanel; // 옵션 패널 
+    public void ToggleOptionPanel()// 옵션버튼을 누를 시 optionPanel과 backPanel 생성
     {
-        if(backPanel == null) { Debug.Log("d"); }
         optionPanel.SetActive(!optionPanel.activeSelf);
         backPanel.SetActive(!backPanel.activeSelf);
     }
-    public void CloseOptionPanel()// 옵션 x 버튼을 누를 시 옵션 패널 없앰
+    public void CloseOptionPanel()// 옵션 x 버튼을 누를 시 optionPanel,backPanel 없앰
     {
         optionPanel.SetActive (false);
         backPanel.SetActive (false);

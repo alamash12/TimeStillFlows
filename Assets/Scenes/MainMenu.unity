@@ -796,8 +796,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16fea3e4d9d1b40458f944ad4545fcca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  optionPanel: {fileID: 216083014}
+  warningPanel: {fileID: 0}
   backPanel: {fileID: 1638650086}
+  optionPanel: {fileID: 216083014}
   bgmSlider: {fileID: 1572136813}
   effectSlider: {fileID: 1801487460}
 --- !u!1 &228958145
@@ -1135,8 +1136,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16fea3e4d9d1b40458f944ad4545fcca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  optionPanel: {fileID: 216083014}
+  warningPanel: {fileID: 1084531966}
   backPanel: {fileID: 1638650086}
+  optionPanel: {fileID: 216083014}
   bgmSlider: {fileID: 1572136813}
   effectSlider: {fileID: 1801487460}
 --- !u!1 &549285191
@@ -1535,8 +1537,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16fea3e4d9d1b40458f944ad4545fcca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  optionPanel: {fileID: 216083014}
+  warningPanel: {fileID: 0}
   backPanel: {fileID: 0}
+  optionPanel: {fileID: 216083014}
   bgmSlider: {fileID: 1572136813}
   effectSlider: {fileID: 1801487460}
 --- !u!1 &860467370
@@ -1620,7 +1623,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 860467373}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 357925000}
+        m_TargetAssemblyTypeName: MainScene, Assembly-CSharp
+        m_MethodName: yesBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &860467373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2861,8 +2876,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16fea3e4d9d1b40458f944ad4545fcca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  optionPanel: {fileID: 216083014}
+  warningPanel: {fileID: 0}
   backPanel: {fileID: 0}
+  optionPanel: {fileID: 216083014}
   bgmSlider: {fileID: 1572136813}
   effectSlider: {fileID: 1801487460}
 --- !u!1 &1603194779
@@ -2946,7 +2962,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1603194782}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 357925000}
+        m_TargetAssemblyTypeName: MainScene, Assembly-CSharp
+        m_MethodName: noBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1603194782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3128,6 +3156,7 @@ MonoBehaviour:
   optionPanel: {fileID: 216083014}
   htpPanel: {fileID: 980777709}
   madeByPanel: {fileID: 1631433056}
+  warningPanel: {fileID: 1084531966}
 --- !u!114 &1638650089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3344,8 +3373,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16fea3e4d9d1b40458f944ad4545fcca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  optionPanel: {fileID: 216083014}
+  warningPanel: {fileID: 0}
   backPanel: {fileID: 0}
+  optionPanel: {fileID: 216083014}
   bgmSlider: {fileID: 1572136813}
   effectSlider: {fileID: 1801487460}
 --- !u!1 &1987688760
@@ -3531,8 +3561,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16fea3e4d9d1b40458f944ad4545fcca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  optionPanel: {fileID: 216083014}
+  warningPanel: {fileID: 0}
   backPanel: {fileID: 0}
+  optionPanel: {fileID: 216083014}
   bgmSlider: {fileID: 1572136813}
   effectSlider: {fileID: 1801487460}
 --- !u!114 &2037744992
@@ -3849,8 +3880,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16fea3e4d9d1b40458f944ad4545fcca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  optionPanel: {fileID: 216083014}
+  warningPanel: {fileID: 0}
   backPanel: {fileID: 0}
+  optionPanel: {fileID: 216083014}
   bgmSlider: {fileID: 1572136813}
   effectSlider: {fileID: 1801487460}
 --- !u!1660057539 &9223372036854775807
