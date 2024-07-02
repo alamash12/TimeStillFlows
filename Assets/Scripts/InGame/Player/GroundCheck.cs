@@ -13,10 +13,9 @@ public class GroundCheck : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(!collision.CompareTag("Player") && !collision.CompareTag("Area") && playerJump.playerRigid.velocity.y < 0.3f)
+        if(!collision.CompareTag("Player") && !collision.CompareTag("Area") && playerJump.playerRigid.velocity.y < 1f)
         {
             playerJump.JumpStateReset();
-            Debug.Log(collision.name);
         }
     }
 }

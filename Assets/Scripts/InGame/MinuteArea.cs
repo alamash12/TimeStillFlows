@@ -111,7 +111,7 @@ public class MinuteArea : MonoBehaviour
     /// </summary>
     /// <param name="isEnabled">윤곽선의 여부</param>
     /// 바닥 > 물 > 플레이어 = 블록/발판 > 아웃라인
-    /// 8      6       4          1          0      <- 각 오브젝트의 sortingorder
+    /// 9      6       4          1          0      <- 각 오브젝트의 sortingorder
     /// nearestObject가 되었을때 아웃라인과 오브젝트 order++
     void OrderDecision(bool isEnabled)
     {
