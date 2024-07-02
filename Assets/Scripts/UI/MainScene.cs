@@ -14,13 +14,13 @@ public class MainScene: MonoBehaviour
     [SerializeField] GameObject backPanel;
     public void NewGame() // NewGame을 누를 시 Intro화면으로 씬을 전환함.
     {
-        // 한번이상 1스테이지를 플레이했다면 경고창을 띄우고 게임시작
-        if(PlayerPrefs.GetInt("Stage_01") == 1) 
+        // 1스테이지를 클리어했다면 경고창을 띄우고 게임시작
+        if(PlayerPrefs.GetInt("Stage_02") == 1) 
         {
             warningPanel.SetActive(true);
             backPanel.SetActive(true);
         }// 처음이라면 띄우지 않음
-        else if(PlayerPrefs.GetInt("Stage_01") == 0) 
+        else if(PlayerPrefs.GetInt("Stage_02") == 0) 
         {
             StartNewGame();
         }
