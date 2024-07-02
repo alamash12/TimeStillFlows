@@ -12,13 +12,21 @@ public class MainScene: MonoBehaviour
      */
     [SerializeField] GameObject warningPanel;
     [SerializeField] GameObject backPanel;
-    public void StartNewGame() // NewGame을 누를 시 Intro화면으로 씬을 전환함.
+    public void NewGame() // NewGame을 누를 시 Intro화면으로 씬을 전환함.
     {
-        warningPanel.SetActive(true);
-        backPanel.SetActive(true);
+        // 한번이상 1스테이지를 플레이했다면 경고창을 띄우고 게임시작
+        if(PlayerPrefs.GetInt("Stage_01") == 1) 
+        {
+            warningPanel.SetActive(true);
+            backPanel.SetActive(true);
+        }// 처음이라면 띄우지 않음
+        else if(PlayerPrefs.GetInt("Stage_01") == 0) 
+        {
+            StartNewGame();
+        }
+        
     }
-    //// Warning 패널 관련/////
-    public void yesBtn()
+    public void StartNewGame()
     {
         // 새로운 게임 시작시 기존 PlayerPrefs 데이터 삭제
         PlayerPrefs.DeleteKey("Stage_02");
@@ -33,6 +41,11 @@ public class MainScene: MonoBehaviour
         SceneManager.LoadScene("Intro");
 
         SoundManager.Instance.WoodBgmOn();
+    }
+    //// Warning 패널 관련/////
+    public void yesBtn()
+    {
+       StartNewGame();
     }
     public void noBtn()
     {
