@@ -5235,6 +5235,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: High_Floor (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2050710235235576224, guid: 0e0a2228e1bc0f045a212100affee895, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.99861103
+      objectReference: {fileID: 0}
+    - target: {fileID: 2050710235235576224, guid: 0e0a2228e1bc0f045a212100affee895, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.820176
+      objectReference: {fileID: 0}
     - target: {fileID: 3476722509912083866, guid: 0e0a2228e1bc0f045a212100affee895, type: 3}
       propertyPath: m_LocalPosition.x
       value: 26.591
